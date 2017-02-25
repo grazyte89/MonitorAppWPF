@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using MonitorAppWPF.Monitors;
+using System.Threading;
 
 namespace MonitorAppWPF
 {
@@ -22,28 +24,17 @@ namespace MonitorAppWPF
     public partial class MainWindow : Window
     {
         private bool State { get; set; }
-        private PerformanceCounter cpuPerformance;
+        private CpuMonitoring _cpuMonitroing { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            cpuPerformance = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
+            _cpuMonitroing = new CpuMonitoring(_currentCpuUsage);
         }
 
-        private void _startButton_Click(object sender, RoutedEventArgs e)
+        private void _monitorButton_Click(object sender, RoutedEventArgs e)
         {
-            _CPUtextbox.Text = cpuPerformance.NextValue() + "%";
-            while(true)
-            {
-                string i = cpuPerformance.NextValue() + "%";
-                _CPUtextbox.Text = i;
-                _CPUtextbox.Clear();
-            }
-        }
-
-        private void _stopButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            _cpuMonitroing.StartMonitoring();
         }
     }
 }
