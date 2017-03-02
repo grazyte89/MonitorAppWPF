@@ -24,12 +24,13 @@ namespace MonitorAppWPF
     public partial class MainWindow : Window
     {
         private bool State { get; set; }
-        private CpuMonitoring _cpuMonitroing { get; set; }
+        private CpuMonitoring _cpuMonitroing;
 
         public MainWindow()
         {
             InitializeComponent();
             _cpuMonitroing = new CpuMonitoring(_currentCpuUsage);
+            this.DataContext = _cpuMonitroing;
         }
 
         private void _monitorButton_Click(object sender, RoutedEventArgs e)

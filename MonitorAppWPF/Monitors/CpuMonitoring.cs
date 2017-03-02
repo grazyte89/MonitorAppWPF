@@ -7,20 +7,38 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Timers;
 using System.Windows;
+using System.ComponentModel;
 
 namespace MonitorAppWPF.Monitors
 {
-    public class CpuMonitoring : IMonitor
+    public class CpuMonitoring : IMonitor, INotifyPropertyChanged
     {
-        private Label _cpuUsageDisplay { get; set; }
+        //private Label _cpuUsageDisplay { get; set; }
         private PerformanceCounter _cpuPerformance { get; set; }
         private Timer _cycleTimer { get; set; }
+        private string _lbCpuUsage;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CpuMonitoring(Label label)
         {
             this.InitialiseCyceTimer();
             _cpuPerformance = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
-            _cpuUsageDisplay = label;
+            _lbCpuUsage = "100";
+            //_cpuUsageDisplay = label;
+        }
+
+        public string CpuUsage
+        {
+            get
+            {
+                return _lbCpuUsage + " %";
+            }
+            set
+            {
+                _lbCpuUsage = value;
+                this.OnPropertyChanged("CpuUsage");
+            }
         }
 
         private void InitialiseCyceTimer()
@@ -44,13 +62,21 @@ namespace MonitorAppWPF.Monitors
 
         private void DisplayMonitoredData()
         {
-            _cpuUsageDisplay.Content = _cpuPerformance.NextValue() + "%";
+            //_cpuUsageDisplay.Content = _cpuPerformance.NextValue() + "%";
+            //_lbCpuUsage = "5 "; // _cpuPerformance.NextValue().ToString();
+            this.CpuUsage = _cpuPerformance.NextValue().ToString();
         }
 
         public void StartMonitoring()
         {
             DisplayMonitoredData();
             _cycleTimer.Start();
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
