@@ -1,0 +1,10 @@
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\PetsEntityLib.dll.config
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\PetsEntityLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\PetsEntityLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\EntityFramework.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\EntityFramework.xml
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.csprojResolveAssemblyReference.cache
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.pdb

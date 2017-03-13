@@ -29,13 +29,19 @@ namespace MonitorAppWPF
         public MainWindow()
         {
             InitializeComponent();
-            _cpuMonitroing = new CpuMonitoring(_currentCpuUsage);
+            _cpuMonitroing = new CpuMonitoring(_lbCurrentCpuUsage);
             this.DataContext = _cpuMonitroing;
+            
         }
 
         private void _monitorButton_Click(object sender, RoutedEventArgs e)
         {
             _cpuMonitroing.StartMonitoring();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this._ccMainControls.Content = new DbControls.PetDbControl();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MonitorAppWPF.Monitors
         {
             this.InitialiseCyceTimer();
             _cpuPerformance = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
-            _lbCpuUsage = "100";
+            _lbCpuUsage = "0";
             //_cpuUsageDisplay = label;
         }
 
@@ -62,9 +62,8 @@ namespace MonitorAppWPF.Monitors
 
         private void DisplayMonitoredData()
         {
-            //_cpuUsageDisplay.Content = _cpuPerformance.NextValue() + "%";
-            //_lbCpuUsage = "5 "; // _cpuPerformance.NextValue().ToString();
             this.CpuUsage = _cpuPerformance.NextValue().ToString();
+            //this.CpuUsage = PetsEntityLib.TestClass.GetCustomers().Count().ToString();
         }
 
         public void StartMonitoring()

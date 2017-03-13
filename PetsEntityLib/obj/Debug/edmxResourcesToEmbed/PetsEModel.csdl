@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AGE" Type="Int32" Nullable="false" />
+    <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VACINATION" Type="DateTime" Precision="3" />
+    <Property Name="CHECKUP" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AnimalSolds" Relationship="Self.FK_AnimalSold_Animal" FromRole="Animals" ToRole="AnimalSolds" />
+  </EntityType>
+  <EntityType Name="AnimalSold">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ANIMAL_ID" Type="Int32" Nullable="false" />
+    <Property Name="OWNER_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animal" Relationship="Self.FK_AnimalSold_Animal" FromRole="AnimalSolds" ToRole="Animals" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_AnimalSold_Customer" FromRole="AnimalSolds" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AGE" Type="Int32" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AnimalSolds" Relationship="Self.FK_AnimalSold_Customer" FromRole="Customers" ToRole="AnimalSolds" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STOCKLEFT" Type="Int32" Nullable="false" />
+    <Property Name="PRICE" Type="Double" Nullable="false" />
+    <Property Name="ITEM_PRICE" Type="Double" Nullable="false" />
+    <Property Name="MARKUP" Type="Double" Nullable="false" />
+    <Property Name="PRICE_TOMEET_MARK" Type="Double" Nullable="false" />
+    <Property Name="DATE" Type="DateTime" Precision="3" />
+    <Property Name="TARGETSALEMK" Type="Double" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_AnimalSold_Animal">
+    <End Role="Animals" Type="Self.Animal" Multiplicity="1" />
+    <End Role="AnimalSolds" Type="Self.AnimalSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animals">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AnimalSolds">
+        <PropertyRef Name="ANIMAL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnimalSold_Customer">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="AnimalSolds" Type="Self.AnimalSold" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AnimalSolds">
+        <PropertyRef Name="OWNER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PetsEContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Animals" EntityType="Self.Animal" />
+    <EntitySet Name="AnimalSolds" EntityType="Self.AnimalSold" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_AnimalSold_Animal" Association="Self.FK_AnimalSold_Animal">
+      <End Role="Animals" EntitySet="Animals" />
+      <End Role="AnimalSolds" EntitySet="AnimalSolds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnimalSold_Customer" Association="Self.FK_AnimalSold_Customer">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="AnimalSolds" EntitySet="AnimalSolds" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
