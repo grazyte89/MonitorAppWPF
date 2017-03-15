@@ -25,14 +25,20 @@ namespace MonitorAppWPF.DbControls
             InitializeComponent();
         }
 
-        private void _customersTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _tbCustomers2.Visibility = Visibility.Collapsed;
+        }
+
+        private void TbCustomers2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            _customersTable.DataContext = PetsEntityLib.TestClass.GetCustomers();
+            _tbCustomers.DataContext = PetsEntityLib.TestClass.GetCustomers();
+            _tbCustomers2.DataContext = PetsEntityLib.TestClass.GetCustomers();
         }
     }
 }
