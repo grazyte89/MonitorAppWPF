@@ -1,0 +1,5 @@
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\XmlPersistanceLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\XmlPersistanceLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.csprojResolveAssemblyReference.cache
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.pdb

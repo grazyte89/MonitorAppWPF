@@ -20,19 +20,32 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class PetDbControl : UserControl
     {
+        private volatile bool _tbCustomer2Collapsed;
+
         public PetDbControl()
         {
             InitializeComponent();
+            _tbCustomer2Collapsed = false;
         }
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _tbCustomers2.Visibility = Visibility.Collapsed;
+            if (!_tbCustomer2Collapsed)
+            {
+                _tbCustomer2Collapsed = true;
+                _tbCustomers2.Visibility = Visibility.Collapsed;
+                _smallGrid.RowDefinitions.Remove(_row2);
+            }
+            else
+            {
+                _tbCustomer2Collapsed = false;
+                _tbCustomers2.Visibility = Visibility.Visible;
+                _smallGrid.RowDefinitions.Add(_row2);
+            }
         }
 
         private void TbCustomers2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

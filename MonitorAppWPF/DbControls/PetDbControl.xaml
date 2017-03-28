@@ -5,37 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
-    <Grid>
+             Height="500" Width="920" BorderBrush="Black">
+    <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" Background="RosyBrown">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="40*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="button" Content="Customer table" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Click="button_Click" />
+        <Button x:Name="button" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Click="button_Click" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Margin="10">
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type DataGrid}">
-                        <Setter Property="Margin" Value="0,10,0,0"/>
-                    </Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Margin" Value="0,10,0,0"/>
-                    </Style>
-                </StackPanel.Resources>
-                <DataGrid x:Name="_tbCustomers" SelectionMode="Single" Grid.Row="0" ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" />
-                <DataGrid x:Name="_tbCustomers2" SelectionMode="Single" Grid.Row="0" ItemsSource="{Binding}" SelectionChanged="TbCustomers2_SelectionChanged" />
-                <Button x:Name="_btnTest" Content="hello"/>
-            </StackPanel>
+            <Grid x:Name="_smallGrid" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition x:Name="_row2" Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="_tbCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single" Grid.Row="0" ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" />
+                <DataGrid x:Name="_tbCustomers2" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="TbCustomers2_SelectionChanged" />
+                <DataGrid x:Name="_tbXmlData" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="2">
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                </DataGrid>
+                <Button x:Name="_btnTest" Grid.Row="3" Content="hello" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.RowSpan="2"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
