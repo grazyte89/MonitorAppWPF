@@ -57,6 +57,7 @@
     <Compile Include="AnimalSold.cs">
       <DependentUpon>PetsEModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Customer.cs">

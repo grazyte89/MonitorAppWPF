@@ -29,10 +29,19 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="_tbCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single" Grid.Row="0" ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" />
+                <DataGrid x:Name="_tbCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single" Grid.Row="0" ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged"
+                          AutoGenerateColumns="false">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Firstname" Binding="{Binding Path=FIRSTNAME}" />
+                        <DataGridTextColumn Header="Surname" Binding="{Binding Path=LASTNAME}" />
+                        <DataGridTextColumn Header="Age" Binding="{Binding Path=AGE}" />
+                    </DataGrid.Columns>
+                </DataGrid>
                 <DataGrid x:Name="_tbCustomers2" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="TbCustomers2_SelectionChanged" />
                 <DataGrid x:Name="_tbXmlData" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="2">
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    </DataGrid.Columns>
                 </DataGrid>
                 <Button x:Name="_btnTest" Grid.Row="3" Content="hello" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.RowSpan="2"/>
             </Grid>
