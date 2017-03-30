@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetsEntityLib.DataBasePersistances
 {
-    public interface IDBPersistance
+    public interface IDBPersistance<T>
     {
-        void AddChanges(object value);
+        void AddChanges(T value);
         void SaveChanges();
     }
 }

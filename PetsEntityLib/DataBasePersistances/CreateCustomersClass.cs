@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetsEntityLib.DataBasePersistances
 {
-    public class CreateCustomersClass : IDBPersistance
+    public class CreateCustomersClass : IDBPersistance<Customer>
     {
         private List<Customer> _customers;
 
@@ -20,10 +20,10 @@ namespace PetsEntityLib.DataBasePersistances
             //_dbContext.Customers.Add()
         }
 
-        public void AddChanges(object value)
+        public void AddChanges(Customer value)
         {
-            if (value is Customer && value != null)
-                _customers.Add(value as Customer);
+            if (value != null)
+                _customers.Add(value);
         }
 
         public void SaveChanges()
