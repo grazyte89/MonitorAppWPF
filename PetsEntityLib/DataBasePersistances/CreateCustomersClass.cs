@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetsEntityLib.DataBaseContext;
+using PetsEntityLib.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +32,7 @@ namespace PetsEntityLib.DataBasePersistances
         {
             try
             {
-                using (PetsEContext _dbContext = new PetsEContext())
+                using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
                     if (_customers != null && _customers.Count > 0)
                         _dbContext.Customers.AddRange(_customers);

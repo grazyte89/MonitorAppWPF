@@ -17,7 +17,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ANIMAL_ID" Type="int" Nullable="false" />
     <Property Name="OWNER_ID" Type="int" Nullable="false" />
   </EntityType>
@@ -35,7 +35,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="STOCKLEFT" Type="int" Nullable="false" />
     <Property Name="PRICE" Type="float" Nullable="false" />

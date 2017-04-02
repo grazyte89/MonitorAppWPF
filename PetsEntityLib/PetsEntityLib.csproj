@@ -51,63 +51,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animal.cs">
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AnimalSold.cs">
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="DataBaseContext\PetShopDBContext.cs" />
     <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
+    <Compile Include="Entities\Animal.cs" />
+    <Compile Include="Entities\AnimalSold.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\IEntityBase.cs" />
+    <Compile Include="Entities\Stock.cs" />
     <Compile Include="TestClass.cs" />
-    <Compile Include="Customer.cs">
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PetsEModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PetsEModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PetsEModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PetsEModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PetsEModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stock.cs">
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>PetsEModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="PetsEModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PetsEModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="PetsEModel.edmx.diagram">
-      <DependentUpon>PetsEModel.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PetsEModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PetsEModel.edmx</DependentUpon>
-      <LastGenOutput>PetsEModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="PetsEModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PetsEModel.edmx</DependentUpon>
-      <LastGenOutput>PetsEModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

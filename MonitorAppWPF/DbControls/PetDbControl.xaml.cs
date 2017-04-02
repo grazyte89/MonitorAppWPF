@@ -51,8 +51,9 @@ namespace MonitorAppWPF.DbControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //_tbCustomers.Items.Clear();
-            _tbCustomers.ItemsSource = PetsEntityLib.TestClass.GetCustomers();
+            _tbCustomers.DataContext = PetsEntityLib.TestClass.GetCustomers();
             _tbCustomers2.DataContext = PetsEntityLib.TestClass.GetCustomers();
+            PetsEntityLib.TestClass.CreateCustomer("TestTest3", "LastNameTest33");
         }
     }
 }
