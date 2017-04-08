@@ -7,6 +7,7 @@ namespace PetsEntityLib.DataBaseContext
     {
         public PetShopDBContext() : base("name=PetShopDBContext")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Animal> Animals { get; set; }

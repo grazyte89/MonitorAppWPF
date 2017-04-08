@@ -1,26 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace PetsEntityLib.Entities
 {
-    public partial class Animal : IEntityBase
+    [DataContract(Name = "Animal")]
+    public partial class Animal : IEntityDaBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Animal()
         {
             this.AnimalSolds = new HashSet<AnimalSold>();
         }
-    
+
+        [DataMember(Name = "ID")]
         public int ID { get; set; }
+        [DataMember(Name = "NAME")]
         public string NAME { get; set; }
+        [DataMember(Name = "AGE")]
         public int AGE { get; set; }
+        [DataMember(Name = "GENDER")]
         public string GENDER { get; set; }
+        [DataMember(Name = "TYPE")]
         public string TYPE { get; set; }
+        [DataMember(Name = "VACINATION")]
         public Nullable<System.DateTime> VACINATION { get; set; }
+        [DataMember(Name = "CHECKUP")]
         public Nullable<System.DateTime> CHECKUP { get; set; }
+        [DataMember(Name = "STATUS")]
         public string STATUS { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        [DataMember(Name = "AnimalSold")]
         public virtual ICollection<AnimalSold> AnimalSolds { get; set; }
     }
 }

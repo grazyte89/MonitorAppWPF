@@ -10,14 +10,13 @@ namespace PetsEntityLib
 {
     public class TestClass
     {
-        public static IList<Customer> GetCustomers()
+        public static List<Customer> GetCustomers()
         {
-            IList<Customer> customer;
+            List<Customer> customer;
 
             using (PetShopDBContext _context = new PetShopDBContext())
             {
                 customer = _context.Customers.ToList();
-                //customer = new List<Customer>();
             }
 
             return customer;

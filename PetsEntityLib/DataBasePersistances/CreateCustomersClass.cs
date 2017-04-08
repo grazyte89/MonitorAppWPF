@@ -2,6 +2,7 @@
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +13,20 @@ namespace PetsEntityLib.DataBasePersistances
     {
         private List<Customer> _customers;
 
-        public CreateCustomersClass()
+        public CreateCustomersClass(List<Customer> customer)
         {
-            _customers = new List<Customer>();
+            _customers = customer;
         }
 
         public void CreateCustomer(string firstName, string lastName, int age, string address)
         {
-            //_dbContext.Customers.Add()
+            _customers.Add(new Customer()
+            {
+                FIRSTNAME = firstName,
+                LASTNAME = lastName,
+                AGE = age,
+                ADDRESS = address
+            });
         }
 
         public void AddChanges(Customer value)
@@ -35,13 +42,17 @@ namespace PetsEntityLib.DataBasePersistances
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
                     if (_customers != null && _customers.Count > 0)
+                    {
                         _dbContext.Customers.AddRange(_customers);
+                        _dbContext.SaveChanges();
+                    }
                 }
                 _customers.Clear();
             }
             catch (Exception exception)
             {
-
+                MessageBox.Show("Problem encountered during persisting customer." + 
+                    "Message" + exception.Message);
             }
         }
     }

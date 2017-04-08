@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace PetsEntityLib.Entities
 {
-    public partial class Stock : IEntityBase
+    public partial class Stock : IEntityDaBase
     {
+        /// TODO Make data contarct here
         public int ID { get; set; }
         public string NAME { get; set; }
         public int STOCKLEFT { get; set; }

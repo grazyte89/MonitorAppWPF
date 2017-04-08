@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,8 +45,15 @@
     <Compile Include="Extractions\IExtracted.cs" />
     <Compile Include="Extractions\XmlExtracted.cs" />
     <Compile Include="Persistances\IPersistance.cs" />
+    <Compile Include="Persistances\XmlPersistEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlFilePersist.cs" />
+    <Compile Include="XmlFilePersistTesti.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetsEntityLib\PetsEntityLib.csproj">
+      <Project>{eb1778bf-a8c5-41dc-9b00-a01f39e8b283}</Project>
+      <Name>PetsEntityLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

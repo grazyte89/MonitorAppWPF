@@ -3,3 +3,7 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.csprojResolveAssemblyReference.cache
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\PetsEntityLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\EntityFramework.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\PetsEntityLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\EntityFramework.xml

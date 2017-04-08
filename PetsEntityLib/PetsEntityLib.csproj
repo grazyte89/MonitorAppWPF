@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,11 +54,12 @@
   <ItemGroup>
     <Compile Include="DataBaseContext\PetShopDBContext.cs" />
     <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
+    <Compile Include="DataBasePersistances\CreateStocksClass.cs" />
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\AnimalSold.cs" />
     <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\IEntityBase.cs" />
+    <Compile Include="Entities\IEntityDaBase.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

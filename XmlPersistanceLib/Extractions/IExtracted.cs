@@ -8,6 +8,8 @@ namespace XmlPersistanceLib.Extractions
 {
     public interface IExtracted<T>
     {
-        IList<T> ExtractedData { get; set; }
+        IList<T> Data { get; }
+        string Location { get; set; }
+        void ExecuteExtraction();
     }
 }

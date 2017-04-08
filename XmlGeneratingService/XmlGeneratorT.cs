@@ -14,7 +14,7 @@ namespace XmlGeneratingService
 {
     public partial class XmlGeneratorT : ServiceBase
     {
-        private XmlFilePersist<string> _persistantObject;
+        private XmlFilePersistTesti<string> _persistantObject;
         private readonly object _lockObject = new object();
         private CancellationTokenSource _tokenSource;
 
@@ -22,7 +22,7 @@ namespace XmlGeneratingService
         {
             InitializeComponent();
             _tokenSource = new CancellationTokenSource();
-            _persistantObject = new XmlFilePersist<string>("Message");
+            _persistantObject = new XmlFilePersistTesti<string>("Value");
             Thread.Sleep(5000);
         }
 
@@ -45,7 +45,8 @@ namespace XmlGeneratingService
         {
             lock (_lockObject)
             {
-                _persistantObject.Message = value;
+                _persistantObject.Value = value;
+                _persistantObject.Location = @"C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\DbTestData.xml";
                 _persistantObject.Persist();
             }
         }

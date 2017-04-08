@@ -121,6 +121,10 @@
       <Project>{eb1778bf-a8c5-41dc-9b00-a01f39e8b283}</Project>
       <Name>PetsEntityLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XmlPersistanceLib\XmlPersistanceLib.csproj">
+      <Project>{135F54AC-39F1-4FDE-BEF4-A652CC445468}</Project>
+      <Name>XmlPersistanceLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

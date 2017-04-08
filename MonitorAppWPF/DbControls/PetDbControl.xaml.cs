@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetsEntityLib.DataBasePersistances;
+using PetsEntityLib.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
+using XmlPersistanceLib;
+using XmlPersistanceLib.Extractions;
+using XmlPersistanceLib.Persistances;
 
 namespace MonitorAppWPF.DbControls
 {
@@ -50,10 +56,11 @@ namespace MonitorAppWPF.DbControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            //_tbCustomers.Items.Clear();
-            _tbCustomers.DataContext = PetsEntityLib.TestClass.GetCustomers();
-            _tbCustomers2.DataContext = PetsEntityLib.TestClass.GetCustomers();
-            PetsEntityLib.TestClass.CreateCustomer("TestTest3", "LastNameTest33");
+            var tempdata = PetsEntityLib.TestClass.GetCustomers();
+            _tbCustomers.DataContext = tempdata;
+            XmlPersistEntity<List<Customer>> xmltest = new XmlPersistEntity<List<Customer>>(tempdata);
+            xmltest.Location = @"C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\Tesfghlk.xml";
+            xmltest.Persist();
         }
     }
 }
