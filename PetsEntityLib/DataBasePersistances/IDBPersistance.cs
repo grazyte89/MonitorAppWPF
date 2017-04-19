@@ -9,7 +9,7 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public interface IDBPersistance<T> where T : IEntityDaBase
     {
-        void AddChanges(T value);
-        void SaveChanges();
+        void AddItem(T value);
+        void SaveCreatedItems();
     }
 }

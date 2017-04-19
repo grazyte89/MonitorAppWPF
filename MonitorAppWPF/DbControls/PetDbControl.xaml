@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
              mc:Ignorable="d" 
-             Height="500" Width="920" BorderBrush="Black">
+             Height="518" Width="857" BorderBrush="Black">
     <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" Background="RosyBrown">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -38,9 +38,9 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <DataGrid x:Name="_tbCustomers2" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="1" ItemsSource="{Binding}" SelectionChanged="TbCustomers2_SelectionChanged" />
-                <DataGrid x:Name="_tbXmlData" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="2">
+                <DataGrid x:Name="_tbXmlData" VerticalAlignment="Stretch" Margin="0,10,0,0" SelectionMode="Single" Grid.Row="2" ItemsSource="{Binding}" >
                     <DataGrid.Columns>
-                        <!--<DataGridTextColumn Header="Name" Binding="{Binding Name}" />-->
+                        <DataGridTextColumn Header="Name" Binding="{Binding FIRSTNAME}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <Button x:Name="_btnTest" Grid.Row="3" Content="hello" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.RowSpan="2"/>

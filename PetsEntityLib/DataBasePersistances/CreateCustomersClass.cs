@@ -11,11 +11,19 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public class CreateCustomersClass : IDBPersistance<Customer>
     {
-        private List<Customer> _customers;
+        private IList<Customer> _customers;
 
-        public CreateCustomersClass(List<Customer> customer)
+        public CreateCustomersClass(IList<Customer> customer)
         {
-            _customers = customer;
+            if (customer != null)
+                _customers = customer;
+            else
+                _customers = new List<Customer>();
+        }
+
+        public IList<Customer> Customers
+        {
+            get { return _customers; }
         }
 
         public void CreateCustomer(string firstName, string lastName, int age, string address)
@@ -29,13 +37,13 @@ namespace PetsEntityLib.DataBasePersistances
             });
         }
 
-        public void AddChanges(Customer value)
+        public void AddItem(Customer value)
         {
             if (value != null)
                 _customers.Add(value);
         }
 
-        public void SaveChanges()
+        public void SaveCreatedItems()
         {
             try
             {
@@ -45,9 +53,9 @@ namespace PetsEntityLib.DataBasePersistances
                     {
                         _dbContext.Customers.AddRange(_customers);
                         _dbContext.SaveChanges();
+                        _customers.Clear();
                     }
                 }
-                _customers.Clear();
             }
             catch (Exception exception)
             {

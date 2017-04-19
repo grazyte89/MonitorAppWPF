@@ -1,7 +1,9 @@
-﻿using PetsEntityLib.DataBasePersistances;
+﻿using PetsEntityLib.DataBaseExtractions;
+using PetsEntityLib.DataBasePersistances;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,11 +58,16 @@ namespace MonitorAppWPF.DbControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var tempdata = PetsEntityLib.TestClass.GetCustomers();
-            _tbCustomers.DataContext = tempdata;
-            XmlPersistEntity<List<Customer>> xmltest = new XmlPersistEntity<List<Customer>>(tempdata);
-            xmltest.Location = @"C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\Tesfghlk.xml";
-            xmltest.Persist();
+            _tbCustomers.DataContext = RetrieveCustomers.GetAllCustomers();
+            _tbCustomers2.DataContext = RetrieveAnimals.GetAllAnimals();
+
+            PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
+            _asyncro.Save(RetrieveCustomers.GetAllCustomers());
+
+            XmlEntityExtraction<Customer> xmlextractiotest = 
+                new XmlEntityExtraction<Customer>(ConfigurationManager.AppSettings["DefaultXmlEntityFolder"] + "Tesfghlk.xml");
+            xmlextractiotest.ExecuteExtraction();
+            _tbXmlData.DataContext = xmlextractiotest.Data;
         }
     }
 }

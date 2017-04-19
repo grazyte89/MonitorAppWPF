@@ -18,11 +18,14 @@ namespace XmlPersistanceLib.Persistances
             this.Value = message;
         }
 
-        public void Persist()
+        public bool Persist()
         {
             try
             {
-                using (FileStream writer = new FileStream(Location, FileMode.Append))
+                if (Location == null)
+                    return false;
+
+                using (FileStream writer = new FileStream(Location, FileMode.Create))
                 {
                     DataContractSerializer xmlfile = new DataContractSerializer(typeof(T));
                     xmlfile.WriteObject(writer, Value);
@@ -31,7 +34,10 @@ namespace XmlPersistanceLib.Persistances
             catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
+                return false;
             }
+
+            return true;
         }
     }
 }

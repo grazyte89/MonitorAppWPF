@@ -10,6 +10,6 @@ namespace XmlPersistanceLib.Extractions
     {
         IList<T> Data { get; }
         string Location { get; set; }
-        void ExecuteExtraction();
+        bool ExecuteExtraction();
     }
 }

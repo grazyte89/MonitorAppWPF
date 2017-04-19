@@ -11,14 +11,19 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public class CreateStocksClass : IDBPersistance<Stock>
     {
-        private List<Stock> _stocks;
+        private IList<Stock> _stocks;
 
-        public CreateStocksClass(List<Stock> stocks)
+        public CreateStocksClass(IList<Stock> stocks)
         {
             if (stocks != null)
                 _stocks = stocks;
             else
                 _stocks = new List<Stock>();
+        }
+
+        public IList<Stock> Stocks
+        {
+            get { return _stocks; }
         }
 
         public void CreateStock(string name, double price, double itemPrice, double markup, double? targetSales = null)
@@ -36,27 +41,30 @@ namespace PetsEntityLib.DataBasePersistances
             });
         }
 
-        public void AddChanges(Stock value)
+        public void AddItem(Stock value)
         {
             if (value != null)
                 _stocks.Add(value);
         }
 
-        public void SaveChanges()
+        public void SaveCreatedItems()
         {
             try
             {
                 using (PetShopDBContext _dataContext = new PetShopDBContext())
                 {
-                    _dataContext.Stocks.AddRange(_stocks);
-                    _dataContext.SaveChanges();
+                    if (_stocks != null && _stocks.Count > 0)
+                    {
+                        _dataContext.Stocks.AddRange(_stocks);
+                        _dataContext.SaveChanges();
+                        _stocks.Clear();
+                    }                    
                 }
-                _stocks.Clear();
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Error encountered when persisting stocks. Message: " 
-                    + exception.Message);
+                MessageBox.Show("Problem encountered during persisting stock." +
+                    "Message" + exception.Message);
             }
         }
     }

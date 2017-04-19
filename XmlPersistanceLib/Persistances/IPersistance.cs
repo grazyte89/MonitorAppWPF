@@ -9,6 +9,6 @@ namespace XmlPersistanceLib.Persistances
     public interface IPersistance
     {
         string Location { get; set; }
-        void Persist();
+        bool Persist();
     }
 }

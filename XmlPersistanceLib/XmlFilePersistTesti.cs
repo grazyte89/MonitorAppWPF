@@ -20,10 +20,13 @@ namespace XmlPersistanceLib
             this.Value = message;
         }
 
-        public void Persist()
+        public bool Persist()
         {
             try
             {
+                if (Location == null)
+                    return false;
+
                 using (StreamWriter writer = new StreamWriter(Location, true))
                 {
                     XmlSerializer xmlfile = new XmlSerializer(typeof(T));
@@ -33,7 +36,10 @@ namespace XmlPersistanceLib
             catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
+                return false;
             }
+
+            return true;
         }
     }
 }

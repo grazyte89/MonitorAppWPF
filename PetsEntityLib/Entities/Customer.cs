@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetsEntityLib.Entities
 {
+    [Serializable]
     [DataContract(Name = "Customer")]
     public class Customer : IEntityDaBase
     {
