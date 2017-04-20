@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PetsEntityLib.DataBasePersistances
 {
@@ -15,12 +16,13 @@ namespace PetsEntityLib.DataBasePersistances
     {
         private const string _location = @"C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\DbTestbinary.bin";
 
-        public void Save<T>(IList<T> list)
+        public void Save<T>(IList<T> list) where T : IEntityDaBase
         {
-            this.SavingData<T>(list);
+            Thread persitingAsyncroThread = new Thread(() => SavingData<T>(list));
+            persitingAsyncroThread.Start();
         }
 
-        private void SavingData<T>(IList<T> list)
+        private void SavingData<T>(IList<T> list) where T : IEntityDaBase
         {
             if (File.Exists(_location))
             {
@@ -33,7 +35,7 @@ namespace PetsEntityLib.DataBasePersistances
             var items = LoadCachedData();
         }
 
-        private void SaveDataToCache<T>(IList<T> list)
+        private void SaveDataToCache<T>(IList<T> list) where T : IEntityDaBase
         {
             try
             {
@@ -45,7 +47,8 @@ namespace PetsEntityLib.DataBasePersistances
             }
             catch (Exception exception)
             {
-
+                this.ErrorMessage("Error encountered when trying to save cacheed data."
+                     + " Location: SaveCahcedData :: PersistEntityAsyncro");
             }
         }
 
@@ -60,15 +63,13 @@ namespace PetsEntityLib.DataBasePersistances
                     dataLoaded = formatter.Deserialize(read);
                 }
 
-                if (dataLoaded is IList<IEntityDaBase>)
-                {
-                    IList<IEntityDaBase> entities = dataLoaded as IList<IEntityDaBase>;
-                    return entities;
-                }
+                if (dataLoaded != null)
+                    return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
             }
             catch (Exception exception)
             {
-
+                this.ErrorMessage("Error encountered when trying to load cacheed data."
+                     + " Location: LoadCahcedData :: PersistEntityAsyncro");
             }
 
             return null;
@@ -86,13 +87,19 @@ namespace PetsEntityLib.DataBasePersistances
             }
             catch (Exception exception)
             {
-
+                this.ErrorMessage("Error encountered when trying to load cacheed data to database."
+                     + " Location: SaveToCahcedData :: PersistEntityAsyncro");
             }
         }
 
         private void PersistPreviousSession()
         {
             IList<IEntityDaBase> previousCachedData = LoadCachedData();
+        }
+
+        private void ErrorMessage(string value)
+        {
+            MessageBox.Show(value);
         }
     }
 }
