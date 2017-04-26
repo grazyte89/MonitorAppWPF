@@ -11,21 +11,33 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public static class PersistenceFactory
     {
-        public static void Library<T>(PetShopDBContext datacontxt, T items)
+        private static void Library<T>(PetShopDBContext datacontxt, T item)
         {
-            if (items is IEnumerable<Animal>)
+            if (item is Animal)
             {
-                List<Animal> casteditems = items as List<Animal>;
-                datacontxt.Animals.AddRange(casteditems);
+                Animal casteditems = item as Animal;
+                datacontxt.Animals.Add(casteditems);
             }
-            else if (items is IEnumerable<Customer>)
+            else if (item is Customer)
             {
-                List<Customer> casteditems = items as List<Customer>;
-                datacontxt.Customers.AddRange(casteditems);
+                Customer casteditem = item as Customer;
+                datacontxt.Customers.Add(casteditem);
             }
             else
             {
                 MessageBox.Show("The to be persisted does not exist in the database");
+            }
+        }
+
+        public static void AssociateWithEntities<T>(PetShopDBContext datacontxt, T items)
+        {
+            if (items is IEnumerable<IEntityDaBase>)
+            {
+                List<IEntityDaBase> castedItems = items as List<IEntityDaBase>;
+                foreach (IEntityDaBase item in castedItems)
+                {
+                    Library(datacontxt, item);
+                }
             }
         }
     }

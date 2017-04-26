@@ -62,12 +62,30 @@ namespace MonitorAppWPF.DbControls
             _tbCustomers2.DataContext = RetrieveAnimals.GetAllAnimals();
 
             PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
-            _asyncro.Save(RetrieveCustomers.GetAllCustomers());
+            _asyncro.Save(GenerateAnimlas());
 
             XmlEntityExtraction<Customer> xmlextractiotest = 
                 new XmlEntityExtraction<Customer>(ConfigurationManager.AppSettings["DefaultXmlEntityFolder"] + "Tesfghlk.xml");
             xmlextractiotest.ExecuteExtraction();
             _tbXmlData.DataContext = xmlextractiotest.Data;
+        }
+
+        private List<Animal> GenerateAnimlas()
+        {
+            List<Animal> animals = new List<Animal>();
+
+            for (int index = 0; index < 100; index++)
+            {
+                animals.Add(new Animal {
+                    NAME = "test gene 1",
+                    GENDER = "male",
+                    AGE = 45,
+                    TYPE = "donkey test",
+                    STATUS = "test alive"
+                });
+            }
+
+            return animals;
         }
     }
 }

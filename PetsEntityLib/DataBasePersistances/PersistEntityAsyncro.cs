@@ -24,15 +24,16 @@ namespace PetsEntityLib.DataBasePersistances
 
         private void SavingData<T>(IList<T> list) where T : IEntityDaBase
         {
-            if (File.Exists(_location))
+            /*if (File.Exists(_location))
             {
                 Thread emptyingPreviousSession = new Thread(PersistPreviousSession);
                 emptyingPreviousSession.Start();
                 emptyingPreviousSession.Join();
-            }
+            }*/
 
             this.SaveDataToCache(list);
             var items = LoadCachedData();
+            this.SaveToDataBase(items);
         }
 
         private void SaveDataToCache<T>(IList<T> list) where T : IEntityDaBase
@@ -81,13 +82,13 @@ namespace PetsEntityLib.DataBasePersistances
             {
                 using (PetShopDBContext _datacontxt = new PetShopDBContext())
                 {
-                    PersistenceFactory.Library(_datacontxt, items);
+                    PersistenceFactory.AssociateWithEntities(_datacontxt, items);
                     _datacontxt.SaveChanges();
                 }
             }
             catch (Exception exception)
             {
-                this.ErrorMessage("Error encountered when trying to load cacheed data to database."
+                this.ErrorMessage("Error encountered when trying to load cached data to database."
                      + " Location: SaveToCahcedData :: PersistEntityAsyncro");
             }
         }
@@ -95,6 +96,7 @@ namespace PetsEntityLib.DataBasePersistances
         private void PersistPreviousSession()
         {
             IList<IEntityDaBase> previousCachedData = LoadCachedData();
+            this.SaveToDataBase(previousCachedData);
         }
 
         private void ErrorMessage(string value)

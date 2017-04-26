@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace PetsEntityLib.Entities
 {
+    [Serializable]
     [DataContract(Name = "AnimalSold")]
     public partial class AnimalSold : IEntityDaBase
     {
