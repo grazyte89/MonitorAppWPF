@@ -38,39 +38,51 @@ namespace PetsEntityLib.DataBasePersistances
 
         private void SaveDataToCache<T>(IList<T> list) where T : IEntityDaBase
         {
-            try
+            while (true)
             {
-                using (FileStream write = new FileStream(_location, FileMode.Append))
+                try
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(write, list);
+                    using (FileStream write = new FileStream(_location, FileMode.Append))
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        formatter.Serialize(write, list);
+                    }
+                    break;
                 }
-            }
-            catch (Exception exception)
-            {
-                this.ErrorMessage("Error encountered when trying to save cacheed data."
-                     + " Location: SaveCahcedData :: PersistEntityAsyncro");
+                catch (Exception exception)
+                {
+                    this.ErrorMessage("Error encountered when trying to save cacheed data."
+                         + " Location: SaveCahcedData :: PersistEntityAsyncro");
+                }
             }
         }
 
         private IList<IEntityDaBase> LoadCachedData()
         {
             object dataLoaded = null;
-            try
+            while (true)
             {
-                using (FileStream read = new FileStream(_location, FileMode.Open))
+                try
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    dataLoaded = formatter.Deserialize(read);
-                }
+                    using (FileStream read = new FileStream(_location, FileMode.Open))
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        dataLoaded = formatter.Deserialize(read);
+                    }
 
-                if (dataLoaded != null)
-                    return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
-            }
-            catch (Exception exception)
-            {
-                this.ErrorMessage("Error encountered when trying to load cacheed data."
-                     + " Location: LoadCahcedData :: PersistEntityAsyncro");
+                    if (dataLoaded != null)
+                        return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
+                    break;
+                }
+                catch (FileLoadException)
+                {
+
+                }
+                catch (Exception exception)
+                {
+                    this.ErrorMessage("Error encountered when trying to load cacheed data."
+                         + " Location: LoadCahcedData :: PersistEntityAsyncro");
+                }
             }
 
             return null;
