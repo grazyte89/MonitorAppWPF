@@ -38,54 +38,69 @@ namespace PetsEntityLib.DataBasePersistances
 
         private void SaveDataToCache<T>(IList<T> list) where T : IEntityDaBase
         {
-            while (true)
+            for (int attemp = 0; attemp < 1000; attemp++)
             {
-                try
-                {
-                    using (FileStream write = new FileStream(_location, FileMode.Append))
-                    {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        formatter.Serialize(write, list);
-                    }
+                if (TrySavingDataToCache(list))
                     break;
-                }
-                catch (Exception exception)
+            }
+        }
+
+        private bool TrySavingDataToCache<T>(IList<T> list) where T : IEntityDaBase
+        {
+            try
+            {
+                using (FileStream write = new FileStream(_location, FileMode.Append))
                 {
-                    this.ErrorMessage("Error encountered when trying to save cacheed data."
-                         + " Location: SaveCahcedData :: PersistEntityAsyncro");
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(write, list);
                 }
+                return true;
+            }
+            catch (Exception exception)
+            {
+                this.ErrorMessage("Error encountered when trying to save cacheed data."
+                     + " Location: SaveCahcedData :: PersistEntityAsyncro");
+                return false;
             }
         }
 
         private IList<IEntityDaBase> LoadCachedData()
         {
             object dataLoaded = null;
-            while (true)
+            for (int attempt = 0; attempt < 1000; attempt++)
             {
-                try
+                if (TryLoadingDataFromCache(ref dataLoaded))
                 {
-                    using (FileStream read = new FileStream(_location, FileMode.Open))
-                    {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        dataLoaded = formatter.Deserialize(read);
-                    }
-
                     if (dataLoaded != null)
                         return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
                     break;
                 }
-                catch (FileLoadException)
-                {
-
-                }
-                catch (Exception exception)
-                {
-                    this.ErrorMessage("Error encountered when trying to load cacheed data."
-                         + " Location: LoadCahcedData :: PersistEntityAsyncro");
-                }
             }
 
             return null;
+        }
+
+        private bool TryLoadingDataFromCache(ref object loadedData)
+        {
+            try
+            {
+                using (FileStream read = new FileStream(_location, FileMode.Open))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    loadedData = formatter.Deserialize(read);
+                }
+                return true;
+            }
+            catch (FileLoadException)
+            {
+                return false;
+            }
+            catch (Exception exception)
+            {
+                this.ErrorMessage("Error encountered when trying to load cacheed data."
+                     + " Location: LoadCahcedData :: PersistEntityAsyncro");
+                return false;
+            }
         }
 
         private void SaveToDataBase<T>(IList<T> items)
