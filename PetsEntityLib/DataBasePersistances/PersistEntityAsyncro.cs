@@ -2,6 +2,7 @@
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,7 +15,14 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public class PersistEntityAsyncro
     {
-        private const string _location = @"C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\DbTestbinary.bin";
+        private string _location;
+        private ReaderWriterLockSlim _fileLock;
+
+        public PersistEntityAsyncro()
+        {
+            _location = ConfigurationManager.AppSettings["BinaryCachingFolder"] + "DbTestbinary.bin";
+            _fileLock = new ReaderWriterLockSlim();
+        }
 
         public void Save<T>(IList<T> list) where T : IEntityDaBase
         {
@@ -24,12 +32,12 @@ namespace PetsEntityLib.DataBasePersistances
 
         private void SavingData<T>(IList<T> list) where T : IEntityDaBase
         {
-            /*if (File.Exists(_location))
+            if (File.Exists(_location))
             {
                 Thread emptyingPreviousSession = new Thread(PersistPreviousSession);
                 emptyingPreviousSession.Start();
                 emptyingPreviousSession.Join();
-            }*/
+            }
 
             this.SaveDataToCache(list);
             var items = LoadCachedData();
@@ -38,7 +46,7 @@ namespace PetsEntityLib.DataBasePersistances
 
         private void SaveDataToCache<T>(IList<T> list) where T : IEntityDaBase
         {
-            for (int attemp = 0; attemp < 1000; attemp++)
+            for (int attemp = 0; attemp < 1000000; attemp++)
             {
                 if (TrySavingDataToCache(list))
                     break;
@@ -49,17 +57,17 @@ namespace PetsEntityLib.DataBasePersistances
         {
             try
             {
-                using (FileStream write = new FileStream(_location, FileMode.Append))
+                using (FileStream write = new FileStream(_location, FileMode.Append, FileAccess.Write, FileShare.None))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     formatter.Serialize(write, list);
                 }
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                this.ErrorMessage("Error encountered when trying to save cacheed data."
-                     + " Location: SaveCahcedData :: PersistEntityAsyncro");
+                this.ErrorMessage("Error encountered when trying to save cacheed data.",
+                    "Location: SaveCahcedData :: PersistEntityAsyncro");
                 return false;
             }
         }
@@ -67,7 +75,7 @@ namespace PetsEntityLib.DataBasePersistances
         private IList<IEntityDaBase> LoadCachedData()
         {
             object dataLoaded = null;
-            for (int attempt = 0; attempt < 1000; attempt++)
+            for (int attempt = 0; attempt < 1000000; attempt++)
             {
                 if (TryLoadingDataFromCache(ref dataLoaded))
                 {
@@ -75,6 +83,9 @@ namespace PetsEntityLib.DataBasePersistances
                         return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
                     break;
                 }
+
+                if (dataLoaded == null)
+                    break;
             }
 
             return null;
@@ -88,6 +99,7 @@ namespace PetsEntityLib.DataBasePersistances
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     loadedData = formatter.Deserialize(read);
+                    read.SetLength(0);
                 }
                 return true;
             }
@@ -95,10 +107,10 @@ namespace PetsEntityLib.DataBasePersistances
             {
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                this.ErrorMessage("Error encountered when trying to load cacheed data."
-                     + " Location: LoadCahcedData :: PersistEntityAsyncro");
+                this.ErrorMessage("Error encountered when trying to load cached data.",
+                    "Location: LoadCahcedData :: PersistEntityAsyncro");
                 return false;
             }
         }
@@ -113,22 +125,42 @@ namespace PetsEntityLib.DataBasePersistances
                     _datacontxt.SaveChanges();
                 }
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                this.ErrorMessage("Error encountered when trying to load cached data to database."
-                     + " Location: SaveToCahcedData :: PersistEntityAsyncro");
+                this.ErrorMessage("Error encountered when trying to load cached data to database.",
+                    "Location: SaveToCahcedData :: PersistEntityAsyncro");
+                this.BackupFailedDatabasePersistence(items);
+            }
+        }
+
+        private void BackupFailedDatabasePersistence<T>(IList<T> items)
+        {
+            try
+            {
+                this.SaveDataToCache<IEntityDaBase>(items as IList<IEntityDaBase>);
+            }
+            catch (Exception e)
+            {
+                this.ErrorMessage("Error ecountered trying to generic to IEntityDaBase.",
+                    "Location: BackupFailedDatabasePersistence :: PersistEntityAsyncro");
             }
         }
 
         private void PersistPreviousSession()
         {
             IList<IEntityDaBase> previousCachedData = LoadCachedData();
-            this.SaveToDataBase(previousCachedData);
+            if (previousCachedData != null)
+                this.SaveToDataBase(previousCachedData);
         }
 
-        private void ErrorMessage(string value)
+        private void ErrorMessage(params string[] errorMessages)
         {
-            MessageBox.Show(value);
+            string message = string.Empty;
+            foreach (string sentence in errorMessages)
+            {
+                message += sentence + Environment.NewLine;
+            }
+            MessageBox.Show(message);
         }
     }
 }
