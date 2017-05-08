@@ -95,11 +95,12 @@ namespace PetsEntityLib.DataBasePersistances
         {
             try
             {
-                using (FileStream read = new FileStream(_location, FileMode.Open))
+                using (FileStream read = new FileStream(_location, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
                     loadedData = formatter.Deserialize(read);
-                    read.SetLength(0);
+                    if (loadedData != null)
+                        read.SetLength(0);
                 }
                 return true;
             }
@@ -160,7 +161,7 @@ namespace PetsEntityLib.DataBasePersistances
             {
                 message += sentence + Environment.NewLine;
             }
-            MessageBox.Show(message);
+            System.Console.WriteLine(message);
         }
     }
 }
