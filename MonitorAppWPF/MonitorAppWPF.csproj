@@ -100,8 +100,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenuControls\DBSubMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuControls\DBSubMenuControl.xaml.cs">
+      <DependentUpon>DBSubMenuControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Monitors\CpuMonitoring.cs" />
     <Compile Include="Monitors\IMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

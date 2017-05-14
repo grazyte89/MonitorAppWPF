@@ -29,16 +29,19 @@ namespace PetsEntityLib.DataBasePersistances
             }
         }
 
-        public static void AssociateWithEntities<T>(PetShopDBContext datacontxt, T items)
+        public static void AssociateWithEntities<T>(PetShopDBContext dataContext, T items)
         {
             if (items is IEnumerable<IEntityDaBase>)
             {
                 List<IEntityDaBase> castedItems = items as List<IEntityDaBase>;
-                foreach (IEntityDaBase item in castedItems)
-                {
-                    Library(datacontxt, item);
-                }
+                ScheduleAssociateWithEntites(dataContext, castedItems);
             }
+        }
+
+        private static void ScheduleAssociateWithEntites(PetShopDBContext dataContext, IList<IEntityDaBase> list)
+        {
+            foreach (IEntityDaBase item in list)
+                Library(dataContext, item);
         }
     }
 }
