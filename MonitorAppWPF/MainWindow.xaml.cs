@@ -34,14 +34,14 @@ namespace MonitorAppWPF
             
         }
 
-        private void _monitorButton_Click(object sender, RoutedEventArgs e)
+        private void MonitorButton_Click(object sender, RoutedEventArgs e)
         {
             _cpuMonitroing.StartMonitoring();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void DatabaseButton_Click(object sender, RoutedEventArgs e)
         {
-            this._ccMainControls.Content = new DbControls.PetDbControl();
+            //this._ccMainControls.Content = new DbControls.PetDbControl();
             this._ccSubMenuControl.Content = new MenuControls.DBSubMenuControl();
         }
     }
