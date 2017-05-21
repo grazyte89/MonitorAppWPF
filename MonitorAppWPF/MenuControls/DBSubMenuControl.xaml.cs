@@ -20,9 +20,22 @@ namespace MonitorAppWPF.MenuControls
     /// </summary>
     public partial class DBSubMenuControl : UserControl
     {
-        public DBSubMenuControl()
+        private ContentControl _mainUserControl;
+
+        public DBSubMenuControl(ContentControl mainContent)
         {
             InitializeComponent();
+            _mainUserControl = mainContent;
+        }
+
+        private void BtnAnimal_Click(object sender, RoutedEventArgs e)
+        {
+            this._mainUserControl.Content = new DbControls.AnimalsDbControl();
+        }
+
+        private void BtnCustomers_Click(object sender, RoutedEventArgs e)
+        {
+            this._mainUserControl.Content = new DbControls.CustomerDBControl();
         }
     }
 }

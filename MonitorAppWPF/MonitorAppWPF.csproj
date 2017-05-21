@@ -75,7 +75,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DbControls\PetDbControl.xaml">
+    <Page Include="DbControls\AnimalsDbControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DbControls\CustomerDBControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,8 +97,11 @@
     <Compile Include="CreateEntityControls\EntityNavigationControl.xaml.cs">
       <DependentUpon>EntityNavigationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DbControls\PetDbControl.xaml.cs">
-      <DependentUpon>PetDbControl.xaml</DependentUpon>
+    <Compile Include="DbControls\AnimalsDbControl.xaml.cs">
+      <DependentUpon>AnimalsDbControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DbControls\CustomerDBControl.xaml.cs">
+      <DependentUpon>CustomerDBControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

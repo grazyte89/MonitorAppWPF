@@ -41,8 +41,7 @@ namespace MonitorAppWPF
 
         private void DatabaseButton_Click(object sender, RoutedEventArgs e)
         {
-            //this._ccMainControls.Content = new DbControls.PetDbControl();
-            this._ccSubMenuControl.Content = new MenuControls.DBSubMenuControl();
+            this._ccSubMenuControl.Content = new MenuControls.DBSubMenuControl(_ccMainControls);
         }
     }
 }
