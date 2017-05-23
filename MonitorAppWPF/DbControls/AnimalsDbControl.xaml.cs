@@ -41,14 +41,12 @@ namespace MonitorAppWPF.DbControls
             if (!_tbCustomer2Collapsed)
             {
                 _tbCustomer2Collapsed = true;
-                _tbCustomers2.Visibility = Visibility.Collapsed;
-                _smallGrid.RowDefinitions.Remove(_row2);
+                //_smallGrid.RowDefinitions.Remove(_row2);
             }
             else
             {
                 _tbCustomer2Collapsed = false;
-                _tbCustomers2.Visibility = Visibility.Visible;
-                _smallGrid.RowDefinitions.Add(_row2);
+                //_smallGrid.RowDefinitions.Add(_row2);
             }
         }
 
@@ -58,16 +56,10 @@ namespace MonitorAppWPF.DbControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            _tbCustomers.DataContext = RetrieveCustomers.GetAllCustomers();
-            _tbCustomers2.DataContext = RetrieveAnimals.GetAllAnimals();
+            _tbCustomers.DataContext = RetrieveAnimals.GetAllAnimals();
 
             PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
             _asyncro.Save(GenerateAnimlas());
-
-            XmlEntityExtraction<Customer> xmlextractiotest = 
-                new XmlEntityExtraction<Customer>(ConfigurationManager.AppSettings["DefaultXmlEntityFolder"] + "Tesfghlk.xml");
-            xmlextractiotest.ExecuteExtraction();
-            _tbXmlData.DataContext = xmlextractiotest.Data;
         }
 
         private List<Animal> GenerateAnimlas()
