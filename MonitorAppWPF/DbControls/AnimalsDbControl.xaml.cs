@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,38 +29,24 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class AnimalsDbControl : UserControl
     {
-        private volatile bool _tbCustomer2Collapsed;
+        //private volatile bool _tbCustomer2Collapsed;
 
         public AnimalsDbControl()
         {
             InitializeComponent();
-            _tbCustomer2Collapsed = false;
         }
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!_tbCustomer2Collapsed)
-            {
-                _tbCustomer2Collapsed = true;
-                //_smallGrid.RowDefinitions.Remove(_row2);
-            }
-            else
-            {
-                _tbCustomer2Collapsed = false;
-                //_smallGrid.RowDefinitions.Add(_row2);
-            }
-        }
-
-        private void TbCustomers2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            // seection
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            _tbCustomers.DataContext = RetrieveAnimals.GetAllAnimals();
+            _gdCustomers.DataContext = RetrieveAnimals.GetAllAnimals();
 
-            PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
-            _asyncro.Save(GenerateAnimlas());
+            /*PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
+            _asyncro.Save(GenerateAnimlas());*/
         }
 
         private List<Animal> GenerateAnimlas()
@@ -78,6 +65,24 @@ namespace MonitorAppWPF.DbControls
             }
 
             return animals;
+        }
+
+
+        private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+            _pnEditSection.Visibility = Visibility.Visible;
+            ShowHideMenu("_sbExpandEdit", _btnSaveEdit, _pnEditSection);
+        }
+
+        private void ShowHideMenu(string storyboard, Button saveEditBtn, StackPanel editPanel)
+        {
+            Storyboard sb = Resources[storyboard] as Storyboard;
+            sb.Begin(editPanel);
+
+            if (storyboard.Contains("Show"))
+            {
+                saveEditBtn.Visibility = System.Windows.Visibility.Hidden;
+            }
         }
     }
 }

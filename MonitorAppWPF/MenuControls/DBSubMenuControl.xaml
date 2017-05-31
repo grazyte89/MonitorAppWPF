@@ -9,17 +9,18 @@
     <Grid x:Name="_grdMainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
-            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Button x:Name="_btnAnimals" Height="30" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Button x:Name="_btnAnimals" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Animals" Click="BtnAnimal_Click" />
-            <Button x:Name="_btnAnimalSold" Height="30" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"
+                <Button x:Name="_btnAnimalSold" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Animal Sold" />
-            <Button x:Name="_btnCustomers" Height="30" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"
+                <Button x:Name="_btnCustomers" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Customers" Click="BtnCustomers_Click"/>
-            <Button x:Name="_btnStocks" Height="30" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"
+                <Button x:Name="_btnStocks" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Stocks"/>
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
