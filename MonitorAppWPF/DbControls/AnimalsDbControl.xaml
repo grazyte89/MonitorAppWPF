@@ -24,8 +24,11 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="button" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                 Margin="10,12,10,10" Click="button_Click" />
-        <Button Name="_btnSaveEdit" Grid.Row="0" Click="BtnSaveEdit_Click" Content="Save Edit" HorizontalAlignment="Left" 
-                VerticalAlignment="Top" Margin="100,12,10,10" />
+        <Button x:Name="_btnCreateNewAnimal" Grid.Row="0" Content="Create new animal" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="100,12,10,10"
+                Click="BtnCreateNewAnimal"/>
+        <Button Name="_btnEdit" Grid.Row="0" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Margin="210,12,10,10" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -38,13 +41,13 @@
                     <RowDefinition Height="6*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="_gdCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
+                <DataGrid x:Name="_gdAnimals" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
                           ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" 
-                          AutoGenerateColumns="false">
+                          AutoGenerateColumns="false" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Firstname" Binding="{Binding Path=NAME}" />
                         <DataGridTextColumn Header="Age" Binding="{Binding Path=AGE}" />
-                        <DataGridTextColumn Header="Gender" Binding="{Binding Path=TYPE}" />
+                        <DataGridTextColumn Header="Gender" Binding="{Binding Path=GENDER}" />
                         <DataGridTextColumn Header="Type" Binding="{Binding Path=TYPE}" />
                         <DataGridTextColumn Header="Vacination" Binding="{Binding VACINATION}" />
                         <DataGridTextColumn Header="Checkup" Binding="{Binding Path=CHECKUP}" />
@@ -58,16 +61,53 @@
                             <RowDefinition Height="6*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <ScrollViewer>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
                             <StackPanel>
                                 <Grid>
-                                    <TextBlock Text="FirstName" HorizontalAlignment="Left" Margin="5,5,0,0" />
-                                    <TextBox x:Name="_tbFirstName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150" />
+                                    <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ID}" IsEnabled="False"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Name" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=NAME}" />
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Age" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbAge" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=AGE}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Gender" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbGender" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=GENDER}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Type" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbType" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=TYPE}" />
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Vacination" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbVacination" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=VACINNATION}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Checkup" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbCheckup" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=CHECKUP}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Status" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbStatus" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=STATUS}"/>
                                 </Grid>
                             </StackPanel>
                         </ScrollViewer>
-                        <!--<Button Name="_btnSaveEdit" Grid.Row="1" Click="BtnSaveEdit_Click" Content="Save Edit"/>-->
                     </Grid>
+                    <Button Name="_btnSaveEdit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Grid.Row="1" 
+                            Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

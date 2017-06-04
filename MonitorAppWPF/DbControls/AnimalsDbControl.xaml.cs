@@ -1,4 +1,5 @@
-﻿using PetsEntityLib.DataBaseExtractions;
+﻿using PetsEntityLib.DataBaseContext;
+using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.DataBasePersistances;
 using PetsEntityLib.Entities;
 using System;
@@ -29,7 +30,8 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class AnimalsDbControl : UserControl
     {
-        //private volatile bool _tbCustomer2Collapsed;
+        private Animal _currentAnimal;
+        //private IList<Animal> _newAnimals;
 
         public AnimalsDbControl()
         {
@@ -38,51 +40,58 @@ namespace MonitorAppWPF.DbControls
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // seection
+            Animal selectedAnimal = e.Source as Animal;
+            _currentAnimal = selectedAnimal;
+            _pnEditSection.DataContext = _currentAnimal;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            _gdCustomers.DataContext = RetrieveAnimals.GetAllAnimals();
-
-            /*PersistEntityAsyncro _asyncro = new PersistEntityAsyncro();
-            _asyncro.Save(GenerateAnimlas());*/
+            _gdAnimals.DataContext = RetrieveAnimals.GetAllAnimals();
         }
 
-        private List<Animal> GenerateAnimlas()
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            List<Animal> animals = new List<Animal>();
-
-            for (int index = 0; index < 1000; index++)
-            {
-                animals.Add(new Animal {
-                    NAME = "test gene 1",
-                    GENDER = "male",
-                    AGE = 45,
-                    TYPE = "donkey test",
-                    STATUS = "test alive"
-                });
-            }
-
-            return animals;
+            this.ExpandEditPanel();
+            _gdAnimals.IsEnabled = false;
         }
-
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
-            _pnEditSection.Visibility = Visibility.Visible;
-            ShowHideMenu("_sbExpandEdit", _btnSaveEdit, _pnEditSection);
+            //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
+            if (_currentAnimal == null)
+                return;
+            this.CreateNewAnimal(_currentAnimal);
+            _gdAnimals.IsEnabled = true;
+            this.CollapseEditPanel();
         }
 
-        private void ShowHideMenu(string storyboard, Button saveEditBtn, StackPanel editPanel)
+        private void CreateNewAnimal(Animal animal)
         {
-            Storyboard sb = Resources[storyboard] as Storyboard;
-            sb.Begin(editPanel);
+            CreateAnimalClass createAnimal = new CreateAnimalClass(null);
+            createAnimal.AddItem(animal);
+            createAnimal.SaveCreatedItems();
+        }
 
-            if (storyboard.Contains("Show"))
-            {
-                saveEditBtn.Visibility = System.Windows.Visibility.Hidden;
-            }
+        private void BtnCreateNewAnimal(object sender, RoutedEventArgs e)
+        {
+            this.ExpandEditPanel();
+            _currentAnimal = new Animal();
+            _pnEditSection.DataContext = _currentAnimal;
+        }
+
+        private void ExpandEditPanel()
+        {
+            _pnEditSection.Visibility = Visibility.Visible;
+            Storyboard sbEditSection = Resources["_sbExpandEdit"] as Storyboard;
+            sbEditSection.Begin(_pnEditSection);
+        }
+
+        private void CollapseEditPanel()
+        {
+            _pnEditSection.Visibility = Visibility.Collapsed;
+            Storyboard sbEditSection = Resources["_sbcollapseEdit"] as Storyboard;
+            sbEditSection.Begin(_pnEditSection);
         }
     }
 }
