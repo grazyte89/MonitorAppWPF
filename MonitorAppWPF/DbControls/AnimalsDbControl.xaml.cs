@@ -89,9 +89,14 @@ namespace MonitorAppWPF.DbControls
 
         private void CollapseEditPanel()
         {
-            _pnEditSection.Visibility = Visibility.Collapsed;
             Storyboard sbEditSection = Resources["_sbcollapseEdit"] as Storyboard;
+            sbEditSection.Completed += CollapseStoryboard;
             sbEditSection.Begin(_pnEditSection);
+        }
+
+        private void CollapseStoryboard(object sender, EventArgs args)
+        {
+            _pnEditSection.Visibility = Visibility.Collapsed;
         }
     }
 }

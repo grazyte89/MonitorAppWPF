@@ -11,7 +11,7 @@
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,-350,0,0" DecelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
         <Storyboard x:Key="_sbcollapseEdit">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-350,0,0" To="0,350,0,0" AccelerationRatio=".9" Duration="0:0:1" />
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="RosyBrown">
