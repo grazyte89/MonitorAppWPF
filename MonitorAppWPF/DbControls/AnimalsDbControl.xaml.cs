@@ -1,6 +1,7 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.DataBasePersistances;
+using PetsEntityLib.DataBaseUpdates;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,11 @@ namespace MonitorAppWPF.DbControls
     public partial class AnimalsDbControl : UserControl
     {
         private Animal _currentAnimal;
-        //private IList<Animal> _newAnimals;
+        private Dictionary<string, Animal> _newAnimals = new Dictionary<string, Animal>
+        {
+            {"_backupCopy", null},
+            {"_editedCopy", null }
+        };
 
         public AnimalsDbControl()
         {
@@ -40,7 +45,7 @@ namespace MonitorAppWPF.DbControls
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Animal selectedAnimal = e.Source as Animal;
+            Animal selectedAnimal = e.AddedItems[0] as Animal;
             _currentAnimal = selectedAnimal;
             _pnEditSection.DataContext = _currentAnimal;
         }
@@ -61,7 +66,8 @@ namespace MonitorAppWPF.DbControls
             //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
             if (_currentAnimal == null)
                 return;
-            this.CreateNewAnimal(_currentAnimal);
+            //this.CreateNewAnimal(_currentAnimal);
+            this.UpdateAnimal(_currentAnimal);
             _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
         }
@@ -71,6 +77,12 @@ namespace MonitorAppWPF.DbControls
             CreateAnimalClass createAnimal = new CreateAnimalClass(null);
             createAnimal.AddItem(animal);
             createAnimal.SaveCreatedItems();
+        }
+
+        private void UpdateAnimal(Animal animal)
+        {
+            UpdateAnimalClass updateAnimal = new UpdateAnimalClass(animal);
+            updateAnimal.SaveUpdate();
         }
 
         private void BtnCreateNewAnimal(object sender, RoutedEventArgs e)

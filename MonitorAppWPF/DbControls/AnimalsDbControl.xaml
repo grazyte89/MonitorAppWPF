@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="button" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                 Margin="10,12,10,10" Click="button_Click" />
-        <Button x:Name="_btnCreateNewAnimal" Grid.Row="0" Content="Create new animal" HorizontalAlignment="Left"
+        <Button x:Name="_btnCreateNewAnimal" Grid.Row="0" Content="New" HorizontalAlignment="Left"
                 VerticalAlignment="Top" Margin="100,12,10,10"
                 Click="BtnCreateNewAnimal"/>
         <Button Name="_btnEdit" Grid.Row="0" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 

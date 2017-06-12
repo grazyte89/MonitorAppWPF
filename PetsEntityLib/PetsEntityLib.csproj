@@ -65,6 +65,10 @@
     <Compile Include="DataBasePersistances\PersistEntityAsyncro.cs" />
     <Compile Include="DataBaseUpdates\IDBUpdate.cs" />
     <Compile Include="DataBaseUpdates\UpdateAnimalClass.cs" />
+    <Compile Include="DataBaseUpdates\UpdateAnimalSoldClass.cs" />
+    <Compile Include="DataBaseUpdates\UpdateCustomerClass.cs" />
+    <Compile Include="DataBaseUpdates\UpdateStockClass.cs" />
+    <Compile Include="DataBaseValues\DbConstantsEnums.cs" />
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\AnimalSold.cs" />
     <Compile Include="Entities\Customer.cs" />
