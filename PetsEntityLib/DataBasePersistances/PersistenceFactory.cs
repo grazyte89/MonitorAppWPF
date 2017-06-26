@@ -11,7 +11,7 @@ namespace PetsEntityLib.DataBasePersistances
 {
     public static class PersistenceFactory
     {
-        private static void Library<T>(PetShopDBContext datacontxt, T item)
+        private static void Library(PetShopDBContext datacontxt, IEntityDaBase item)
         {
             if (item is Animal)
             {

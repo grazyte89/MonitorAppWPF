@@ -14,7 +14,9 @@ namespace PetsEntityLib.DataBaseContext
         public DbSet<AnimalSold> AnimalSolds { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Stock> Stocks { get; set; }
-
-        // https://msdn.microsoft.com/en-us/data/jj591621
     }
 }
+
+// https://msdn.microsoft.com/en-us/data/jj591621
+// https://arian-celina.com/entity-framework-migrations-and-data-seeding/
+// https://msdn.microsoft.com/en-us/magazine/jj883952.aspx
