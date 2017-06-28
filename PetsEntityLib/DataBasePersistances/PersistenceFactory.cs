@@ -16,7 +16,8 @@ namespace PetsEntityLib.DataBasePersistances
             if (item is Animal)
             {
                 Animal casteditems = item as Animal;
-                datacontxt.Animals.Add(casteditems);
+                //datacontxt.Animals.Add(casteditems);
+                datacontxt.Set(item.GetType()).Add(item);
             }
             else if (item is Customer)
             {

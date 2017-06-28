@@ -45,7 +45,9 @@ namespace MonitorAppWPF.DbControls
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Animal selectedAnimal = e.AddedItems[0] as Animal;
+            if (_gdAnimals.SelectedItem == null)
+                return;
+            Animal selectedAnimal = _gdAnimals.SelectedItem as Animal;
             _currentAnimal = selectedAnimal;
             _pnEditSection.DataContext = _currentAnimal;
         }
@@ -66,8 +68,8 @@ namespace MonitorAppWPF.DbControls
             //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
             if (_currentAnimal == null)
                 return;
-            //this.CreateNewAnimal(_currentAnimal);
-            this.UpdateAnimal(_currentAnimal);
+            this.CreateNewAnimal(_currentAnimal);
+            //this.UpdateAnimal(_currentAnimal);
             _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
         }

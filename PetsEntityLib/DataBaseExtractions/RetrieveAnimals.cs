@@ -18,7 +18,8 @@ namespace PetsEntityLib.DataBaseExtractions
             {
                 using (PetShopDBContext _datacontext = new PetShopDBContext())
                 {
-                    animals = _datacontext.Animals
+                    //animals = _datacontext.Animals
+                    animals = _datacontext.Set<Animal>()
                                 .Take(100)
                                 .ToList();
                 }

@@ -58,7 +58,8 @@ namespace PetsEntityLib.DataBasePersistances
                 {
                     if (_animals != null && _animals.Count > 0)
                     {
-                        _dataContext.Animals.AddRange(_animals);
+                        //_dataContext.Animals.AddRange(_animals);
+                        _dataContext.Set<Animal>().AddRange(_animals);
                         _dataContext.SaveChanges();
                         _animals.Clear();
                     }
