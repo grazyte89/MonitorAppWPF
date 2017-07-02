@@ -1,28 +1,14 @@
-﻿using PetsEntityLib.DataBaseContext;
+﻿using MonitorAppWPF.UiConstants;
+using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.DataBasePersistances;
 using PetsEntityLib.DataBaseUpdates;
 using PetsEntityLib.Entities;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Serialization;
-using XmlPersistanceLib;
-using XmlPersistanceLib.Extractions;
-using XmlPersistanceLib.Persistances;
+using TestCollectionLib;
 
 namespace MonitorAppWPF.DbControls
 {
@@ -32,11 +18,7 @@ namespace MonitorAppWPF.DbControls
     public partial class AnimalsDbControl : UserControl
     {
         private Animal _currentAnimal;
-        private Dictionary<string, Animal> _newAnimals = new Dictionary<string, Animal>
-        {
-            {"_backupCopy", null},
-            {"_editedCopy", null }
-        };
+        private string _newEditwMode;
 
         public AnimalsDbControl()
         {
@@ -52,7 +34,7 @@ namespace MonitorAppWPF.DbControls
             _pnEditSection.DataContext = _currentAnimal;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void BtnAnimals_Click(object sender, RoutedEventArgs e)
         {
             _gdAnimals.DataContext = RetrieveAnimals.GetAllAnimals();
         }
@@ -61,15 +43,17 @@ namespace MonitorAppWPF.DbControls
         {
             this.ExpandEditPanel();
             _gdAnimals.IsEnabled = false;
+            _newEditwMode = Constants.Edit;
         }
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
-            //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
             if (_currentAnimal == null)
                 return;
-            this.CreateNewAnimal(_currentAnimal);
-            //this.UpdateAnimal(_currentAnimal);
+            if (_newEditwMode.Equals(Constants.New))
+                this.CreateNewAnimal(_currentAnimal);
+            else if (_newEditwMode.Equals(Constants.Edit))
+                this.UpdateAnimal(_currentAnimal);
             _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
         }
@@ -79,6 +63,8 @@ namespace MonitorAppWPF.DbControls
             CreateAnimalClass createAnimal = new CreateAnimalClass(null);
             createAnimal.AddItem(animal);
             createAnimal.SaveCreatedItems();
+            /*PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
+            asyncrosave.Save(TestOne.GenerateMultipleEntites);*/
         }
 
         private void UpdateAnimal(Animal animal)
@@ -87,11 +73,12 @@ namespace MonitorAppWPF.DbControls
             updateAnimal.SaveUpdate();
         }
 
-        private void BtnCreateNewAnimal(object sender, RoutedEventArgs e)
+        private void BtnCreateNewAnimal_Click(object sender, RoutedEventArgs e)
         {
             this.ExpandEditPanel();
             _currentAnimal = new Animal();
             _pnEditSection.DataContext = _currentAnimal;
+            _newEditwMode = Constants.New;
         }
 
         private void ExpandEditPanel()
@@ -111,6 +98,27 @@ namespace MonitorAppWPF.DbControls
         private void CollapseStoryboard(object sender, EventArgs args)
         {
             _pnEditSection.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.RestoreToOriginal();
+            _currentAnimal = null;
+            _gdAnimals.IsEnabled = true;
+            this.CollapseEditPanel();
+        }
+
+        private void RestoreToOriginal()
+        {
+            //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
+            _tbIdentityNo.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbName.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbGender.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbStatus.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbType.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbCheckup.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
+            _tbVacination.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
     }
 }

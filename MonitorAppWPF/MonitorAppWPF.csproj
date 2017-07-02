@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UiConstants\Constants.cs" />
     <Page Include="CreateEntityControls\CreateCustomerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +150,10 @@
     <ProjectReference Include="..\PetsEntityLib\PetsEntityLib.csproj">
       <Project>{eb1778bf-a8c5-41dc-9b00-a01f39e8b283}</Project>
       <Name>PetsEntityLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestCollectionLib\TestCollectionLib.csproj">
+      <Project>{666394c7-f886-47bd-92bf-4c1e3424be70}</Project>
+      <Name>TestCollectionLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmlPersistanceLib\XmlPersistanceLib.csproj">
       <Project>{135F54AC-39F1-4FDE-BEF4-A652CC445468}</Project>

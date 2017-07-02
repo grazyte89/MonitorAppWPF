@@ -8,9 +8,9 @@ namespace PetsEntityLib.DataBaseValues
 {
     public static class DbConstantsEnums
     {
-        public static string Male = "Male";
-        public static string Female = "Female";
-        public static string Alive = "Alive";
-        public static string Deceased = "Deceased";
+        public const string Male = "Male";
+        public const string Female = "Female";
+        public const string Alive = "Alive";
+        public const string Deceased = "Deceased";
     }
 }

@@ -10,7 +10,7 @@ namespace PetsEntityLib.DataBaseContext
             base.Configuration.ProxyCreationEnabled = false;
         }
 
-        //public DbSet<Animal> Animals { get; set; }
+        public DbSet<Animal> Animals { get; set; }
         public DbSet<AnimalSold> AnimalSolds { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Stock> Stocks { get; set; }

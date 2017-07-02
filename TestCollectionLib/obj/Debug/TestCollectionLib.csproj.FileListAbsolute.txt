@@ -1,0 +1,11 @@
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\TestCollectionLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\TestCollectionLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\PetsEntityLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\XmlPersistanceLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\EntityFramework.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\PetsEntityLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\XmlPersistanceLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\EntityFramework.xml
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.csprojResolveAssemblyReference.cache
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.dll
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.pdb

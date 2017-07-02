@@ -22,11 +22,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="button" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Margin="10,12,10,10" Click="button_Click" />
+        <Button x:Name="_btnAnimals" Content="Animal table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                Margin="10,12,10,10" Click="BtnAnimals_Click" />
         <Button x:Name="_btnCreateNewAnimal" Grid.Row="0" Content="New" HorizontalAlignment="Left"
                 VerticalAlignment="Top" Margin="100,12,10,10"
-                Click="BtnCreateNewAnimal"/>
+                Click="BtnCreateNewAnimal_Click"/>
         <Button Name="_btnEdit" Grid.Row="0" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" Margin="210,12,10,10" />
         <Grid Grid.Row="1">
@@ -66,48 +66,52 @@
                                 <Grid>
                                     <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=ID}" IsEnabled="False"/>
+                                             Text="{Binding Path=ID, UpdateSourceTrigger=Explicit}" IsEnabled="False"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Name" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=NAME}" />
+                                             Text="{Binding Path=NAME, UpdateSourceTrigger=Explicit}" />
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Age" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbAge" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=AGE}"/>
+                                             Text="{Binding Path=AGE, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Gender" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbGender" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=GENDER}"/>
+                                             Text="{Binding Path=GENDER, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Type" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbType" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=TYPE}" />
+                                             Text="{Binding Path=TYPE, UpdateSourceTrigger=Explicit}" />
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Vacination" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbVacination" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=VACINNATION}"/>
+                                             Text="{Binding Path=VACINNATION, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Checkup" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbCheckup" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=CHECKUP}"/>
+                                             Text="{Binding Path=CHECKUP, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Status" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbStatus" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=STATUS}"/>
+                                             Text="{Binding Path=STATUS, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
-                    <Button Name="_btnSaveEdit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5" Grid.Row="1" 
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Height="auto" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button Name="_btnSaveEdit"  Margin="5,5,5,5"
                             Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click"/>
+                        <Button Name="_btnCancel"  Margin="5,5,5,5" 
+                                Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>
