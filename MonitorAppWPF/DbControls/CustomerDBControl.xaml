@@ -6,14 +6,96 @@
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
              mc:Ignorable="d" 
              d:DesignHeight="518" d:DesignWidth="857" BorderBrush="Black">
+    <UserControl.Resources>
+        <Storyboard x:Key="_sbExpandEdit">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,-350,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="_sbcollapseEdit">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-350,0,0" To="0,350,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+    </UserControl.Resources>
     <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="RosyBrown">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="6*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        
+        <Button x:Name="_btnCustomers" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                Margin="10,12,10,10" Click="BtnCustomers_Click" />
+        <Button x:Name="_btnCreateNewCustomer" Grid.Row="0" Content="New" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="100,12,10,10"
+                Click="BtnCreateNewCustomer_Click"/>
+        <Button Name="_btnEdit" Grid.Row="0" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 
+                VerticalAlignment="Top" Margin="210,12,10,10" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="_smallGrid" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="_gdCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
+                          ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" 
+                          AutoGenerateColumns="false" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Firstname" Binding="{Binding Path=FIRSTNAME}" />
+                        <DataGridTextColumn Header="LastName" Binding="{Binding LASTNAME}" />
+                        <DataGridTextColumn Header="Age" Binding="{Binding Path=AGE}" />
+                        <DataGridTextColumn Header="Gender" Binding="{Binding Path=ADDRESS}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="1" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                            Background="DarkGray" Visibility="Collapsed" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                            <StackPanel>
+                                <Grid>
+                                    <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ID, UpdateSourceTrigger=Explicit}" IsEnabled="False"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="FirstName" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbFirstName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=FIRSTNAME, UpdateSourceTrigger=Explicit}" />
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Age" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbAge" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=AGE, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="LastName" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbLastName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=LASTNAME, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Address" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbAddress" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ADDRESS, UpdateSourceTrigger=Explicit}" />
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Height="auto" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button Name="_btnSaveEdit"  Margin="5,5,5,5"
+                            Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click"/>
+                        <Button Name="_btnCancel"  Margin="5,5,5,5" 
+                                Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

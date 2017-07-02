@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetsEntityLib.DataBaseExtractions
 {
-    public static class RetrieveCustomers
+    public class RetrieveCustomers
     {
         public static IList<Customer> GetAllCustomers()
         {
@@ -19,7 +19,27 @@ namespace PetsEntityLib.DataBaseExtractions
                 using (PetShopDBContext _dataContext = new PetShopDBContext())
                 {
                     customers = _dataContext.Customers
-                                  .Take(100)
+                                  .ToList();
+                }
+            }
+            catch (Exception exception)
+            {
+                // logging here
+            }
+
+            return customers;
+        }
+
+        public static IList<Customer> GetCustomersTop(int number)
+        {
+            IList<Customer> customers = null;
+
+            try
+            {
+                using (PetShopDBContext _dataContext = new PetShopDBContext())
+                {
+                    customers = _dataContext.Customers
+                                  .Take(number)
                                   .ToList();
                 }
             }

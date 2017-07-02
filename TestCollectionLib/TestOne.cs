@@ -15,7 +15,7 @@ namespace TestCollectionLib
             get
             {
                 List<IEntityDaBase> entitiesCollection = new List<IEntityDaBase>();
-                for (int index = 0; index < 100; index++)
+                for (int index = 0; index < 10000; index++)
                 {
                     var animal = new Animal
                     {

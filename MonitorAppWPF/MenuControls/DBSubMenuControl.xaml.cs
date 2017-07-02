@@ -30,12 +30,20 @@ namespace MonitorAppWPF.MenuControls
 
         private void BtnAnimal_Click(object sender, RoutedEventArgs e)
         {
+            this.ClearContent();
             this._mainUserControl.Content = new DbControls.AnimalsDbControl();
         }
 
         private void BtnCustomers_Click(object sender, RoutedEventArgs e)
         {
+            this.ClearContent();
             this._mainUserControl.Content = new DbControls.CustomerDBControl();
+        }
+
+        private void ClearContent()
+        {
+            if (_mainUserControl.Content != null)
+                _mainUserControl.Content = null;
         }
     }
 }

@@ -60,11 +60,11 @@ namespace MonitorAppWPF.DbControls
 
         private void CreateNewAnimal(Animal animal)
         {
-            CreateAnimalClass createAnimal = new CreateAnimalClass(null);
+            /*CreateAnimalClass createAnimal = new CreateAnimalClass(null);
             createAnimal.AddItem(animal);
-            createAnimal.SaveCreatedItems();
-            /*PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
-            asyncrosave.Save(TestOne.GenerateMultipleEntites);*/
+            createAnimal.SaveCreatedItems();*/
+            PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
+            asyncrosave.Save(TestOne.GenerateMultipleEntites);
         }
 
         private void UpdateAnimal(Animal animal)
