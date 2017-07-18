@@ -29,9 +29,12 @@ namespace MonitorAppWPF.DbControls
         private Customer _currentCustomer;
         private string _newEditwMode;
 
+        public int JaehrysHeight { get; set; }
+
         public CustomerDBControl()
         {
             InitializeComponent();
+            JaehrysHeight = 150;
         }
 
         private void BtnCustomers_Click(object sender, RoutedEventArgs e)
@@ -90,14 +93,35 @@ namespace MonitorAppWPF.DbControls
         private void ExpandEditPanel()
         {
             _pnEditSection.Visibility = Visibility.Visible;
+
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(2)),
+                From = new Thickness(0f, _gdCustomers.ActualHeight, 0f, 0f),
+                To = new Thickness(0f, _gdCustomers.ActualHeight / 2f, 0f, 0f),
+                DecelerationRatio = 0.9f
+            };
+
+            Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             Storyboard sbEditSection = Resources["_sbExpandEdit"] as Storyboard;
+            sbEditSection.Children.Add(thicknessAnimation);
             sbEditSection.Begin(_pnEditSection);
         }
 
         private void CollapseEditPanel()
         {
-            Storyboard sbEditSection = Resources["_sbcollapseEdit"] as Storyboard;
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(2)),
+                From = new Thickness(0f, _gdCustomers.ActualHeight / 2f, 0f, 0f),
+                To = new Thickness(0f, _gdCustomers.ActualHeight / 1f, 0f, 0f),
+                DecelerationRatio = 0.9f
+            };
+
+            Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
+            Storyboard sbEditSection = Resources["_sbcollapseEdit"] as Storyboard;           
             sbEditSection.Completed += CollapseStoryboard;
+            sbEditSection.Children.Add(thicknessAnimation);
             sbEditSection.Begin(_pnEditSection);
         }
 
@@ -110,8 +134,8 @@ namespace MonitorAppWPF.DbControls
         {
             if (_gdCustomers.SelectedItem == null)
                 return;
-            Customer selectedAnimal = _gdCustomers.SelectedItem as Customer;
-            _currentCustomer = selectedAnimal;
+            Customer selectedCustomer = _gdCustomers.SelectedItem as Customer;
+            _currentCustomer = selectedCustomer;
             _pnEditSection.DataContext = _currentCustomer;
         }
 

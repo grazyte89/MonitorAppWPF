@@ -8,10 +8,10 @@
              d:DesignHeight="518" d:DesignWidth="857" BorderBrush="Black">
     <UserControl.Resources>
         <Storyboard x:Key="_sbExpandEdit">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,-350,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+            <!--<ThicknessAnimation Storyboard.TargetProperty="Margin" DecelerationRatio=".9" Duration="0:0:1" From="0,1000,0,0" To="0,150,0,0" />-->
         </Storyboard>
         <Storyboard x:Key="_sbcollapseEdit">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-350,0,0" To="0,350,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+            <!--<ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,150,0,0" To="0,1000,0,0" AccelerationRatio=".9" Duration="0:0:1" />-->
         </Storyboard>
     </UserControl.Resources>
     <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="RosyBrown">
@@ -39,7 +39,7 @@
             <Grid x:Name="_smallGrid" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
+                    <!--<RowDefinition Height="auto" />-->
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="_gdCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
                           ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged" 
@@ -51,7 +51,7 @@
                         <DataGridTextColumn Header="Gender" Binding="{Binding Path=ADDRESS}" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <StackPanel Grid.Row="1" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
                             Background="DarkGray" Visibility="Collapsed" >
                     <Grid>
                         <Grid.RowDefinitions>
