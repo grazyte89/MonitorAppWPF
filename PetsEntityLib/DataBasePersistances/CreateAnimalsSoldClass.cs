@@ -26,7 +26,7 @@ namespace PetsEntityLib.DataBasePersistances
             get { return _animalSoldList; }
         }
 
-        public void CreateAnimalsSold(int animalId, int customerId)
+        public void Create(int animalId, int customerId)
         {
             _animalSoldList.Add(new AnimalSold
             {

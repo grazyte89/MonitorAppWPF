@@ -26,7 +26,7 @@ namespace PetsEntityLib.DataBasePersistances
             get { return _customers; }
         }
 
-        public void CreateCustomer(string firstName, string lastName, int age, string address)
+        public void Create(string firstName, string lastName, int age, string address)
         {
             _customers.Add(new Customer()
             {

@@ -50,6 +50,7 @@ namespace MonitorAppWPF.DbControls
         {
             if (_currentAnimal == null)
                 return;
+            this.UpdateSource();
             if (_newEditwMode.Equals(Constants.New))
                 this.CreateNewAnimal(_currentAnimal);
             else if (_newEditwMode.Equals(Constants.Edit))
@@ -60,11 +61,11 @@ namespace MonitorAppWPF.DbControls
 
         private void CreateNewAnimal(Animal animal)
         {
-            /*CreateAnimalClass createAnimal = new CreateAnimalClass(null);
+            CreateAnimalClass createAnimal = new CreateAnimalClass(null);
             createAnimal.AddItem(animal);
-            createAnimal.SaveCreatedItems();*/
-            PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
-            asyncrosave.Save(TestOne.GenerateMultipleEntites);
+            createAnimal.SaveCreatedItems();
+            /*PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
+            asyncrosave.Save(TestOne.GenerateMultipleEntites);*/
         }
 
         private void UpdateAnimal(Animal animal)
@@ -84,14 +85,35 @@ namespace MonitorAppWPF.DbControls
         private void ExpandEditPanel()
         {
             _pnEditSection.Visibility = Visibility.Visible;
+
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(1)),
+                From = new Thickness(0f, _gdAnimals.ActualHeight, 0f, 0f),
+                To = new Thickness(0f, _gdAnimals.ActualHeight / 2f, 0f, 0f),
+                DecelerationRatio = 0.9f
+            };
+
+            Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             Storyboard sbEditSection = Resources["_sbExpandEdit"] as Storyboard;
+            sbEditSection.Children.Add(thicknessAnimation);
             sbEditSection.Begin(_pnEditSection);
         }
 
         private void CollapseEditPanel()
         {
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(1)),
+                From = new Thickness(0f, _gdAnimals.ActualHeight / 2f, 0f, 0f),
+                To = new Thickness(0f, _gdAnimals.ActualHeight / 1f, 0f, 0f),
+                DecelerationRatio = 0.9f
+            };
+
+            Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath("Margin"));
             Storyboard sbEditSection = Resources["_sbcollapseEdit"] as Storyboard;
             sbEditSection.Completed += CollapseStoryboard;
+            sbEditSection.Children.Add(thicknessAnimation);
             sbEditSection.Begin(_pnEditSection);
         }
 
@@ -106,6 +128,17 @@ namespace MonitorAppWPF.DbControls
             _currentAnimal = null;
             _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
+        }
+
+        private void UpdateSource()
+        {
+            _tbName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbGender.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbStatus.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbType.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbCheckup.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbVacination.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
 
         private void RestoreToOriginal()

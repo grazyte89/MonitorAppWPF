@@ -61,9 +61,10 @@ namespace MonitorAppWPF.DbControls
         {
             if (_currentCustomer == null)
                 return;
+            this.UpdateSource();
             if (_newEditwMode.Equals(Constants.New))
                 this.CreateNewCustomer(_currentCustomer);
-            else if (_newEditwMode.Equals(Constants.Edit))
+            else if (_newEditwMode.Equals(Constants.Edit) && _currentCustomer != null)
                 this.UpdateCustomer(_currentCustomer);
             _gdCustomers.IsEnabled = true;
             this.CollapseEditPanel();
@@ -137,6 +138,14 @@ namespace MonitorAppWPF.DbControls
             Customer selectedCustomer = _gdCustomers.SelectedItem as Customer;
             _currentCustomer = selectedCustomer;
             _pnEditSection.DataContext = _currentCustomer;
+        }
+
+        private void UpdateSource()
+        {
+            _tbFirstName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbLastName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            _tbAddress.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
 
         private void RestoreToOriginal()
