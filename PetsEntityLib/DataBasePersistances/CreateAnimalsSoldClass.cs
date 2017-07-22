@@ -49,6 +49,7 @@ namespace PetsEntityLib.DataBasePersistances
                 {
                     if (_animalSoldList != null && _animalSoldList.Count > 0)
                     {
+                        _dataContext.Database.Log = Console.Write;
                         _dataContext.AnimalSolds.AddRange(_animalSoldList);
                         _dataContext.SaveChanges();
                         _animalSoldList.Clear();

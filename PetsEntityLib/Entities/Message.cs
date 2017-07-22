@@ -8,23 +8,21 @@ using System.Runtime.Serialization;
 namespace PetsEntityLib.Entities
 {
     [Serializable]
-    [DataContract(Name = "AnimalSold")]
-    public class AnimalSold : IEntityDaBase
+    [DataContract(Name = "Message")]
+    public class Message : IEntityDaBase
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }
 
-        [DataMember(Name = "ANIMAL_ID")]
-        public int ANIMAL_ID { get; set; }
+        [DataMember(Name = "TEXT")]
+        public string TEXT { get; set; }
 
-        [DataMember(Name = "OWNER_ID")]
-        public int OWNER_ID { get; set; }
+        public string MESSAGE_HEAD { get; set; }
 
-        [ForeignKey("ANIMAL_ID")]
-        [DataMember(Name = "Animal")]
-        public virtual Animal Animal { get; set; }
+        [DataMember(Name = "CUSTOMER_ID")]
+        public int CUSTOMER_ID { get; set; }
 
-        [ForeignKey("OWNER_ID")]
+        [ForeignKey("CUSTOMER_ID")]
         [DataMember(Name = "Customer")]
         public virtual Customer Customer { get; set; }
     }

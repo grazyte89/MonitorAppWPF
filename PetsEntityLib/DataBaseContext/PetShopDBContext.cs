@@ -14,6 +14,8 @@ namespace PetsEntityLib.DataBaseContext
         public DbSet<AnimalSold> AnimalSolds { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        //public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
 

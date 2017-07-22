@@ -1,33 +1,39 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetsEntityLib.Entities
 {
     [Serializable]
     [DataContract(Name = "Customer")]
-    public class Customer : IEntityDaBase
+    public partial class Customer : IEntityDaBase
     {
         public Customer()
         {
             this.AnimalSolds = new HashSet<AnimalSold>();
+            this.Messages = new HashSet<Message>();
         }
 
         [DataMember(Name = "ID")]
         public int ID { get; set; }
+
         [DataMember(Name = "FIRSTNAME")]
         public string FIRSTNAME { get; set; }
+
         [DataMember(Name = "LASTNAME")]
         public string LASTNAME { get; set; }
+
         [DataMember(Name = "AGE")]
         public int AGE { get; set; }
+
         [DataMember(Name = "ADDRESS")]
         public string ADDRESS { get; set; }
 
-        [DataMember(Name = "ANIMALSOLD")]
+        [DataMember(Name = "AnimalSolds")]
         public virtual ICollection<AnimalSold> AnimalSolds { get; set; }
+
+        [DataMember(Name = "Messages")]
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

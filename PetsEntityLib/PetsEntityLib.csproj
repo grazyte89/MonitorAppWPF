@@ -73,7 +73,9 @@
     <Compile Include="Entities\AnimalSold.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\IEntityDaBase.cs" />
+    <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Stock.cs" />
+    <Compile Include="Entities\sysdiagram.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -81,6 +81,18 @@ namespace MonitorAppWPF.DbControls
         {
             UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);
             updateCustomer.SaveUpdate();
+
+            using (PetsEntityLib.DataBaseContext.PetShopDBContext context = new PetsEntityLib.DataBaseContext.PetShopDBContext())
+            {
+                Message message = new Message()
+                {
+                    TEXT = "added message head",
+                    CUSTOMER_ID = customer.ID,
+                    MESSAGE_HEAD = "test message head"
+                };
+                context.Messages.Add(message);
+                context.SaveChanges();
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
