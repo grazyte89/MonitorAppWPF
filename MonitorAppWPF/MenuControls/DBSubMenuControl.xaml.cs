@@ -45,5 +45,11 @@ namespace MonitorAppWPF.MenuControls
             if (_mainUserControl.Content != null)
                 _mainUserControl.Content = null;
         }
+
+        private void BtnStocks_Click(object sender, RoutedEventArgs e)
+        {
+            this.ClearContent();
+            this._mainUserControl.Content = new DbControls.StockDbControl();
+        }
     }
 }

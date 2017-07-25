@@ -24,5 +24,20 @@ namespace MonitorAppWPF.DbControls
         {
             InitializeComponent();
         }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnStocks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCreateNewStocks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
