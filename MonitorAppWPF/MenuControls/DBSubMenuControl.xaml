@@ -20,6 +20,8 @@
                     Content="Customers" Click="BtnCustomers_Click"/>
                 <Button x:Name="_btnStocks" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Stocks" Click="BtnStocks_Click"/>
+                <Button x:Name="_btnTest" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
+                    Content="Test" Click="BtnTest_Click"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

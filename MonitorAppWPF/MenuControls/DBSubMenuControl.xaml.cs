@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetsEntityLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,11 @@ namespace MonitorAppWPF.MenuControls
         {
             this.ClearContent();
             this._mainUserControl.Content = new DbControls.StockDbControl();
+        }
+
+        private void BtnTest_Click(object sender, RoutedEventArgs e)
+        {
+            TestClass.ManyTwoManyTest();
         }
     }
 }

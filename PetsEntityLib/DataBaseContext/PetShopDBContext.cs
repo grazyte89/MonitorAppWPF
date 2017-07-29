@@ -1,5 +1,6 @@
 ﻿using PetsEntityLib.Entities;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace PetsEntityLib.DataBaseContext
 {
@@ -15,7 +16,16 @@ namespace PetsEntityLib.DataBaseContext
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Coursem2m> CoursesManyToManys { get; set; }
+        public DbSet<JoinCustomerCourse> JoinCustomerCourses { get; set; }
         //public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+
+        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }*/
     }
 }
 

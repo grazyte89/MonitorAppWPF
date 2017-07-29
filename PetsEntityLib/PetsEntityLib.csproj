@@ -71,8 +71,11 @@
     <Compile Include="DataBaseValues\DbConstantsEnums.cs" />
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\AnimalSold.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\Coursem2m.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\IEntityDaBase.cs" />
+    <Compile Include="Entities\JoinCustomerCourse.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\sysdiagram.cs" />

@@ -35,5 +35,46 @@ namespace PetsEntityLib
                 _context.SaveChanges();
             }
         }
+
+        public static void ManyTwoManyTest()
+        {
+            List<Coursem2m> litscourse2m2 = new List<Coursem2m>()
+            {
+                new Coursem2m()
+                {
+                    NAME_MM = "test 1",
+                    SUBJECT_TYPE_MM = "Subject don't know"
+                },
+                new Coursem2m()
+                {
+                    NAME_MM = "subject 2",
+                    SUBJECT_TYPE_MM = "Subject don't know"
+                },
+                new Coursem2m()
+                {
+                    NAME_MM = "subject 3",
+                    SUBJECT_TYPE_MM = "Subject don't know"
+                },
+                new Coursem2m()
+                {
+                    NAME_MM = "subject 4",
+                    SUBJECT_TYPE_MM = "Subject don't know"
+                }
+            };
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                var cus = new Customer()
+                {
+                    ADDRESS = "vsdvdfv",
+                    AGE = 5,
+                    FIRSTNAME = "csv",
+                    LASTNAME = "efgbn",
+                    CourseMany2Manys = litscourse2m2
+                };
+                _context.Customers.Add(cus);
+                _context.SaveChanges();
+            }
+        }
     }
 }

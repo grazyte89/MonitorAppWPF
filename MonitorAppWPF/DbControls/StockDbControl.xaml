@@ -6,6 +6,12 @@
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
              mc:Ignorable="d" 
              d:DesignHeight="518" d:DesignWidth="857" BorderBrush="Black">
+    <UserControl.Resources>
+        <Storyboard x:Key="_sbExpandEdit">
+        </Storyboard>
+        <Storyboard x:Key="_sbcollapseEdit">
+        </Storyboard>
+    </UserControl.Resources>
     <Grid x:Name="_gridBigMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="RosyBrown">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -31,7 +37,67 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid x:Name="_smallGrid" Grid.Row="0">
-                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <DataGrid x:Name="_gdStocks" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
+                          ItemsSource="{Binding}" SelectionChanged="TbStocks_SelectionChanged" 
+                          AutoGenerateColumns="false" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=NAME}" />
+                        <DataGridTextColumn Header="Stocks Left" Binding="{Binding STOCKLEFT}" />
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=PRICE}" />
+                        <DataGridTextColumn Header="Mark Up" Binding="{Binding Path=MARKUP}" />
+                        <DataGridTextColumn Header="Price To Meet Mark" Binding="{Binding Path=PRICE_TOMEET_MARK}" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding Path=DATE}" />
+                        <DataGridTextColumn Header="Target Sale" Binding="{Binding Path=TARGETSALEMK}" />
+                        <DataGridTextColumn Header="Item Price" Binding="{Binding Path=ITEM_PRICE}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                            Background="DarkGray" Visibility="Collapsed" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                            <StackPanel>
+                                <Grid>
+                                    <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ID, UpdateSourceTrigger=Explicit}" IsEnabled="False"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Name" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=NAME, UpdateSourceTrigger=Explicit}" />
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Stock Left" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbStockLeft" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=STOCKLEFT, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Price" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbPrice" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=PRICE, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Item Price" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbItemPrice" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ITEM_PRICE, UpdateSourceTrigger=Explicit}" />
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Height="auto" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button Name="_btnSaveEdit"  Margin="5,5,5,5"
+                            Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click"/>
+                        <Button Name="_btnCancel"  Margin="5,5,5,5" 
+                                Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click"/>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

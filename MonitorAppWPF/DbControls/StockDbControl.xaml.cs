@@ -39,5 +39,20 @@ namespace MonitorAppWPF.DbControls
         {
 
         }
+
+        private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TbStocks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
