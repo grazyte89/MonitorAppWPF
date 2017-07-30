@@ -14,7 +14,6 @@ namespace PetsEntityLib.Entities
             this.AnimalSolds = new HashSet<AnimalSold>();
             this.Messages = new HashSet<Message>();
             this.Courses = new HashSet<JoinCustomerCourse>();
-            this.CourseMany2Manys = new HashSet<Coursem2m>();
         }
 
         [DataMember(Name = "ID")]
@@ -39,7 +38,5 @@ namespace PetsEntityLib.Entities
         public ICollection<Message> Messages { get; set; }
 
         public ICollection<JoinCustomerCourse> Courses { get; set; }
-
-        public ICollection<Coursem2m> CourseMany2Manys { get; set; }
     }
 }

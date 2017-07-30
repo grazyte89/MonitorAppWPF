@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetsEntityLib.Entities
 {
+    [Obsolete("using for testing")]
     public class Coursem2m : IEntityDaBase
     {
         public Coursem2m()

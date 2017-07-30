@@ -17,6 +17,6 @@ namespace PetsEntityLib.Entities
         public string NAME { get; set; }
         public string SUBJECT_TYPE { get; set; }
 
-        private ICollection<JoinCustomerCourse> Customers { get; set; } 
+        public ICollection<JoinCustomerCourse> Customers { get; set; } 
     }
 }

@@ -17,14 +17,12 @@ namespace PetsEntityLib.DataBaseContext
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Coursem2m> CoursesManyToManys { get; set; }
+        //public DbSet<Coursem2m> CoursesManyToManys { get; set; }
         public DbSet<JoinCustomerCourse> JoinCustomerCourses { get; set; }
-        //public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
 
         /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            
         }*/
     }
 }
