@@ -60,11 +60,51 @@ namespace PetsEntityLib
             {
                 var course = new Course()
                 {
-                    NAME = "Customer test 1",
-                    SUBJECT_TYPE = "Custimer test",
+                    NAME = "Customer 111 test 1",
+                    SUBJECT_TYPE = "Custimer 111 test",
                     Customers = GetJoinManyToManyCustomer()
                 };
                 _context.Courses.Add(course);
+                _context.SaveChanges();
+            }
+
+            Customer customer;
+            List<Course> courses;
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                customer = _context.Customers.Find(9162);
+                courses = _context.Courses.ToList();
+            }
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                _context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
+                customer.Courses.Add()
+            }
+        }
+
+        public static void GetExistingCourseManyToMany()
+        {
+            List<JoinCustomerCourse> list = null;
+
+            Message message = null;
+            List<Message> messagesList = null;
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                message = _context.Messages.FirstOrDefault(x => x.CUSTOMER_ID == 7);
+                messagesList = _context.Messages.Where(x => x.CUSTOMER_ID == 7).ToList(); 
+            }
+
+            message.TEXT = "update message text";
+            messagesList.ForEach(x => x.TEXT = "loop amendment second");
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                var customer = _context.Customers.FirstOrDefault(x => x.ID == 7);
+                customer.Messages.Add(message);
+                customer.Messages = messagesList;
                 _context.SaveChanges();
             }
         }

@@ -56,7 +56,8 @@ namespace MonitorAppWPF.MenuControls
         private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
             //TestClass.ManyTwoManyTest();
-            TestClass.ManyToManyCourse();
+            //TestClass.ManyToManyCourse();
+            TestClass.GetExistingCourseManyToMany();
         }
     }
 }
