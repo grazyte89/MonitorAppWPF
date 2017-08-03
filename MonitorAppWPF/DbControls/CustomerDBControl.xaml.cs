@@ -4,20 +4,9 @@ using PetsEntityLib.DataBasePersistances;
 using PetsEntityLib.DataBaseUpdates;
 using PetsEntityLib.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MonitorAppWPF.DbControls
 {
@@ -29,12 +18,9 @@ namespace MonitorAppWPF.DbControls
         private Customer _currentCustomer;
         private string _newEditwMode;
 
-        public int JaehrysHeight { get; set; }
-
         public CustomerDBControl()
         {
             InitializeComponent();
-            JaehrysHeight = 150;
         }
 
         private void BtnCustomers_Click(object sender, RoutedEventArgs e)

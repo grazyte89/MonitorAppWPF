@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PetsEntityLib.DataBasePersistances;
+using PetsEntityLib.DataBaseUpdates;
+using PetsEntityLib.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +45,20 @@ namespace MonitorAppWPF.DbControls
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void CreateNewStockItem(Stock stock)
+        {
+            CreateStocksClass createStock = new CreateStocksClass(null);
+            createStock.AddItem(stock);
+            createStock.SaveCreatedItems();
+        }
+
+        private void UpdateStockItem(Stock stock)
+        {
+            UpdateStockClass updateStock = new UpdateStockClass(stock);
+            updateStock.SaveUpdate();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

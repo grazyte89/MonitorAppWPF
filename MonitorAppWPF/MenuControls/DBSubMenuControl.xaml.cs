@@ -57,7 +57,8 @@ namespace MonitorAppWPF.MenuControls
         {
             //TestClass.ManyTwoManyTest();
             //TestClass.ManyToManyCourse();
-            TestClass.GetExistingCourseManyToMany();
+            //TestClass.GetExistingCourseManyToMany();
+            TestClass.ManyToManyCourse();
         }
     }
 }

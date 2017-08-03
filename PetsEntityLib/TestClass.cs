@@ -80,7 +80,14 @@ namespace PetsEntityLib
             using (PetShopDBContext _context = new PetShopDBContext())
             {
                 _context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
-                customer.Courses.Add()
+                _context.Entry(customer).Collection(dc => dc.Courses).Load();
+                var it = courses.Where(c => c.ID < 5).Select(c => new JoinCustomerCourse
+                {
+                    CUSTOMER_ID = customer.ID,
+                    COURSE_ID = c.ID
+                }).ToList();
+                customer.Courses = it;
+                _context.SaveChanges();
             }
         }
 
