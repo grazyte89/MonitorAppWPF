@@ -56,6 +56,7 @@
     <Compile Include="DataBaseContext\PetShopDBContext.cs" />
     <Compile Include="DataBaseExtractions\RetrieveAnimals.cs" />
     <Compile Include="DataBaseExtractions\RetrieveCustomers.cs" />
+    <Compile Include="DataBaseExtractions\RetrieveStocks.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalClass.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalsSoldClass.cs" />
     <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="DataBasePersistances\PersistenceFactory.cs" />
     <Compile Include="DataBasePersistances\PersistEntityAsyncro.cs" />
     <Compile Include="DataBaseUpdates\IDBUpdate.cs" />
+    <Compile Include="DataBaseUpdates\MarkEntityCollection.cs" />
     <Compile Include="DataBaseUpdates\UpdateAnimalClass.cs" />
     <Compile Include="DataBaseUpdates\UpdateAnimalSoldClass.cs" />
     <Compile Include="DataBaseUpdates\UpdateCustomerClass.cs" />
@@ -79,7 +81,6 @@
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\sysdiagram.cs" />
-    <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

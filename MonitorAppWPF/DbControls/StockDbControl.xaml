@@ -84,6 +84,26 @@
                                              Text="{Binding Path=PRICE, UpdateSourceTrigger=Explicit}"/>
                                 </Grid>
                                 <Grid>
+                                    <TextBlock Text="Mark up" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbMarkup" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=MARK_UP, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Price To Meet Mark" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbPriceToMeetMark" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=PRICE_TO_MEET_MARK, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Date" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbDate" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=DATE, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Target Sale" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                    <TextBox x:Name="_tbTargetSale" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=TARGET_SALE, UpdateSourceTrigger=Explicit}"/>
+                                </Grid>
+                                <Grid>
                                     <TextBlock Text="Item Price" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbItemPrice" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
                                              Text="{Binding Path=ITEM_PRICE, UpdateSourceTrigger=Explicit}" />

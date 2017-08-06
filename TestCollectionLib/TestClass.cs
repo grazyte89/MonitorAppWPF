@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetsEntityLib
-{
+namespace TestCollectionLib
+{ 
     public class TestClass
     {
         public static List<Customer> GetCustomers()

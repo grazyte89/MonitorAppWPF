@@ -15,7 +15,7 @@
                 <Button x:Name="_btnAnimals" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Animals" Click="BtnAnimal_Click" />
                 <Button x:Name="_btnAnimalSold" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Animal Sold" />
+                    Content="Animal Sold" Click="BtnAnimalSold_Click" />
                 <Button x:Name="_btnCustomers" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
                     Content="Customers" Click="BtnCustomers_Click"/>
                 <Button x:Name="_btnStocks" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"

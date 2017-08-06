@@ -25,6 +25,10 @@ namespace PetsEntityLib.DataBaseUpdates
                 if (_currentCustomer == null)
                     return;
                 _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
+
+                if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
+                    System.Console.WriteLine("plave"); //_currentCustomer.loa
+
                 _dbcontext.SaveChanges();
             }
         }
