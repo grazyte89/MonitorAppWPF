@@ -1,4 +1,5 @@
 ﻿using PetsEntityLib.DataBaseContext;
+using PetsEntityLib.DataBaseUpdates;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
@@ -79,16 +80,19 @@ namespace TestCollectionLib
 
             using (PetShopDBContext _context = new PetShopDBContext())
             {
-                _context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
-                _context.Entry(customer).Collection(dc => dc.Courses).Load();
-                var it = courses.Where(c => c.ID < 5).Select(c => new JoinCustomerCourse
+                //_context.Entry(customer).State = System.Data.Entity.EntityState.Modified;
+                //_context.Entry(customer).Collection(dc => dc.Courses).Load();
+                var it = courses.Where(c => c.ID < 2).Select(c => new JoinCustomerCourse
                 {
                     CUSTOMER_ID = customer.ID,
                     COURSE_ID = c.ID
                 }).ToList();
                 customer.Courses = it;
-                _context.SaveChanges();
+                //_context.SaveChanges();
             }
+
+            UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);
+            updateCustomer.SaveUpdate();
         }
 
         public static void GetExistingCourseManyToMany()

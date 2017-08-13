@@ -11,10 +11,10 @@ namespace PetsEntityLib.DataBaseUpdates
 {
     public static class MarkEntityCollection
     {
-        public static void LoadAndMarkEnityCollection(this IEntityDaBase entityObject, PetShopDBContext dbcontext, 
-            Func<IEntityDaBase, ICollection<IEntityDaBase>> loadFunction)
+        public static void LoadAndMarkEnityCollection<S, T>(this IEntityDaBase entityObject, PetShopDBContext dbcontext, 
+            Func<S, ICollection<T>> loadFunction) where S: class where T : class
         {
-            dbcontext.Entry(entityObject).Collection(loadFunction.ToString()).Load();
+           dbcontext.Entry(entityObject).Collection(loadFunction.ToString()).Load();
         }
     }
 }

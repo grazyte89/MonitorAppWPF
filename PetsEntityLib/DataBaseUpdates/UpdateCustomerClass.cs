@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PetsEntityLib.Entities;
 using PetsEntityLib.DataBaseContext;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace PetsEntityLib.DataBaseUpdates
 {
@@ -27,10 +28,24 @@ namespace PetsEntityLib.DataBaseUpdates
                 _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
 
                 if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
-                    System.Console.WriteLine("plave"); //_currentCustomer.loa
+                {
+                    var itn = _currentCustomer.Courses.Select(x => x.COURSE_ID).ToList();
+                    this.UpdateCollection(_dbcontext, c => c.Courses, _currentCustomer.Courses,
+                        itn, x => itn.Contains(x.COURSE_ID));
+                }
 
                 _dbcontext.SaveChanges();
             }
+        }
+
+        private void UpdateCollection<T>(DbContext dbcontext, Expression<Func<Customer, ICollection<T>>> collectionProperty, 
+            ICollection<T> collection, ICollection<int> ids, Expression<Func<T, bool>> col) where T : class
+        {
+            //var temp = collection.ToList();
+            collection.Clear();
+            var gndet = dbcontext.Set<T>().Where(col);
+            dbcontext.Entry(_currentCustomer).Collection(collectionProperty).Load();
+            collection = gndet.ToList();
         }
     }
 }
