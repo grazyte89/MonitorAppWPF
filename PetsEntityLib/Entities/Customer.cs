@@ -35,9 +35,9 @@ namespace PetsEntityLib.Entities
         public virtual ICollection<AnimalSold> AnimalSolds { get; set; }
 
         [DataMember(Name = "Messages")]
-        public ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
 
         [DataMember(Name = "Courses")]
-        public ICollection<JoinCustomerCourse> Courses { get; set; }
+        public virtual ICollection<JoinCustomerCourse> Courses { get; set; }
     }
 }
