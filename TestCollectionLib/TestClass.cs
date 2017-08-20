@@ -94,8 +94,13 @@ namespace TestCollectionLib
             var it = courses.Where(c => c.ID < 2).Select(c => new JoinCustomerCourse
             {
                 CUSTOMER_ID = customer.ID,
-                COURSE_ID = c.ID
+                COURSE_ID = 2
             }).ToList();
+            it.Add(new JoinCustomerCourse
+            {
+                CUSTOMER_ID = customer.ID,
+                COURSE_ID = 1
+            });
             customer.Courses = it;
 
             UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);

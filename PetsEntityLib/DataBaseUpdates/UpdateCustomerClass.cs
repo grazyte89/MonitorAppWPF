@@ -28,34 +28,30 @@ namespace PetsEntityLib.DataBaseUpdates
                 _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
 
                 if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
-                {
-                    var itn = _currentCustomer.Courses.Select(x => x.COURSE_ID).ToList();
-                    this.UpdateCollection(_dbcontext, c => c.Courses, _currentCustomer.Courses,
-                        x => x.ID == 0, x => x.ID > 0);
-                }
+                    this.UpdateCourses(_dbcontext);
 
                 _dbcontext.SaveChanges();
             }
         }
 
-        private void UpdateCollection<T>(DbContext dbcontext, Expression<Func<Customer, ICollection<T>>> collectionProperty, 
-            ICollection<T> collection, Expression<Func<T, bool>> existingEquation, Expression<Func<T, bool>> newEquation) where T : class
+        private void UpdateCourses(PetShopDBContext dbcontext)
         {
-            dbcontext.Entry(_currentCustomer).Collection(collectionProperty).Load();
-            var existingItems = collection.AsQueryable().Where(existingEquation).ToList();
-            var newItems = collection.AsQueryable().Where(newEquation).ToList();
-            foreach (var item in existingItems)
-                dbcontext.Entry(item).State = EntityState.Unchanged;
-            foreach (var item in newItems)
-                dbcontext.Entry(item).State = EntityState.Added;
-            //var genericEnity = dbcontext.Set<T>();
-            //var itemsRetreived = genericEnity.Where(col).ToList();
-            //collection = itemsOj;
-        }
+            var detatchedCollection = _currentCustomer.Courses.ToList();
+            dbcontext.Entry(_currentCustomer).Collection(dc => dc.Courses).Load();
+            _currentCustomer.Courses.Clear();
 
-        private void UpdateManyToManyCollection()
-        {
+            foreach (var item in detatchedCollection)
+            {
+                var existingData = dbcontext.JoinCustomerCourses
+                            .FirstOrDefault(x => x.CUSTOMER_ID == item.CUSTOMER_ID
+                            && x.COURSE_ID == item.COURSE_ID);
+                if (existingData != null)
+                    dbcontext.Entry(item).State = EntityState.Modified;
+                else
+                    dbcontext.Entry(item).State = EntityState.Added;
+            }
 
+            _currentCustomer.Courses = detatchedCollection;
         }
     }
 }
