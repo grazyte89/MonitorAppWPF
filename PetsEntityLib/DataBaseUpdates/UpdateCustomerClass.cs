@@ -29,6 +29,8 @@ namespace PetsEntityLib.DataBaseUpdates
 
                 if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
                     this.UpdateCourses(_dbcontext);
+                if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+                    this.UpdateMessages(_dbcontext);
 
                 _dbcontext.SaveChanges();
             }
@@ -52,6 +54,25 @@ namespace PetsEntityLib.DataBaseUpdates
             }
 
             _currentCustomer.Courses = detatchedCollection;
+        }
+
+        private void UpdateMessages(PetShopDBContext dbcontext)
+        {
+            var detatchedCollection = _currentCustomer.Messages.ToList();
+            dbcontext.Entry(_currentCustomer).Collection(dc => dc.Messages).Load();
+            _currentCustomer.Messages.Clear();
+
+            foreach (var item in detatchedCollection)
+            {
+                var existingItem = dbcontext.Messages
+                            .FirstOrDefault(x => x.ID == item.ID);
+                if (existingItem != null)
+                    dbcontext.Entry(item).State = EntityState.Modified;
+                else
+                    dbcontext.Entry(item).State = EntityState.Added;
+            }
+
+            _currentCustomer.Messages = detatchedCollection;
         }
     }
 }

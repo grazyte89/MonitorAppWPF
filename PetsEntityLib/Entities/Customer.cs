@@ -32,12 +32,12 @@ namespace PetsEntityLib.Entities
         public string ADDRESS { get; set; }
 
         [DataMember(Name = "AnimalSolds")]
-        public virtual ICollection<AnimalSold> AnimalSolds { get; set; }
+        public ICollection<AnimalSold> AnimalSolds { get; set; }
 
         [DataMember(Name = "Messages")]
-        public virtual ICollection<Message> Messages { get; set; }
+        public ICollection<Message> Messages { get; set; }
 
         [DataMember(Name = "Courses")]
-        public virtual ICollection<JoinCustomerCourse> Courses { get; set; }
+        public ICollection<JoinCustomerCourse> Courses { get; set; }
     }
 }

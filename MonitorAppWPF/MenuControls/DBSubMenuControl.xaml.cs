@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using TestCollectionLib;
+using TestCollectionLib.M2MTests;
 
 namespace MonitorAppWPF.MenuControls
 {
@@ -43,7 +44,8 @@ namespace MonitorAppWPF.MenuControls
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
-            TestClass.ManyToManyCourse();
+            //TestClass.ManyToManyCourse();
+            TestingUpdateCustomer.TestManyToMay();
         }
 
         private void BtnAnimalSold_Click(object sender, RoutedEventArgs e)

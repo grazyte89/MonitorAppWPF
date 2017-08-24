@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="M2MTests\TestingUpdateCustomer.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="TestOne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
