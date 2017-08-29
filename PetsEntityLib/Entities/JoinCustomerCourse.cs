@@ -36,9 +36,11 @@ namespace PetsEntityLib.Entities
         public int COURSE_ID { get; set; }
 
         [DataMember(Name = "Customer")]
+        [ForeignKey("CUSTOMER_ID")]
         public Customer Customer { get; set; }
 
         [DataMember(Name = "Course")]
+        [ForeignKey("COURSE_ID")]
         public Course Course { get; set; }
     }
 }

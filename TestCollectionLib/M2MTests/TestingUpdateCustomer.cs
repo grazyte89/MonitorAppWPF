@@ -34,12 +34,12 @@ namespace TestCollectionLib.M2MTests
                 courses = _context.Courses.ToList();
             }
 
-            var coursecustomer = courses.Where(c => c.ID < 100).Select(c => new JoinCustomerCourse
+            var coursecustomer = courses.Where(c => c.ID < 10).Select(c => new JoinCustomerCourse
             {
                 CUSTOMER_ID = customer.ID,
                 COURSE_ID = c.ID
             }).ToList();
-            coursecustomer.Add(new JoinCustomerCourse
+            /*coursecustomer.Add(new JoinCustomerCourse
             {
                 CUSTOMER_ID = customer.ID,
                 Course = new Course
@@ -47,7 +47,7 @@ namespace TestCollectionLib.M2MTests
                     NAME = "NewTest12",
                     SUBJECT_TYPE = "idon'tknow"
                 }
-            });
+            });*/
             customer.Courses = coursecustomer;
 
             UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);
