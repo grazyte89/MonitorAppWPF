@@ -25,22 +25,26 @@ namespace PetsEntityLib.DataBaseUpdates
             {
                 if (_currentCustomer == null)
                     return;
+
+                if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+                    this.UpdateMessages(_dbcontext);
+
                 _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
 
                 if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
                     this.UpdateCourses(_dbcontext);
-                if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
-                    this.UpdateMessages(_dbcontext);
 
                 _dbcontext.SaveChanges();
             }
         }
 
         private List<TEntity> GetDetatchedCollection<TEntity>(DbContext dbcontext, ICollection<TEntity> collection, 
-            Expression<Func<Customer, ICollection<TEntity>>> loadFunction) where TEntity : class
+            Expression<Func<Customer, ICollection<TEntity>>> loadFunction, bool loadPrevious) where TEntity : class
         {
+            if (!loadPrevious)
+                return collection.ToList();
+
             var detatchedCollection = collection.ToList();
-            var it = loadFunction.Compile();
             dbcontext.Entry(_currentCustomer).Collection(loadFunction).Load();
             collection.Clear();
             return detatchedCollection;
@@ -56,11 +60,8 @@ namespace PetsEntityLib.DataBaseUpdates
 
         private void UpdateCourses(PetShopDBContext dbcontext)
         {
-            /*var detatchedCollection = _currentCustomer.Courses.ToList();
-            dbcontext.Entry(_currentCustomer).Collection(dc => dc.Courses).Load();
-            _currentCustomer.Courses.Clear();*/
             var detatchedCollection = this.GetDetatchedCollection<JoinCustomerCourse>(dbcontext, 
-                                        _currentCustomer.Courses, dc => dc.Courses);
+                                        _currentCustomer.Courses, c => c.Courses, true);
 
             foreach (var item in detatchedCollection)
             {
@@ -68,17 +69,54 @@ namespace PetsEntityLib.DataBaseUpdates
                             .FirstOrDefault(x => x.CUSTOMER_ID == item.CUSTOMER_ID
                             && x.COURSE_ID == item.COURSE_ID);
                 this.AssignEntityStateTags(dbcontext, item, existingData != null);
-
-                /*if (existingData != null)
-                    dbcontext.Entry(item).State = EntityState.Modified;
-                else
-                    dbcontext.Entry(item).State = EntityState.Added;*/
             }
 
             _currentCustomer.Courses = detatchedCollection;
         }
 
         private void UpdateMessages(PetShopDBContext dbcontext)
+        {
+            var detatchedCollection = this.GetDetatchedCollection<Message>(dbcontext,
+                                        _currentCustomer.Messages, c => c.Messages, false);
+            var newMessages = detatchedCollection.Where(m => m.ID == 0)
+                                .ToList();
+            var existingMessages = detatchedCollection.Where(m => m.ID > 0)
+                                .ToList();
+
+            foreach (var item in newMessages)
+                this.AssignEntityStateTags(dbcontext, item, false);
+
+            if (dbcontext.Entry(_currentCustomer).State != EntityState.Modified)
+                dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
+
+            foreach (var item in existingMessages)
+                this.AssignEntityStateTags(dbcontext, item, true);
+
+            _currentCustomer.Messages = detatchedCollection;
+        }
+
+        /*private void UpdateCourses(PetShopDBContext dbcontext)
+        {
+            var detatchedCollection = _currentCustomer.Courses.ToList();
+            dbcontext.Entry(_currentCustomer).Collection(dc => dc.Courses).Load();
+            _currentCustomer.Courses.Clear();
+
+            foreach (var item in detatchedCollection)
+            {
+                var existingData = dbcontext.JoinCustomerCourses
+                            .FirstOrDefault(x => x.CUSTOMER_ID == item.CUSTOMER_ID
+                            && x.COURSE_ID == item.COURSE_ID);
+
+                if (existingData != null)
+                    dbcontext.Entry(item).State = EntityState.Modified;
+                else
+                    dbcontext.Entry(item).State = EntityState.Added;
+            }
+
+            _currentCustomer.Courses = detatchedCollection;
+        }*/
+
+        /*private void UpdateMessages(PetShopDBContext dbcontext)
         {
             var detatchedCollection = _currentCustomer.Messages.ToList();
             dbcontext.Entry(_currentCustomer).Collection(dc => dc.Messages).Load();
@@ -95,6 +133,6 @@ namespace PetsEntityLib.DataBaseUpdates
             }
 
             _currentCustomer.Messages = detatchedCollection;
-        }
+        }*/
     }
 }

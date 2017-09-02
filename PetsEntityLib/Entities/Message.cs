@@ -12,6 +12,7 @@ namespace PetsEntityLib.Entities
     public class Message : IEntityDaBase
     {
         [DataMember(Name = "ID")]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [DataMember(Name = "SENDER")]

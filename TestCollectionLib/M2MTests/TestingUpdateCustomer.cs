@@ -27,11 +27,14 @@ namespace TestCollectionLib.M2MTests
 
             Customer customer;
             List<Course> courses;
+            var messages = new List<Message>();
 
             using (PetShopDBContext _context = new PetShopDBContext())
             {
                 customer = _context.Customers.Find(9162);
                 courses = _context.Courses.ToList();
+                messages = _context.Messages.Where(m => m.CUSTOMER_ID == 9162)
+                            .ToList();
             }
 
             var coursecustomer = courses.Where(c => c.ID < 10).Select(c => new JoinCustomerCourse
@@ -39,16 +42,35 @@ namespace TestCollectionLib.M2MTests
                 CUSTOMER_ID = customer.ID,
                 COURSE_ID = c.ID
             }).ToList();
-            /*coursecustomer.Add(new JoinCustomerCourse
-            {
-                CUSTOMER_ID = customer.ID,
-                Course = new Course
-                {
-                    NAME = "NewTest12",
-                    SUBJECT_TYPE = "idon'tknow"
-                }
-            });*/
+
             customer.Courses = coursecustomer;
+
+            foreach (var message in messages)
+            {
+                message.MESSAGE_HEAD = "updated messgae";
+                message.TEXT = "I can now start working on something else";
+            }
+
+            using (PetShopDBContext _dbcontext = new PetShopDBContext())
+            {
+                for (int cycle = 0; cycle < 5; cycle++)
+                {
+                    Message message = new Message()
+                    {
+                        MESSAGE_HEAD = "test message",
+                        SENDER = "Need to put id",
+                        RECEIVER = "Definitly need to put id",
+                        CREATE_DATE = DateTime.Now,
+                        SEND_BY_DATE = DateTime.Now,
+                        TEXT = "Well i guess i'm making changes to this table next",
+                        CUSTOMER_ID = customer.ID
+                    };
+
+                    messages.Add(message);
+                }
+            }
+
+            customer.Messages = messages;
 
             UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);
             updateCustomer.SaveUpdate();
