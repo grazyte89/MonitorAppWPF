@@ -26,10 +26,9 @@ namespace PetsEntityLib.DataBaseUpdates
                 if (_currentCustomer == null)
                     return;
 
-                if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
-                    this.UpdateMessages(_dbcontext);
-
+                this.AddAllNewItems(_dbcontext);
                 _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
+                this.UpdateAllNavigationEntities(_dbcontext);
                 
                 /* Before a parent entity is tagged as medified, make sure all new
                  * child entity objects in its collection are tagged as Entitysate.Added,
@@ -46,15 +45,11 @@ namespace PetsEntityLib.DataBaseUpdates
                  * the parent entity is new, which in this case will throw an error
                  * because entity knows there is an enitity object with the same id.  
                  * */
-
-                if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
-                    this.UpdateCourses(_dbcontext);
-
                 _dbcontext.SaveChanges();
             }
         }
 
-        private List<TEntity> GetDetatchedCollection<TEntity>(DbContext dbcontext, ICollection<TEntity> collection, 
+        private List<TEntity> GetDetatchedCollection<TEntity>(DbContext dbcontext, ICollection<TEntity> collection,
             Expression<Func<Customer, ICollection<TEntity>>> loadFunction, bool loadPrevious) where TEntity : class
         {
             if (!loadPrevious)
@@ -72,6 +67,28 @@ namespace PetsEntityLib.DataBaseUpdates
                 dbContext.Entry(entityObject).State = EntityState.Modified;
             else
                 dbContext.Entry(entityObject).State = EntityState.Added;
+        }
+
+        private void AddAllNewItems(DbContext dbContext)
+        {
+            if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+                this.AddNewMessages(dbContext);
+        }
+
+        private void AddNewMessages(DbContext dbcontext)
+        {
+            var newMessages = _currentCustomer.Messages
+                                .Where(m => m.ID == 0).ToList();
+            foreach (var item in newMessages)
+                this.AssignEntityStateTags(dbcontext, item, false);
+        }
+
+        private void UpdateAllNavigationEntities(PetShopDBContext dbcontext)
+        {
+            if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+                this.UpdateMessages(dbcontext);
+            if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
+                this.UpdateCourses(dbcontext);
         }
 
         private void UpdateCourses(PetShopDBContext dbcontext)
@@ -94,25 +111,16 @@ namespace PetsEntityLib.DataBaseUpdates
         {
             var detatchedCollection = this.GetDetatchedCollection<Message>(dbcontext,
                                         _currentCustomer.Messages, c => c.Messages, false);
-            var newMessages = detatchedCollection.Where(m => m.ID == 0)
-                                .ToList();
             var existingMessages = detatchedCollection.Where(m => m.ID > 0)
-                                .ToList();
+                                    .ToList();
 
-            foreach (var item in newMessages)
-                this.AssignEntityStateTags(dbcontext, item, false);
-
-            if (dbcontext.Entry(_currentCustomer).State != EntityState.Modified)
-            {
-                dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
-            }
-            foreach (var item in existingMessages)
-                this.AssignEntityStateTags(dbcontext, item, true);
-
+            // dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
             /* When tagging child entities in a collection as Entitystate.Modified,
              * make sure you tag the parent entity as Modified, or else it will throw
              * am error.
              * */
+            foreach (var item in existingMessages)
+                this.AssignEntityStateTags(dbcontext, item, true);
 
             _currentCustomer.Messages = detatchedCollection;
         }
@@ -136,25 +144,6 @@ namespace PetsEntityLib.DataBaseUpdates
             }
 
             _currentCustomer.Courses = detatchedCollection;
-        }*/
-
-        /*private void UpdateMessages(PetShopDBContext dbcontext)
-        {
-            var detatchedCollection = _currentCustomer.Messages.ToList();
-            dbcontext.Entry(_currentCustomer).Collection(dc => dc.Messages).Load();
-            _currentCustomer.Messages.Clear();
-
-            foreach (var item in detatchedCollection)
-            {
-                var existingItem = dbcontext.Messages
-                            .FirstOrDefault(x => x.ID == item.ID);
-                if (existingItem != null)
-                    dbcontext.Entry(item).State = EntityState.Modified;
-                else
-                    dbcontext.Entry(item).State = EntityState.Added;
-            }
-
-            _currentCustomer.Messages = detatchedCollection;
         }*/
     }
 }
