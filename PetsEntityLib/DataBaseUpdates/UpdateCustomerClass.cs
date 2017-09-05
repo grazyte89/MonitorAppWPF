@@ -49,33 +49,14 @@ namespace PetsEntityLib.DataBaseUpdates
             }
         }
 
-        private List<TEntity> GetDetatchedCollection<TEntity>(DbContext dbcontext, ICollection<TEntity> collection,
-            Expression<Func<Customer, ICollection<TEntity>>> loadFunction, bool loadPrevious) where TEntity : class
-        {
-            if (!loadPrevious)
-                return collection.ToList();
-
-            var detatchedCollection = collection.ToList();
-            dbcontext.Entry(_currentCustomer).Collection(loadFunction).Load();
-            collection.Clear();
-            return detatchedCollection;
-        }
-
-        private void AssignEntityStateTags(DbContext dbContext, IEntityDaBase entityObject, bool existingObject)
-        {
-            if (existingObject)
-                dbContext.Entry(entityObject).State = EntityState.Modified;
-            else
-                dbContext.Entry(entityObject).State = EntityState.Added;
-        }
-
-        private void AddAllNewItems(DbContext dbContext)
+        private void AddAllNewItems(PetShopDBContext dbcontext)
         {
             if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
-                this.AddNewMessages(dbContext);
+                dbcontext.AddNewItems<Message>(_currentCustomer.Messages, m => m.ID == 0);
+                //this.AddNewMessages(dbContext);
         }
 
-        private void AddNewMessages(DbContext dbcontext)
+        private void AddNewMessages(PetShopDBContext dbcontext)
         {
             var newMessages = _currentCustomer.Messages
                                 .Where(m => m.ID == 0).ToList();
@@ -123,6 +104,26 @@ namespace PetsEntityLib.DataBaseUpdates
                 this.AssignEntityStateTags(dbcontext, item, true);
 
             _currentCustomer.Messages = detatchedCollection;
+        }
+
+        private List<TEntity> GetDetatchedCollection<TEntity>(PetShopDBContext dbcontext, ICollection<TEntity> collection,
+            Expression<Func<Customer, ICollection<TEntity>>> loadFunction, bool loadPrevious) where TEntity : class
+        {
+            if (!loadPrevious)
+                return collection.ToList();
+
+            var detatchedCollection = collection.ToList();
+            dbcontext.Entry(_currentCustomer).Collection(loadFunction).Load();
+            collection.Clear();
+            return detatchedCollection;
+        }
+
+        private void AssignEntityStateTags(DbContext dbContext, IEntityDaBase entityObject, bool existingObject)
+        {
+            if (existingObject)
+                dbContext.Entry(entityObject).State = EntityState.Modified;
+            else
+                dbContext.Entry(entityObject).State = EntityState.Added;
         }
 
         /*private void UpdateCourses(PetShopDBContext dbcontext)
