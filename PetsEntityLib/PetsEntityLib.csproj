@@ -59,7 +59,9 @@
     <Compile Include="DataBaseExtractions\RetrieveStocks.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalClass.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalsSoldClass.cs" />
+    <Compile Include="DataBasePersistances\CreateCourseClass.cs" />
     <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
+    <Compile Include="DataBasePersistances\CreateMessageClass.cs" />
     <Compile Include="DataBasePersistances\CreateStocksClass.cs" />
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
     <Compile Include="DataBasePersistances\PersistenceFactory.cs" />
@@ -74,7 +76,6 @@
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\AnimalSold.cs" />
     <Compile Include="Entities\Course.cs" />
-    <Compile Include="Entities\Coursem2m.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\IEntityDaBase.cs" />
     <Compile Include="Entities\JoinCustomerCourse.cs" />

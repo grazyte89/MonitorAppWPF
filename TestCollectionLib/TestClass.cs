@@ -116,8 +116,8 @@ namespace TestCollectionLib
 
             using (PetShopDBContext _context = new PetShopDBContext())
             {
-                message = _context.Messages.FirstOrDefault(x => x.CUSTOMER_ID == 7);
-                messagesList = _context.Messages.Where(x => x.CUSTOMER_ID == 7).ToList(); 
+                message = _context.Messages.FirstOrDefault(x => x.SENDER_ID == 7);
+                messagesList = _context.Messages.Where(x => x.SENDER_ID == 7).ToList(); 
             }
 
             message.TEXT = "update message text";

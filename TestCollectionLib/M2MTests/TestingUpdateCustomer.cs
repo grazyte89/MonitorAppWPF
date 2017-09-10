@@ -33,8 +33,8 @@ namespace TestCollectionLib.M2MTests
             {
                 customer = _context.Customers.Find(9162);
                 courses = _context.Courses.ToList();
-                messages = _context.Messages.Where(m => m.CUSTOMER_ID == 9162)
-                            .ToList();
+                /*messages = _context.Messages.Where(m => m.SENDER_ID == 9162)
+                            .ToList();*/
             }
 
             var coursecustomer = courses.Where(c => c.ID < 10).Select(c => new JoinCustomerCourse
@@ -63,7 +63,7 @@ namespace TestCollectionLib.M2MTests
                         CREATE_DATE = DateTime.Now,
                         SEND_BY_DATE = DateTime.Now,
                         TEXT = "Well i guess i'm making changes to this table next",
-                        CUSTOMER_ID = customer.ID
+                        SENDER_ID = customer.ID
                     };
 
                     messages.Add(message);
