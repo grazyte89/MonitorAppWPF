@@ -19,31 +19,39 @@ namespace PetsEntityLib.DataBaseUpdates
 
         public void SaveUpdate()
         {
-            using (PetShopDBContext _dbcontext = new PetShopDBContext())
+            try
             {
-                if (_currentCustomer == null)
-                    return;
+                using (PetShopDBContext _dbcontext = new PetShopDBContext())
+                {
+                    if (_currentCustomer == null)
+                        return;
 
-                this.AddAllNewItems(_dbcontext);
-                _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
-                this.UpdateAllNavigationEntities(_dbcontext);
-                
-                /* Before a parent entity is tagged as medified, make sure all new
-                 * child entity objects in its collection are tagged as Entitysate.Added,
-                 * if the relationship is a one-to-many.
-                 * Because if not, it will throw an error, either saying foreign
-                 * key property does not match or something like duplicate id.
-                 * 
-                 * The reason why it throws an error is because, the child entities
-                 * at that point in time are tagged as Entitysate.Unchanged.
-                 * So when we mark the parent entities as Modified, entity looks
-                 * through its collection and will find new entity objects whose
-                 * foreign key id has not be assigned.
-                 * Or, if the foreign key property is assigned, it will think that
-                 * the parent entity is new, which in this case will throw an error
-                 * because entity knows there is an enitity object with the same id.  
-                 * */
-                _dbcontext.SaveChanges();
+                    this.AddAllNewItems(_dbcontext);
+                    _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
+                    this.UpdateAllNavigationEntities(_dbcontext);
+
+                    /* Before a parent entity is tagged as medified, make sure all new
+                     * child entity objects in its collection are tagged as Entitysate.Added,
+                     * if the relationship is a one-to-many.
+                     * Because if not, it will throw an error, either saying foreign
+                     * key property does not match or something like duplicate id.
+                     * 
+                     * The reason why it throws an error is because, the child entities
+                     * at that point in time are tagged as Entitysate.Unchanged.
+                     * So when we mark the parent entities as Modified, entity looks
+                     * through its collection and will find new entity objects whose
+                     * foreign key id has not be assigned.
+                     * Or, if the foreign key property is assigned, it will think that
+                     * the parent entity is new, which in this case will throw an error
+                     * because entity knows there is an enitity object with the same id.  
+                     * */
+                    _dbcontext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Problem encountered during updating customers." +
+                    "Message" + exception.Message);
             }
         }
 
