@@ -161,6 +161,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonitorAppMVVM\MonitorAppMVVM.csproj">
+      <Project>{cd3d3efe-eb78-4d14-b694-aa9b4ba9ad78}</Project>
+      <Name>MonitorAppMVVM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PetsEntityLib\PetsEntityLib.csproj">
       <Project>{eb1778bf-a8c5-41dc-9b00-a01f39e8b283}</Project>
       <Name>PetsEntityLib</Name>

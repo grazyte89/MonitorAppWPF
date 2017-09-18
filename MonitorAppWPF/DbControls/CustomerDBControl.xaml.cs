@@ -25,7 +25,7 @@ namespace MonitorAppWPF.DbControls
 
         private void BtnCustomers_Click(object sender, RoutedEventArgs e)
         {
-            _gdCustomers.DataContext = RetrieveCustomers.GetAllCustomers();
+            //_gdCustomers.DataContext = RetrieveCustomers.GetAllCustomers();
         }
 
         private void BtnCreateNewCustomer_Click(object sender, RoutedEventArgs e)
