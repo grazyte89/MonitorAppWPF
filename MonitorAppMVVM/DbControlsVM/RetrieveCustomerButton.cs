@@ -27,6 +27,7 @@ namespace MonitorAppMVVM.DbControlsVM
         public void Execute(object parameter)
         {
             _customerViewModel.CustomersList = RetrieveCustomers.GetAllCustomers();
+            _customerViewModel.CustomerListAccessEnabled = true;
         }
     }
 }
