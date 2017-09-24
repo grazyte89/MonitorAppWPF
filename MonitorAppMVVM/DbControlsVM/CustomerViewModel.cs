@@ -13,14 +13,38 @@ namespace MonitorAppMVVM.DbControlsVM
     public class CustomerViewModel : INotifyPropertyChanged
     {
         private IList<Customer> _customerList;
-        private RetrieveCustomerButton _btnRetrieveCustomer;
-        private EditCustomerButton _btnEditCustomers;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Customer CurrentCustomer { get; set; }
-        public bool CustomerListAccessEnabled { get; set; }
-        public string NewEditMode { get; set; }
+        public string ExistingOrNewCustomer { get; set; }
+
+        private bool _customerListAccessEnabled;
+        public bool CustomerListAccessEnabled
+        {
+            get
+            {
+                return _customerListAccessEnabled;
+            }
+            set
+            {
+                _customerListAccessEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CustomerListAccessEnabled"));
+            }
+        }
+
+        private Customer _currentCustomer;
+        public Customer CurrentCustomer
+        {
+            get
+            {
+                return _currentCustomer;
+            }
+            set
+            {
+                _currentCustomer = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentCustomer"));
+            }
+        }
 
         private Customer _selectedCustomer;
         public Customer SelectedCustomer
@@ -32,37 +56,67 @@ namespace MonitorAppMVVM.DbControlsVM
             set
             {
                 _selectedCustomer = value;
+                this.CurrentCustomer = _selectedCustomer;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedCustomer"));
             }
         }
 
         public IList<Customer> CustomersList
         {
-            get { return _customerList; }
-            set { _customerList = value; }
-        }
-
-        public ICommand BtnRetrieveCustomers
-        {
             get
             {
-                return _btnRetrieveCustomer;
+                return _customerList;
+            }
+            set
+            {
+                _customerList = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CustomersList"));
             }
         }
 
-        public ICommand BtnEditCustomers
+        private RetrieveCustomerCommand _retrieveCustomersCommand;
+        public ICommand RetrieveCustomersCommand
         {
             get
             {
-                return _btnEditCustomers;
+                return _retrieveCustomersCommand;
+            }
+        }
+
+        private EditCustomerCommad _editCustomerCommand;
+        public ICommand EditCustomerCommand
+        {
+            get
+            {
+                return _editCustomerCommand;
+            }
+        }
+
+        private NewCustomerCommand _newCustomerCommand;
+        public ICommand NewCustomerCommand
+        {
+            get
+            {
+                return _newCustomerCommand;
+            }
+        }
+
+        private SaveCustomerCommand _saveCustomerCommand;
+        public ICommand SaveCustomerCommand
+        {
+            get
+            {
+                return _saveCustomerCommand;
             }
         }
 
         public CustomerViewModel()
         {
-            _btnRetrieveCustomer = new RetrieveCustomerButton(this);
-            _btnEditCustomers = new EditCustomerButton(this);
-            _customerList = RetrieveCustomers.GetAllCustomers();
+            _retrieveCustomersCommand = new RetrieveCustomerCommand(this);
+            _editCustomerCommand = new EditCustomerCommad(this);
+            _newCustomerCommand = new NewCustomerCommand(this);
+            _saveCustomerCommand = new SaveCustomerCommand(this);
+            //_customerList = RetrieveCustomers.GetAllCustomers();
 
             CustomerListAccessEnabled = true;
         }

@@ -15,8 +15,8 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class CustomerDBControl : UserControl
     {
-        private Customer _currentCustomer;
-        private string _newEditwMode;
+        //private Customer _currentCustomer;
+        //private string _newEditwMode;
 
         public CustomerDBControl()
         {
@@ -31,32 +31,37 @@ namespace MonitorAppWPF.DbControls
         private void BtnCreateNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             this.ExpandEditPanel();
-            _currentCustomer = new Customer();
+            /*_currentCustomer = new Customer();
             _pnEditSection.DataContext = _currentCustomer;
-            _newEditwMode = Constants.New;
+            _newEditwMode = Constants.New;*/
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            this.ExpandEditPanel();
-            _gdCustomers.IsEnabled = false;
-            _newEditwMode = Constants.Edit;
+            var editBtn = sender as Button;
+            if (editBtn != null)
+            {
+                //editBtn.Command.Execute(editBtn.CommandParameter);
+                this.ExpandEditPanel();
+            }
+            /*_gdCustomers.IsEnabled = false;
+            _newEditwMode = Constants.Edit;*/
         }
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentCustomer == null)
+            /*if (_currentCustomer == null)
                 return;
-            this.UpdateSource();
+            //this.UpdateSource();
             if (_newEditwMode.Equals(Constants.New))
                 this.CreateNewCustomer(_currentCustomer);
             else if (_newEditwMode.Equals(Constants.Edit) && _currentCustomer != null)
                 this.UpdateCustomer(_currentCustomer);
-            _gdCustomers.IsEnabled = true;
+            _gdCustomers.IsEnabled = true;*/
             this.CollapseEditPanel();
         }
 
-        private void CreateNewCustomer(Customer customer)
+        /*private void CreateNewCustomer(Customer customer)
         {
             CreateCustomersClass createCustomer = new CreateCustomersClass(null);
             createCustomer.AddItem(customer);
@@ -67,13 +72,13 @@ namespace MonitorAppWPF.DbControls
         {
             UpdateCustomerClass updateCustomer = new UpdateCustomerClass(customer);
             updateCustomer.SaveUpdate();
-        }
+        }*/
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.RestoreToOriginal();
-            _currentCustomer = null;
-            _gdCustomers.IsEnabled = true;
+            //this.RestoreToOriginal();
+            //_currentCustomer = null;
+            //_gdCustomers.IsEnabled = true;
             this.CollapseEditPanel();
         }
 
@@ -119,14 +124,14 @@ namespace MonitorAppWPF.DbControls
 
         private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_gdCustomers.SelectedItem == null)
+            /*if (_gdCustomers.SelectedItem == null)
                 return;
             Customer selectedCustomer = _gdCustomers.SelectedItem as Customer;
             _currentCustomer = selectedCustomer;
-            _pnEditSection.DataContext = _currentCustomer;
+            _pnEditSection.DataContext = _currentCustomer;*/
         }
 
-        private void UpdateSource()
+        /*private void UpdateSource()
         {
             _tbFirstName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             _tbLastName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
@@ -140,6 +145,6 @@ namespace MonitorAppWPF.DbControls
             _tbLastName.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             _tbAddress.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-        }
+        }*/
     }
 }

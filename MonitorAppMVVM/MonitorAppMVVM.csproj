@@ -41,9 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbControlsVM\CustomerViewModel.cs" />
-    <Compile Include="DbControlsVM\EditCustomerButton.cs" />
-    <Compile Include="DbControlsVM\RetrieveCustomerButton.cs" />
+    <Compile Include="DbControlsVM\EditCustomerCommad.cs" />
+    <Compile Include="DbControlsVM\NewCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\RetrieveCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\SaveCustomerCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UiConstantsMvvm\Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetsEntityLib\PetsEntityLib.csproj">
