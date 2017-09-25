@@ -26,13 +26,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="_btnCustomers" Content="Customer table" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Margin="10,12,10,10" Command="{Binding RetrieveCustomersCommand}"/> <!--="BtnCustomers_Click"-->
-        <Button x:Name="_btnCreateNewCustomer" Grid.Row="0" Content="New" HorizontalAlignment="Left"
-                VerticalAlignment="Top" Margin="100,12,10,10"
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button x:Name="_btnCustomers" Content="Customer table" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                Margin="10,12,0,10" Command="{Binding RetrieveCustomersCommand}"/>
+            <!--="BtnCustomers_Click"-->
+            <Button x:Name="_btnCreateNewCustomer" Content="New" HorizontalAlignment="Left"
+                VerticalAlignment="Top" Margin="10,12,0,10"
                 Click="BtnCreateNewCustomer_Click" Command="{Binding NewCustomerCommand}"/>
-        <Button Name="_btnEdit" Grid.Row="0" Click="BtnEdit_Click" Content="Edit" Command="{Binding EditCustomerCommand}"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,12,10,10" />
+            <Button Name="_btnEdit" Click="BtnEdit_Click" Content="Edit" Command="{Binding EditCustomerCommand}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,12,0,10" />
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -79,17 +82,17 @@
                                 <Grid>
                                     <TextBlock Text="Age" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbAge" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=AGE, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=AGE}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="LastName" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbLastName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=LASTNAME, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=LASTNAME}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Address" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbAddress" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=ADDRESS, UpdateSourceTrigger=Explicit}" />
+                                             Text="{Binding Path=ADDRESS}" />
                                 </Grid>
                             </StackPanel>
                         </ScrollViewer>
