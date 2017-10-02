@@ -17,45 +17,20 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class AnimalsDbControl : UserControl
     {
-        private Animal _currentAnimal;
-        private string _newEditwMode;
-
         public AnimalsDbControl()
         {
             InitializeComponent();
-        }
-
-        private void TbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (_gdAnimals.SelectedItem == null)
-                return;
-            Animal selectedAnimal = _gdAnimals.SelectedItem as Animal;
-            _currentAnimal = selectedAnimal;
-            _pnEditSection.DataContext = _currentAnimal;
-        }
-
-        private void BtnAnimals_Click(object sender, RoutedEventArgs e)
-        {
-            _gdAnimals.DataContext = RetrieveAnimals.GetAllAnimals();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             this.ExpandEditPanel();
             _gdAnimals.IsEnabled = false;
-            _newEditwMode = Constants.Edit;
+            //_newEditwMode = Constants.Edit;
         }
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentAnimal == null)
-                return;
-            this.UpdateSource();
-            if (_newEditwMode.Equals(Constants.New))
-                this.CreateNewAnimal(_currentAnimal);
-            else if (_newEditwMode.Equals(Constants.Edit))
-                this.UpdateAnimal(_currentAnimal);
-            _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
         }
 
@@ -77,9 +52,6 @@ namespace MonitorAppWPF.DbControls
         private void BtnCreateNewAnimal_Click(object sender, RoutedEventArgs e)
         {
             this.ExpandEditPanel();
-            _currentAnimal = new Animal();
-            _pnEditSection.DataContext = _currentAnimal;
-            _newEditwMode = Constants.New;
         }
 
         private void ExpandEditPanel()
@@ -124,34 +96,8 @@ namespace MonitorAppWPF.DbControls
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.RestoreToOriginal();
-            _currentAnimal = null;
             _gdAnimals.IsEnabled = true;
             this.CollapseEditPanel();
-        }
-
-        private void UpdateSource()
-        {
-            _tbName.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbGender.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbStatus.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbType.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbCheckup.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            _tbVacination.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-        }
-
-        private void RestoreToOriginal()
-        {
-            //BindingOperations.GetBindingExpression(_tbName, TextBox.TextProperty).UpdateSource();
-            _tbIdentityNo.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbName.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbAge.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbGender.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbStatus.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbType.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbCheckup.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
-            _tbVacination.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
         }
     }
 }

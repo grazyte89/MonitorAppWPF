@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbControlsVM\AnimalSoldVm\AnimalSoldViewModel.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\AnimalViewModel.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\EditAnimalCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\NewAnimalCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\RetrieveAnimalsCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\SaveAnimalCommand.cs" />
     <Compile Include="DbControlsVM\CustomerViewModel.cs" />
     <Compile Include="DbControlsVM\EditCustomerCommad.cs" />
     <Compile Include="DbControlsVM\NewCustomerCommand.cs" />
@@ -54,6 +60,7 @@
       <Name>PetsEntityLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
