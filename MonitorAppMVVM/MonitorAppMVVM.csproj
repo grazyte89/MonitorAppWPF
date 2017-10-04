@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbControlsVM\AnimalSoldVm\AnimalSoldViewModel.cs" />
+    <Compile Include="DbControlsVM\AnimalSoldVm\EditAnimalSoldCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalSoldVm\NewAnimalSoldCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalSoldVm\RetrieveAnimalSoldCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalSoldVm\SaveAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\AnimalViewModel.cs" />
     <Compile Include="DbControlsVM\AnimalVm\EditAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\NewAnimalCommand.cs" />
