@@ -1,4 +1,5 @@
 ﻿using MonitorAppMVVM.DbControlsVM.AnimalSoldVm;
+using MonitorAppMVVM.UiConstantsMvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,13 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _animalSoldViewModel.ExistingOrNewModel = Constants.Edit;
+            _animalSoldViewModel.AnimalSoldListAccessEnabled = false;
         }
     }
 }

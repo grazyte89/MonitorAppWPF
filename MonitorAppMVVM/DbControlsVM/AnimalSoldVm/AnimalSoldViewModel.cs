@@ -111,9 +111,9 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
         public AnimalSoldViewModel()
         {
             _editAnialSoldCommand = new EditAnimalSoldCommand(this);
-            _newAnimalSoldCommand = new NewAnimalSoldCommand();
-            _retrieveAnimalSoldCommand = new RetrieveAnimalSoldCommand();
-            _saveAnimalSoldCommand = new SaveAnimalSoldCommand();
+            _newAnimalSoldCommand = new NewAnimalSoldCommand(this);
+            _retrieveAnimalSoldCommand = new RetrieveAnimalSoldCommand(this);
+            _saveAnimalSoldCommand = new SaveAnimalSoldCommand(this);
         }
     }
 }
