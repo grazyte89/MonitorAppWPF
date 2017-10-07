@@ -7,17 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.DbControlsVM
+namespace MonitorAppMVVM.DbControlsVM.StockVm
 {
-    public class NewCustomerCommand : ICommand
+    public class NewStockCommand : ICommand
     {
-        private CustomerViewModel _customerViewModel;
+        private StockViewModel _stockViewModel;
 
         public event EventHandler CanExecuteChanged;
 
-        public NewCustomerCommand(CustomerViewModel customerViewModel)
+        public NewStockCommand(StockViewModel stockViewModel)
         {
-            _customerViewModel = customerViewModel;
+            _stockViewModel = stockViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -27,9 +27,9 @@ namespace MonitorAppMVVM.DbControlsVM
 
         public void Execute(object parameter)
         {
-            _customerViewModel.CustomerListAccessEnabled = false;
-            _customerViewModel.ExistingOrNewCustomer = Constants.New;
-            _customerViewModel.CurrentCustomer = new Customer();
+            _stockViewModel.StockListAccessEnabled = false;
+            _stockViewModel.ExistingOrNewStock = Constants.New;
+            _stockViewModel.CurrentStock = new Stock();
         }
     }
 }

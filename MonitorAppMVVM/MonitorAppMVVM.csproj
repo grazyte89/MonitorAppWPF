@@ -50,11 +50,18 @@
     <Compile Include="DbControlsVM\AnimalVm\NewAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\RetrieveAnimalsCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\SaveAnimalCommand.cs" />
-    <Compile Include="DbControlsVM\CustomerViewModel.cs" />
-    <Compile Include="DbControlsVM\EditCustomerCommad.cs" />
-    <Compile Include="DbControlsVM\NewCustomerCommand.cs" />
-    <Compile Include="DbControlsVM\RetrieveCustomerCommand.cs" />
-    <Compile Include="DbControlsVM\SaveCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\CustomerVm\CustomerViewModel.cs" />
+    <Compile Include="DbControlsVM\CustomerVm\EditCustomerCommad.cs" />
+    <Compile Include="DbControlsVM\CustomerVm\NewCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\CustomerVm\RetrieveCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\CustomerVm\SaveCustomerCommand.cs" />
+    <Compile Include="DbControlsVM\StockVm\EditStockCommand.cs" />
+    <Compile Include="DbControlsVM\StockVm\NewStockCommand.cs" />
+    <Compile Include="DbControlsVM\StockVm\RetrieveStockCommand.cs" />
+    <Compile Include="DbControlsVM\StockVm\SaveStockCommand.cs" />
+    <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
+    <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseCommand.cs" />
+    <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UiConstantsMvvm\Constants.cs" />
   </ItemGroup>

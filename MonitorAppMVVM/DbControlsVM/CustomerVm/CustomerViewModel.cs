@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.DbControlsVM
+namespace MonitorAppMVVM.DbControlsVM.CustomerVm
 {
     public class CustomerViewModel : INotifyPropertyChanged
     {

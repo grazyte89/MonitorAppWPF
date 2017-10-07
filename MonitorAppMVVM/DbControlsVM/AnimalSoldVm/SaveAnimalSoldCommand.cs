@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MonitorAppMVVM.UiConstantsMvvm;
+using PetsEntityLib.DataBasePersistances;
+using PetsEntityLib.DataBaseUpdates;
+using PetsEntityLib.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +29,24 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            if (_animalSoldViewModel.ExistingOrNewModel.Equals(Constants.New))
+                this.CreateNewAnimalSold(_animalSoldViewModel.CurrentAnimalSold);
+            else if (_animalSoldViewModel.ExistingOrNewModel.Equals(Constants.Edit)
+                && _animalSoldViewModel.CurrentAnimalSold != null)
+                this.UpdateAnimalSold(_animalSoldViewModel.CurrentAnimalSold);
+        }
+
+        private void CreateNewAnimalSold(AnimalSold animalSold)
+        {
+            CreateAnimalsSoldClass animalSoldClass = new CreateAnimalsSoldClass(null);
+            animalSoldClass.AddItem(animalSold);
+            animalSoldClass.SaveCreatedItems();
+        }
+
+        private void UpdateAnimalSold(AnimalSold animalSold)
+        {
+            UpdateAnimalSoldClass updateAnimlSold = new UpdateAnimalSoldClass(animalSold);
+            updateAnimlSold.SaveUpdate();
         }
     }
 }
