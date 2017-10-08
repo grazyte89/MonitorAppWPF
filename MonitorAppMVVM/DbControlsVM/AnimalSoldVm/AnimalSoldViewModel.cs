@@ -29,6 +29,20 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
             }
         }
 
+        private IList<Customer> _customerList;
+        public IList<Customer> CustomerList
+        {
+            get
+            {
+                return _customerList;
+            }
+            set
+            {
+                _customerList = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CustomersList"));
+            }
+        }
+
         private bool _animalSoldListAccessEnabled;
         public bool AnimalSoldListAccessEnabled
         {

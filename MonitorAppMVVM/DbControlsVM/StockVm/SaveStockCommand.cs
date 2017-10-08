@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MonitorAppMVVM.UiConstantsMvvm;
+using PetsEntityLib.DataBasePersistances;
+using PetsEntityLib.DataBaseUpdates;
+using PetsEntityLib.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +29,25 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            if (_stockViewModel.ExistingOrNewStock.Equals(Constants.New)
+                    && _stockViewModel.CurrentStock != null)
+                this.CreateNewStock(_stockViewModel.CurrentStock);
+            else if (_stockViewModel.ExistingOrNewStock.Equals(Constants.Edit)
+                    && _stockViewModel.CurrentStock != null)
+                this.UpdateStock(_stockViewModel.CurrentStock);
+        }
+
+        private void CreateNewStock(Stock stock)
+        {
+            CreateStocksClass createStock = new CreateStocksClass(null);
+            createStock.AddItem(stock);
+            createStock.SaveCreatedItems(); 
+        }
+
+        private void UpdateStock(Stock stock)
+        {
+            UpdateStockClass updateStock = new UpdateStockClass(stock);
+            updateStock.SaveUpdate();
         }
     }
 }

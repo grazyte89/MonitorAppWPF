@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetsEntityLib.DataBaseExtractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
 
         public void Execute(object parameter)
         {
-            //_animalSoldViewModel.AnimalSoldList =
+            _animalSoldViewModel.AnimalSoldList = RetrieveAnimalsSold.GetAllAnimalsSold();
             _animalSoldViewModel.AnimalSoldListAccessEnabled = true; 
         }
     }

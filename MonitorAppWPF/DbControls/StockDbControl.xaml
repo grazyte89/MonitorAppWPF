@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
+             xmlns:dbControlSVm="clr-namespace:MonitorAppMVVM.DbControlsVM.StockVm;assembly=MonitorAppMVVM"
              mc:Ignorable="d" 
              d:DesignHeight="518" d:DesignWidth="857" BorderBrush="Black">
+    <UserControl.DataContext>
+        <dbControlSVm:StockViewModel/>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Storyboard x:Key="_sbExpandEdit">
         </Storyboard>
@@ -22,12 +26,12 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button x:Name="_btnStocks" Content="Stocks table" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Margin="10,12,0,10" Click="BtnStocks_Click" />
+                Margin="10,12,0,10" Command="{Binding RetrieveStockCommand}"/>
             <Button x:Name="_btnCreateNewStocks" Content="New" HorizontalAlignment="Left"
                 VerticalAlignment="Top" Margin="10,12,0,10"
-                Click="BtnCreateNewStocks_Click"/>
+                Click="BtnCreateNewStocks_Click" Command="{Binding NewStockCommand}"/>
             <Button Name="_btnEdit" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 
-                VerticalAlignment="Top" Margin="10,12,10,10" />
+                VerticalAlignment="Top" Margin="10,12,10,10" Command="{Binding EditStockCommand}" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -41,8 +45,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <DataGrid x:Name="_gdStocks" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
-                          ItemsSource="{Binding}" SelectionChanged="TbStocks_SelectionChanged" 
-                          AutoGenerateColumns="false" IsReadOnly="True">
+                          ItemsSource="{Binding StockList}" SelectedItem="{Binding Path=SelectedStock, Mode=TwoWay}" 
+                          AutoGenerateColumns="false" IsReadOnly="True" IsEnabled="{Binding Path=StockListAccessEnabled}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Path=NAME}" />
                         <DataGridTextColumn Header="Stocks Left" Binding="{Binding STOCKLEFT}" />
@@ -56,7 +60,7 @@
                 </DataGrid>
                 <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
                             Background="DarkGray" Visibility="Collapsed" >
-                    <Grid>
+                    <Grid DataContext="{Binding Path=CurrentStock}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="6*"/>
                             <RowDefinition Height="1*"/>
@@ -66,54 +70,55 @@
                                 <Grid>
                                     <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=ID, UpdateSourceTrigger=Explicit}" IsEnabled="False"/>
+                                             Text="{Binding Path=ID}" IsReadOnly="True" IsEnabled="False"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Name" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=NAME, UpdateSourceTrigger=Explicit}" />
+                                             Text="{Binding Path=NAME}" />
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Stock Left" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbStockLeft" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=STOCKLEFT, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=STOCKLEFT}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Price" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbPrice" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=PRICE, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=PRICE}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Mark up" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbMarkup" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=MARK_UP, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=MARK_UP}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Price To Meet Mark" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbPriceToMeetMark" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=PRICE_TO_MEET_MARK, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=PRICE_TO_MEET_MARK}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Date" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbDate" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=DATE, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=DATE}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Target Sale" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbTargetSale" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=TARGET_SALE, UpdateSourceTrigger=Explicit}"/>
+                                             Text="{Binding Path=TARGET_SALE}"/>
                                 </Grid>
                                 <Grid>
                                     <TextBlock Text="Item Price" HorizontalAlignment="Left" Margin="5,5,0,0" />
                                     <TextBox x:Name="_tbItemPrice" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
-                                             Text="{Binding Path=ITEM_PRICE, UpdateSourceTrigger=Explicit}" />
+                                             Text="{Binding Path=ITEM_PRICE}" />
                                 </Grid>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Height="auto" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                         <Button Name="_btnSaveEdit"  Margin="5,5,5,5"
-                            Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click"/>
+                            Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click" 
+                                Command="{Binding SaveStockCommand}"/>
                         <Button Name="_btnCancel"  Margin="5,5,5,5" 
                                 Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click"/>
                     </StackPanel>

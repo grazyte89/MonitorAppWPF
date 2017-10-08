@@ -26,8 +26,8 @@ namespace MonitorAppWPF.DbControls
     /// </summary>
     public partial class StockDbControl : UserControl
     {
-        private Stock _currentStock;
-        private string _newEditMode;
+        //private Stock _currentStock;
+        //private string _newEditMode;
 
         public StockDbControl()
         {
@@ -37,21 +37,21 @@ namespace MonitorAppWPF.DbControls
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             this.ExapndEditPanel();
-            _gdStocks.IsEnabled = false;
-            _newEditMode = Constants.Edit;
+            //_gdStocks.IsEnabled = false;
+            //_newEditMode = Constants.Edit;
         }
 
-        private void BtnStocks_Click(object sender, RoutedEventArgs e)
+        /*private void BtnStocks_Click(object sender, RoutedEventArgs e)
         {
             _gdStocks.DataContext = RetrieveStocks.GetAllStocks();
-        }
+        }*/
 
         private void BtnCreateNewStocks_Click(object sender, RoutedEventArgs e)
         {
             this.ExapndEditPanel();
-            _currentStock = new Stock();
+            /*_currentStock = new Stock();
             _pnEditSection.DataContext = _currentStock;
-            _newEditMode = Constants.New;
+            _newEditMode = Constants.New;*/
         }
 
         private void ExapndEditPanel()
@@ -74,18 +74,18 @@ namespace MonitorAppWPF.DbControls
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentStock == null)
+            /*if (_currentStock == null)
                 return;
             this.UpdateSource();
             if (_newEditMode.Equals(Constants.New))
                 this.CreateNewStockItem(_currentStock);
             else if (_newEditMode.Equals(Constants.Edit) && _currentStock != null)
                 this.UpdateStock(_currentStock);
-            _gdStocks.IsEnabled = true;
+            _gdStocks.IsEnabled = true;*/
             this.CollapseEditPanel();
         }
 
-        private void CreateStocks(Stock stock)
+        /*private void CreateStocks(Stock stock)
         {
             CreateStocksClass createStock = new CreateStocksClass(null);
             createStock.AddItem(stock);
@@ -103,19 +103,13 @@ namespace MonitorAppWPF.DbControls
             CreateStocksClass createStock = new CreateStocksClass(null);
             createStock.AddItem(stock);
             createStock.SaveCreatedItems();
-        }
-
-        private void UpdateStockItem(Stock stock)
-        {
-            UpdateStockClass updateStock = new UpdateStockClass(stock);
-            updateStock.SaveUpdate();
-        }
+        }*/
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.RestoreToOriginal();
-            _currentStock = null;
-            _gdStocks.IsEnabled = true;
+            //this.RestoreToOriginal();
+            //_currentStock = null;
+            //_gdStocks.IsEnabled = true;
             this.CollapseEditPanel();
         }
 
@@ -141,7 +135,7 @@ namespace MonitorAppWPF.DbControls
             _pnEditSection.Visibility = Visibility.Collapsed;
         }
 
-        private void TbStocks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void TbStocks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_gdStocks.SelectedItem == null)
                 return;
@@ -172,6 +166,6 @@ namespace MonitorAppWPF.DbControls
             _tbPriceToMeetMark.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             _tbDate.GetBindingExpression(TextBox.TextProperty).UpdateTarget();
             _tbTargetSale.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-        }
+        }*/
     }
 }

@@ -1,6 +1,9 @@
 ﻿using MonitorAppMVVM.DbControlsVM.VmSharedGeneric;
+using PetsEntityLib.DataBaseExtractions;
+using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +22,8 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
 
         public override void InvokeActione(object parameter)
         {
-            //_stockViewModel.StockList = 
+            _stockViewModel.StockList = 
+                new ObservableCollection<Stock>(RetrieveStocks.GetAllStocks()); 
             _stockViewModel.StockListAccessEnabled = true;
         }
     }

@@ -74,7 +74,7 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
             {
                 _stockListAccessEnabled = value;
                 //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StockListAccessEnabled"));
-                InvokePropertyChange(this, "StockListAccessEnable");
+                InvokePropertyChange(this, "StockListAccessEnabled");
             }
         }
 

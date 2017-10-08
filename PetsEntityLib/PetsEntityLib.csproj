@@ -63,6 +63,7 @@
     <Compile Include="DataBaseDeletions\DeleteStockClass.cs" />
     <Compile Include="DataBaseDeletions\IDBDeletion.cs" />
     <Compile Include="DataBaseExtractions\RetrieveAnimals.cs" />
+    <Compile Include="DataBaseExtractions\RetrieveAnimalsSold.cs" />
     <Compile Include="DataBaseExtractions\RetrieveCustomers.cs" />
     <Compile Include="DataBaseExtractions\RetrieveStocks.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalClass.cs" />
