@@ -20,11 +20,8 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button x:Name="_btnCustomersAndAnimals" Content="Customer and Animal table" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Margin="10,12,0,10" Click="BtnCustomersAndAnimals_Click" />
-            <Button x:Name="_btnSellAnimal" Content="Sell Animal" HorizontalAlignment="Left"
-                VerticalAlignment="Top" Margin="10,12,0,10" IsEnabled="False"
-                Click="BtnSellAnimal_Click"/>
-            <Button Name="_btnEdit" Click="BtnEdit_Click" Content="Edit" HorizontalAlignment="Left" 
+                Margin="10,12,0,10" Command="{Binding RetrieveAnimalSoldCommand}" />
+            <Button Name="_btnEdit" Content="Edit" HorizontalAlignment="Left" 
                 VerticalAlignment="Top" Margin="10,12,0,10" IsEnabled="False" />
         </StackPanel>
         <Grid x:Name="_grdTablesStructure" Grid.Row="1">
@@ -41,16 +38,50 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
-                    <DataGrid x:Name="_dgAnimals" VerticalAlignment="Stretch" Margin="0,0,0,0" SelectionMode="Extended" ItemsSource="{Binding AnimalSoldList}" 
-                          SelectionChanged="GdAnimals_SelectionChanged" AutoGenerateColumns="True" IsReadOnly="True" >
-
+                    <DataGrid x:Name="_dgAnimals" VerticalAlignment="Stretch" Margin="0,0,0,0" SelectionMode="Single" 
+                              ItemsSource="{Binding AnimalSoldList}" SelectedItem="{Binding SelectedAnimalSold, Mode=TwoWay}" 
+                              AutoGenerateColumns="True" IsReadOnly="True" IsEnabled="{Binding Path=AnimalSoldListAccessEnabled}" >
                     </DataGrid>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
-                    <DataGrid x:Name="_dgCustomer" VerticalAlignment="Stretch" Margin="0,0,0,0" SelectionMode="Extended" ItemsSource="{Binding CustomerList}" 
-                          SelectionChanged="GdCustomer_SelectionChanged" AutoGenerateColumns="True" IsReadOnly="True">
-
-                    </DataGrid>
+                    <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                            Background="DarkGray">
+                        <Grid DataContext="{Binding Path=CurrentCustomer}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                                <StackPanel>
+                                    <Grid>
+                                        <TextBlock Text="Id" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                        <TextBox x:Name="_tbIdentityNo" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ID}" IsReadOnly="True" IsEnabled="False"/>
+                                    </Grid>
+                                    <Grid>
+                                        <TextBlock Text="FirstName" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                        <TextBox x:Name="_tbFirstName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=FIRSTNAME}" IsReadOnly="True"/>
+                                    </Grid>
+                                    <Grid>
+                                        <TextBlock Text="Age" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                        <TextBox x:Name="_tbAge" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=AGE}" IsReadOnly="True"/>
+                                    </Grid>
+                                    <Grid>
+                                        <TextBlock Text="LastName" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                        <TextBox x:Name="_tbLastName" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=LASTNAME}" IsReadOnly="True"/>
+                                    </Grid>
+                                    <Grid>
+                                        <TextBlock Text="Address" HorizontalAlignment="Left" Margin="5,5,0,0" />
+                                        <TextBox x:Name="_tbAddress" HorizontalAlignment="Left" Margin="95,5,0,0" Width="150"
+                                             Text="{Binding Path=ADDRESS}" IsReadOnly="True"/>
+                                    </Grid>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </StackPanel>
                 </Border>
             </Grid>
         </Grid>

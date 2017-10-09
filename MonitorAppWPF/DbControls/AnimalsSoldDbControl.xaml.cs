@@ -25,31 +25,5 @@ namespace MonitorAppWPF.DbControls
         {
             InitializeComponent();
         }
-
-        private void BtnCustomersAndAnimals_Click(object sender, RoutedEventArgs e)
-        {
-            _dgAnimals.DataContext = RetrieveAnimals.GetAllAnimals();
-            _dgCustomer.DataContext = RetrieveCustomers.GetCustomersTop(100);
-        }
-
-        private void BtnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnSellAnimal_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void GdAnimals_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void GdCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

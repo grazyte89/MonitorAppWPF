@@ -29,20 +29,6 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
             }
         }
 
-        private IList<Customer> _customerList;
-        public IList<Customer> CustomerList
-        {
-            get
-            {
-                return _customerList;
-            }
-            set
-            {
-                _customerList = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("CustomersList"));
-            }
-        }
-
         private bool _animalSoldListAccessEnabled;
         public bool AnimalSoldListAccessEnabled
         {
@@ -67,7 +53,23 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
             set
             {
                 _currentAnimalSold = value;
+                CurrentCustomer = _currentAnimalSold != null ? 
+                    _currentAnimalSold.Customer : null; // invoke event here
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentAnimalSold"));
+            }
+        }
+
+        private Customer _currentCustomer;
+        public Customer CurrentCustomer
+        {
+            get
+            {
+                return _currentCustomer;
+            }
+            set
+            {
+                _currentCustomer = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentCustomer"));
             }
         }
 
