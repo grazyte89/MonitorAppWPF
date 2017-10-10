@@ -44,7 +44,7 @@
                     </DataGrid>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
-                    <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
+                    <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" 
                             Background="DarkGray">
                         <Grid DataContext="{Binding Path=CurrentCustomer}">
                             <Grid.RowDefinitions>

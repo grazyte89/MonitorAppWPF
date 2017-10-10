@@ -2,6 +2,7 @@
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace PetsEntityLib.DataBaseExtractions
                 using (PetShopDBContext _dataContext = new PetShopDBContext())
                 {
                     animalSolds = _dataContext.AnimalSolds
-                                  .ToList();
+                                    .Include(x => x.Customer)
+                                    .ToList();
                 }
             }
             catch (Exception exception)
