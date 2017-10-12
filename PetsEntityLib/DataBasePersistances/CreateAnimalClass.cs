@@ -16,9 +16,13 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateAnimalClass(IList<Animal> animals)
         {
             if (animals != null)
+            {
                 _animals = animals;
+            }
             else
+            {
                 _animals = new List<Animal>();
+            }
         }
 
         public IList<Animal> Animals
@@ -47,7 +51,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(Animal value)
         {
             if (value != null)
+            {
                 _animals.Add(value);
+            }
         }
 
         public void SaveCreatedItems()

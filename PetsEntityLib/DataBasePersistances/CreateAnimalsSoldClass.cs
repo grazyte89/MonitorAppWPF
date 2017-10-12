@@ -16,14 +16,21 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateAnimalsSoldClass(IList<AnimalSold> animalSoldList)
         {
             if (animalSoldList != null)
+            {
                 _animalSoldList = animalSoldList;
+            }
             else
+            {
                 _animalSoldList = new List<AnimalSold>();
+            }
         }
 
         public IList<AnimalSold> AnimalsSold
         {
-            get { return _animalSoldList; }
+            get
+            {
+                return _animalSoldList;
+            }
         }
 
         public void Create(int animalId, int customerId)
@@ -38,7 +45,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(AnimalSold value)
         {
             if (value != null)
+            {
                 _animalSoldList.Add(value);
+            }
         }
 
         public void SaveCreatedItems()

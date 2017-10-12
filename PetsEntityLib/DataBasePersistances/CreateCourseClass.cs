@@ -16,9 +16,13 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateCourseClass(IList<Course> courses)
         {
             if (courses != null)
+            {
                 _courses = courses;
+            }
             else
+            {
                 _courses = new List<Course>();
+            }
         }
 
         public IList<Course> Courses
@@ -41,7 +45,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(Course value)
         {
             if (value != null)
+            {
                 _courses.Add(value);
+            }
         }
 
         public void SaveCreatedItems()
