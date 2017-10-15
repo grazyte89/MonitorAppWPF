@@ -15,9 +15,13 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateMessageClass(IList<Message> message)
         {
             if (message != null)
+            {
                 _messages = message;
+            }
             else
+            {
                 _messages = new List<Message>();
+            }
         }
 
         public IList<Message> Messages
@@ -44,7 +48,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(Message value)
         {
             if (value != null)
+            {
                 _messages.Add(value);
+            }
         }
 
         public void SaveCreatedItems()

@@ -23,7 +23,9 @@ namespace PetsEntityLib.DataBaseUpdates
             using (PetShopDBContext _dbcontext = new PetShopDBContext())
             {
                 if (_currentStock == null)
+                {
                     return;
+                }
                 _dbcontext.Entry(_currentStock).State = EntityState.Modified;
                 _dbcontext.SaveChanges();
             }

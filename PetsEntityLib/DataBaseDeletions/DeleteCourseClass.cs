@@ -16,22 +16,30 @@ namespace PetsEntityLib.DataBaseDeletions
         public DeleteCourseClass(IList<Course> coursesToDelete)
         {
             if (coursesToDelete != null)
+            {
                 _coursesToDelete = coursesToDelete;
+            }
             else
+            {
                 _coursesToDelete = new List<Course>();
+            }
         }
 
         public DeleteCourseClass(Course course)
         {
             _coursesToDelete = new List<Course>();
             if (course != null)
+            {
                 _coursesToDelete.Add(course);
+            }
         }
 
         public void AddItemForDeletion(Course value)
         {
             if (value != null)
+            {
                 _coursesToDelete.Add(value);
+            }
         }
 
         public void DeleteItems()

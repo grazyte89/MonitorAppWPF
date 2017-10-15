@@ -29,7 +29,9 @@ namespace PetsEntityLib.DataBasePersistances
         private static void ScheduleAssociateWithEntites(PetShopDBContext dataContext, IList<IEntityDaBase> list)
         {
             foreach (IEntityDaBase item in list)
+            {
                 AddToDbContextSet(dataContext, item);
+            }
         }
     }
 }

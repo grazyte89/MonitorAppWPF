@@ -16,9 +16,13 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateCustomersClass(IList<Customer> customer)
         {
             if (customer != null)
+            {
                 _customers = customer;
+            }
             else
+            {
                 _customers = new List<Customer>();
+            }
         }
 
         public IList<Customer> Customers
@@ -40,7 +44,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(Customer value)
         {
             if (value != null)
+            {
                 _customers.Add(value);
+            }
         }
 
         public void SaveCreatedItems()

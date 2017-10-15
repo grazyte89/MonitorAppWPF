@@ -49,7 +49,9 @@ namespace PetsEntityLib.DataBasePersistances
             for (int attemp = 0; attemp < 1000000; attemp++)
             {
                 if (TrySavingDataToCache(list))
+                {
                     break;
+                }
             }
         }
 
@@ -80,12 +82,16 @@ namespace PetsEntityLib.DataBasePersistances
                 if (TryLoadingDataFromCache(ref dataLoaded))
                 {
                     if (dataLoaded != null)
+                    {
                         return (dataLoaded as IEnumerable<object>).Cast<IEntityDaBase>().ToList();
+                    }
                     break;
                 }
 
                 if (dataLoaded == null)
+                {
                     break;
+                }
             }
 
             return null;
@@ -100,7 +106,9 @@ namespace PetsEntityLib.DataBasePersistances
                     BinaryFormatter formatter = new BinaryFormatter();
                     loadedData = formatter.Deserialize(read);
                     if (loadedData != null)
+                    {
                         read.SetLength(0);
+                    }
                 }
                 return true;
             }
@@ -151,7 +159,9 @@ namespace PetsEntityLib.DataBasePersistances
         {
             IList<IEntityDaBase> previousCachedData = LoadCachedData();
             if (previousCachedData != null)
+            {
                 this.SaveToDataBase(previousCachedData);
+            }
         }
 
         private void ErrorMessage(params string[] errorMessages)

@@ -22,20 +22,26 @@ namespace PetsEntityLib.DataBaseUpdates
         public void UpdateName(string name)
         {
             if (_currentAnimal != null)
+            {
                 _currentAnimal.NAME = name;
+            }
         }
 
         public void UpdateAge(int age)
         {
             if (_currentAnimal != null)
+            {
                 _currentAnimal.AGE = age;
+            }
         }
 
         public void UpdateGender(string gender)
         {
             gender = gender.ToLower();
             if (_currentAnimal != null)
+            {
                 this.AssignGender(gender);
+            }
         }
 
         private void AssignGender(string gender)
@@ -56,19 +62,25 @@ namespace PetsEntityLib.DataBaseUpdates
         public void UpdateVacination(DateTime datetime)
         {
             if (_currentAnimal != null)
+            {
                 _currentAnimal.VACINATION = datetime;
+            }
         }
 
         private void UpdateType(string type)
         {
             if (_currentAnimal != null)
+            {
                 _currentAnimal.TYPE = type;
+            }
         }
 
         private void UpdateStatus(string status)
         {
             if (_currentAnimal != null)
+            {
                 _currentAnimal.STATUS = status;
+            }
         }
 
         public void SaveUpdate()
@@ -76,7 +88,9 @@ namespace PetsEntityLib.DataBaseUpdates
             using (PetShopDBContext _context = new PetShopDBContext())
             {
                 if (_currentAnimal == null)
+                {
                     return;
+                }
                 _context.Entry(_currentAnimal).State = EntityState.Modified;
                 _context.SaveChanges();
             }

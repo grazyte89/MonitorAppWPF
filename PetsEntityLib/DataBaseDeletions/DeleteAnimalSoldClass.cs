@@ -16,22 +16,30 @@ namespace PetsEntityLib.DataBaseDeletions
         public DeleteAnimalSoldClass(IList<AnimalSold> animalSoldsToDelete)
         {
             if (animalSoldsToDelete != null)
+            {
                 _animalSoldsToDelete = animalSoldsToDelete;
+            }
             else
+            {
                 _animalSoldsToDelete = new List<AnimalSold>();
+            }
         }
 
         public DeleteAnimalSoldClass(AnimalSold animalSold)
         {
             _animalSoldsToDelete = new List<AnimalSold>();
             if (animalSold != null)
+            {
                 _animalSoldsToDelete.Add(animalSold);
+            }
         }
 
         public void AddItemForDeletion(AnimalSold value)
         {
             if (value != null)
+            {
                 _animalSoldsToDelete.Add(value);
+            }
         }
 
         public void DeleteItems()

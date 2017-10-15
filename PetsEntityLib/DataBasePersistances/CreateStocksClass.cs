@@ -16,9 +16,13 @@ namespace PetsEntityLib.DataBasePersistances
         public CreateStocksClass(IList<Stock> stocks)
         {
             if (stocks != null)
+            {
                 _stocks = stocks;
+            }
             else
+            {
                 _stocks = new List<Stock>();
+            }
         }
 
         public IList<Stock> Stocks
@@ -44,7 +48,9 @@ namespace PetsEntityLib.DataBasePersistances
         public void AddItem(Stock value)
         {
             if (value != null)
+            {
                 _stocks.Add(value);
+            }
         }
 
         public void SaveCreatedItems()

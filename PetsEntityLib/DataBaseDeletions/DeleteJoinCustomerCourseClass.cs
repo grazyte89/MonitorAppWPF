@@ -16,22 +16,30 @@ namespace PetsEntityLib.DataBaseDeletions
         public DeleteJoinCustomerCourseClass(IList<JoinCustomerCourse> joinCustomerCourseToDelete)
         {
             if (joinCustomerCourseToDelete != null)
+            {
                 _joinCustomerCourseToDelete = joinCustomerCourseToDelete;
+            }
             else
+            {
                 _joinCustomerCourseToDelete = new List<JoinCustomerCourse>();
+            }
         }
 
         public DeleteJoinCustomerCourseClass(JoinCustomerCourse joinCustomerCourse)
         {
             _joinCustomerCourseToDelete = new List<JoinCustomerCourse>();
             if (joinCustomerCourse != null)
+            {
                 _joinCustomerCourseToDelete.Add(joinCustomerCourse);
+            }
         }
 
         public void AddItemForDeletion(JoinCustomerCourse value)
         {
             if (value != null)
+            {
                 _joinCustomerCourseToDelete.Add(value);
+            }
         }
 
         public void DeleteItems()

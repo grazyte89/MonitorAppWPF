@@ -15,22 +15,30 @@ namespace PetsEntityLib.DataBaseDeletions
         public DeleteMessageClass(IList<Message> messagesToDelete)
         {
             if (messagesToDelete != null)
+            {
                 _messagesToDelete = messagesToDelete;
+            }
             else
+            {
                 _messagesToDelete = new List<Message>();
+            }
         }
 
         public DeleteMessageClass(Message message)
         {
             _messagesToDelete = new List<Message>();
             if (message != null)
+            {
                 _messagesToDelete.Add(message);
+            }
         }
 
         public void AddItemForDeletion(Message value)
         {
             if (value != null)
+            {
                 _messagesToDelete.Add(value);
+            }
         }
 
         public void DeleteItems()

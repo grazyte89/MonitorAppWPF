@@ -24,7 +24,9 @@ namespace PetsEntityLib.DataBaseUpdates
                 using (PetShopDBContext _dbcontext = new PetShopDBContext())
                 {
                     if (_currentCustomer == null)
+                    {
                         return;
+                    }
 
                     this.AddAllNewItems(_dbcontext);
                     _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
@@ -58,8 +60,10 @@ namespace PetsEntityLib.DataBaseUpdates
         private void AddAllNewItems(PetShopDBContext dbcontext)
         {
             if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+            {
                 dbcontext.AddNewItems<Message>(_currentCustomer.Messages, m => m.ID == 0);
                 //this.AddNewMessages(dbContext);
+            }
         }
 
         private void AddNewMessages(PetShopDBContext dbContext)
@@ -67,15 +71,21 @@ namespace PetsEntityLib.DataBaseUpdates
             var newMessages = _currentCustomer.Messages
                                 .Where(m => m.ID == 0).ToList();
             foreach (var item in newMessages)
+            {
                 dbContext.Entry(item).State = EntityState.Added;
+            }
         }
 
         private void UpdateAllNavigationEntities(PetShopDBContext dbcontext)
         {
             if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
+            {
                 this.UpdateMessages(dbcontext);
+            }
             if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
+            {
                 this.UpdateCourses(dbcontext);
+            }
         }
 
         private void UpdateCourses(PetShopDBContext dbContext)
@@ -107,7 +117,9 @@ namespace PetsEntityLib.DataBaseUpdates
             var existingMessages = detatchedCollection.Where(m => m.ID > 0)
                                     .ToList();
             foreach (var item in existingMessages)
+            {
                 dbContext.Entry(item).State = EntityState.Modified;
+            }
 
             _currentCustomer.Messages = detatchedCollection;
         }
@@ -116,7 +128,9 @@ namespace PetsEntityLib.DataBaseUpdates
             Expression<Func<Customer, ICollection<TEntity>>> loadFunction, bool loadPrevious) where TEntity : class
         {
             if (!loadPrevious)
+            {
                 return collection.ToList();
+            }
 
             var detatchedCollection = collection.ToList();
             dbcontext.Entry(_currentCustomer).Collection(loadFunction).Load();
