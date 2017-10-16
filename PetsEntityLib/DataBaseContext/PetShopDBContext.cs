@@ -19,6 +19,8 @@ namespace PetsEntityLib.DataBaseContext
         public DbSet<Course> Courses { get; set; }
         //public DbSet<Coursem2m> CoursesManyToManys { get; set; }
         public DbSet<JoinCustomerCourse> JoinCustomerCourses { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

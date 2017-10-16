@@ -82,6 +82,7 @@
     <Compile Include="DataBaseUpdates\UpdateCustomerClass.cs" />
     <Compile Include="DataBaseUpdates\UpdateStockClass.cs" />
     <Compile Include="DataBaseValues\DbConstantsEnums.cs" />
+    <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Animal.cs" />
     <Compile Include="Entities\AnimalSold.cs" />
     <Compile Include="Entities\Course.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\sysdiagram.cs" />
+    <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

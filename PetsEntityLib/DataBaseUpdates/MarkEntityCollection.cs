@@ -30,7 +30,9 @@ namespace PetsEntityLib.DataBaseUpdates
                 {
                     var castedItem = item as IEntityDaBase;
                     if (castedItem != null)
+                    {
                         dbContext.Entry(castedItem).State = EntityState.Added;
+                    }
                 }
             }
         }

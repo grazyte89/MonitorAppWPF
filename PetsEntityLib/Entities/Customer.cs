@@ -39,5 +39,7 @@ namespace PetsEntityLib.Entities
 
         [DataMember(Name = "Courses")]
         public ICollection<JoinCustomerCourse> Courses { get; set; }
+
+        public ICollection<Account> Accounts { get; set; }
     }
 }
