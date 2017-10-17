@@ -45,7 +45,8 @@ namespace MonitorAppWPF.MenuControls
         private void BtnTest_Click(object sender, RoutedEventArgs e)
         {
             //TestClass.ManyToManyCourse();
-            TestingUpdateCustomer.TestManyToMay();
+            //TestingUpdateCustomer.TestManyToMay();
+            TestingUpdateCustomer.TestAccountClass();
         }
 
         private void BtnAnimalSold_Click(object sender, RoutedEventArgs e)

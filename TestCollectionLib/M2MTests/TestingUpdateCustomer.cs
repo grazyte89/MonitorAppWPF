@@ -1,4 +1,5 @@
 ﻿using PetsEntityLib.DataBaseContext;
+using PetsEntityLib.DataBasePersistances;
 using PetsEntityLib.DataBaseUpdates;
 using PetsEntityLib.Entities;
 using System;
@@ -125,6 +126,20 @@ namespace TestCollectionLib.M2MTests
                     COURSE_ID = 4
                 }
             };
+        }
+
+        public static void TestAccountClass()
+        {
+            Customer customer;
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                customer = _context.Customers.Find(9162);
+            }
+
+            CreateAccountClass createAccount = new CreateAccountClass(null);
+            createAccount.CreateAccount(customer.ID);
+            createAccount.SaveCreatedItems();
         }
     }
 }

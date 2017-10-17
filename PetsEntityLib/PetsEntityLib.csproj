@@ -66,6 +66,7 @@
     <Compile Include="DataBaseExtractions\RetrieveAnimalsSold.cs" />
     <Compile Include="DataBaseExtractions\RetrieveCustomers.cs" />
     <Compile Include="DataBaseExtractions\RetrieveStocks.cs" />
+    <Compile Include="DataBasePersistances\CreateAccountClass.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalClass.cs" />
     <Compile Include="DataBasePersistances\CreateAnimalsSoldClass.cs" />
     <Compile Include="DataBasePersistances\CreateCourseClass.cs" />
