@@ -141,5 +141,21 @@ namespace TestCollectionLib.M2MTests
             createAccount.CreateAccount(customer.ID);
             createAccount.SaveCreatedItems();
         }
+
+        public static void TestTransactionClass()
+        {
+            Account account1;
+            Account account2;
+
+            using (PetShopDBContext _context = new PetShopDBContext())
+            {
+                account1 = _context.Accounts.Find(1);
+                account2 = _context.Accounts.Find(2);
+            }
+
+            CreateTransactionClass transaction = new CreateTransactionClass(null);
+            transaction.CreateTransaction(account1.ID, account2.ID, 500);
+            transaction.SaveCreatedItems();
+        }
     }
 }

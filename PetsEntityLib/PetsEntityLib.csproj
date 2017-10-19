@@ -73,6 +73,7 @@
     <Compile Include="DataBasePersistances\CreateCustomersClass.cs" />
     <Compile Include="DataBasePersistances\CreateMessageClass.cs" />
     <Compile Include="DataBasePersistances\CreateStocksClass.cs" />
+    <Compile Include="DataBasePersistances\CreateTransactionClass.cs" />
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
     <Compile Include="DataBasePersistances\PersistenceFactory.cs" />
     <Compile Include="DataBasePersistances\PersistEntityAsyncro.cs" />
