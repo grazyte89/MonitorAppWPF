@@ -56,14 +56,16 @@ namespace PetsEntityLib.DataBasePersistances
         {
             try
             {
+                if (_transactions == null && _transactions.Count <= 0)
+                {
+                    return;
+                }
+
                 using (PetShopDBContext _dbcontext = new PetShopDBContext())
                 {
-                    if (_transactions != null && _transactions.Count > 0)
-                    {
-                        _dbcontext.Transactions.AddRange(_transactions);
-                        _dbcontext.SaveChanges();
-                        _transactions.Clear();
-                    }
+                    _dbcontext.Transactions.AddRange(_transactions);
+                    _dbcontext.SaveChanges();
+                    _transactions.Clear();
                 }
             }
             catch (Exception exception)

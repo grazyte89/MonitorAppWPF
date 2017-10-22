@@ -14,7 +14,7 @@ namespace PetsEntityLib.Entities
         public Account()
         {
             SenderTransactions = new List<Transaction>();
-            ReceiverTransaction = new List<Transaction>();
+            ReceiverTransactions = new List<Transaction>();
         }
 
         [DataMember(Name = "ID")]
@@ -39,6 +39,6 @@ namespace PetsEntityLib.Entities
 
         [DataMember(Name = "ReceiverTransaction")]
         [InverseProperty("Receiver")]
-        public virtual ICollection<Transaction> ReceiverTransaction { get; set; }
+        public virtual ICollection<Transaction> ReceiverTransactions { get; set; }
     }
 }

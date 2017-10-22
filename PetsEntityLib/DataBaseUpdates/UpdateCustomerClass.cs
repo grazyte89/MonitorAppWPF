@@ -28,9 +28,9 @@ namespace PetsEntityLib.DataBaseUpdates
                         return;
                     }
 
-                    this.AddAllNewItems(_dbcontext);
+                    this.AddNewChildEntities(_dbcontext);
                     _dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
-                    this.UpdateAllNavigationEntities(_dbcontext);
+                    this.UpdateExistingChildEntities(_dbcontext);
 
                     /* Before a parent entity is tagged as medified, make sure all new
                      * child entity objects in its collection are tagged as Entitysate.Added,
@@ -57,7 +57,7 @@ namespace PetsEntityLib.DataBaseUpdates
             }
         }
 
-        private void AddAllNewItems(PetShopDBContext dbcontext)
+        private void AddNewChildEntities(PetShopDBContext dbcontext)
         {
             if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
             {
@@ -76,12 +76,13 @@ namespace PetsEntityLib.DataBaseUpdates
             }
         }
 
-        private void UpdateAllNavigationEntities(PetShopDBContext dbcontext)
+        private void UpdateExistingChildEntities(PetShopDBContext dbcontext)
         {
             if (_currentCustomer.Messages != null && _currentCustomer.Messages.Count > 0)
             {
                 this.UpdateMessages(dbcontext);
             }
+
             if (_currentCustomer.Courses != null && _currentCustomer.Courses.Count > 0)
             {
                 this.UpdateCourses(dbcontext);
@@ -91,14 +92,15 @@ namespace PetsEntityLib.DataBaseUpdates
         private void UpdateCourses(PetShopDBContext dbContext)
         {
             var detatchedCollection = this.GetDetatchedCollection<JoinCustomerCourse>(dbContext, 
-                                        _currentCustomer.Courses, c => c.Courses, true);
+                        _currentCustomer.Courses, c => c.Courses, true);
 
             foreach (var item in detatchedCollection)
             {
                 var existingData = dbContext.JoinCustomerCourses
-                            .FirstOrDefault(x => x.CUSTOMER_ID == item.CUSTOMER_ID
-                            && x.COURSE_ID == item.COURSE_ID);
-                dbContext.Entry(item).State = existingData != null ? EntityState.Modified : EntityState.Added;
+                        .FirstOrDefault(x => x.CUSTOMER_ID == item.CUSTOMER_ID
+                        && x.COURSE_ID == item.COURSE_ID);
+                dbContext.Entry(item).State = 
+                    existingData != null ? EntityState.Modified : EntityState.Added;
             }
 
             _currentCustomer.Courses = detatchedCollection;
@@ -107,7 +109,7 @@ namespace PetsEntityLib.DataBaseUpdates
         private void UpdateMessages(PetShopDBContext dbContext)
         {
             var detatchedCollection = this.GetDetatchedCollection<Message>(dbContext,
-                                        _currentCustomer.Messages, c => c.Messages, false);
+                        _currentCustomer.Messages, c => c.Messages, false);
 
             // dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
             /* When tagging child entities in a collection as Entitystate.Modified,
@@ -115,7 +117,7 @@ namespace PetsEntityLib.DataBaseUpdates
              * am error.
              * */
             var existingMessages = detatchedCollection.Where(m => m.ID > 0)
-                                    .ToList();
+                        .ToList();
             foreach (var item in existingMessages)
             {
                 dbContext.Entry(item).State = EntityState.Modified;
