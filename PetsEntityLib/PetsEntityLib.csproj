@@ -79,6 +79,8 @@
     <Compile Include="DataBasePersistances\IDBPersistance.cs" />
     <Compile Include="DataBasePersistances\PersistenceFactory.cs" />
     <Compile Include="DataBasePersistances\PersistEntityAsyncro.cs" />
+    <Compile Include="DataBaseStream\IDBStream.cs" />
+    <Compile Include="DataBaseStream\StreamTransaction.cs" />
     <Compile Include="DataBaseUpdates\IDBUpdate.cs" />
     <Compile Include="DataBaseUpdates\MarkEntityCollection.cs" />
     <Compile Include="DataBaseUpdates\UpdateAccountClass.cs" />
