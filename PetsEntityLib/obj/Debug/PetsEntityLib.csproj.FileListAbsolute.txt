@@ -8,3 +8,4 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\bin\Debug\Enti
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.csprojResolveAssemblyReference.cache
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.csproj.CoreCompileInputs.cache

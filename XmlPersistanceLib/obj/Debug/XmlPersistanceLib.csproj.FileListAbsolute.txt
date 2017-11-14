@@ -7,3 +7,5 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\EntityFramework.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\PetsEntityLib.pdb
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\EntityFramework.xml
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\bin\Debug\PetsEntityLib.dll.config
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\XmlPersistanceLib\obj\Debug\XmlPersistanceLib.csproj.CoreCompileInputs.cache

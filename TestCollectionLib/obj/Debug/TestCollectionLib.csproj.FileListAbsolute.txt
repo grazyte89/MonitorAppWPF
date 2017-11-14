@@ -12,3 +12,5 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\TestCollectionLib.dll.config
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\bin\Debug\PetsEntityLib.dll.config
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.csproj.CoreCompileInputs.cache
