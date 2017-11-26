@@ -74,6 +74,9 @@
       <DependentUpon>StockDbControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UiConstants\Constants.cs" />
+    <Compile Include="WcfControls\CustomerWcfControl.xaml.cs">
+      <DependentUpon>CustomerWcfControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="CreateEntityControls\CreateCustomerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +126,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MenuControls\DBSubMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WcfControls\CustomerWcfControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
