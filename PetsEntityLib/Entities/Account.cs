@@ -40,5 +40,14 @@ namespace PetsEntityLib.Entities
         [DataMember(Name = "ReceiverTransaction")]
         [InverseProperty("Receiver")]
         public virtual ICollection<Transaction> ReceiverTransactions { get; set; }
+
+        /* There may cases where a table will have two or more 
+         * foreigns keys pointing to the same primary key.
+         * In a normal situation (one foreign key), you would 
+         * mark the foreign property (either the int or refernce type) 
+         * in the Transaction entity class with a foreign key attribute.
+         * But applying two foreign keys two properties in the same causes
+         * a problem.
+         * */
     }
 }

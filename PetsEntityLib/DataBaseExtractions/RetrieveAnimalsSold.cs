@@ -20,7 +20,7 @@ namespace PetsEntityLib.DataBaseExtractions
                 using (PetShopDBContext _dataContext = new PetShopDBContext())
                 {
                     animalSolds = _dataContext.AnimalSolds
-                                    .Include(x => x.Customer)
+                                    .Include(x => x.Customer.AnimalSolds)
                                     .ToList();
                 }
             }

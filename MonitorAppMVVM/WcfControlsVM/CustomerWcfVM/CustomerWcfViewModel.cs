@@ -10,6 +10,5 @@ namespace MonitorAppMVVM.WcfControlsVM.CustomerWcfVM
     public class CustomerWcfViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private int iiii;
     }
 }
