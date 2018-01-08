@@ -43,6 +43,18 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
             }
         }
 
+        public bool CurrentCustomerAnimalsListVisible
+        {
+            get
+            {
+                if (CurrentCustomer?.AnimalSolds?.Count > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         private bool _animalSoldListAccessEnabled;
         public bool AnimalSoldListAccessEnabled
         {
@@ -83,6 +95,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
             {
                 _currentCustomer = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentCustomer"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentCustomerAnimalsListVisible"));
             }
         }
 

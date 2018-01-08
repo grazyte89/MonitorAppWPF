@@ -43,7 +43,7 @@ namespace MonitorAppWPF.Monitors
 
         private void InitialiseCyceTimer()
         {
-            _cycleTimer = new Timer(1000);
+            _cycleTimer = new Timer(500);
             _cycleTimer.Elapsed += OnTimedEvent;
         }
 

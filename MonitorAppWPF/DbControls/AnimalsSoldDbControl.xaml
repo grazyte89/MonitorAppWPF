@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonitorAppWPF.DbControls"
              xmlns:dbControlASVm="clr-namespace:MonitorAppMVVM.DbControlsVM.AnimalSoldVm;assembly=MonitorAppMVVM"
+             xmlns:uiHelpResource="clr-namespace:MonitorAppWPF.UiHelpResource"
              mc:Ignorable="d"
              d:DesignHeight="518" d:DesignWidth="857" BorderBrush="Black">
     <UserControl.DataContext>
         <dbControlASVm:AnimalSoldViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <uiHelpResource:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
+    </UserControl.Resources>
     <Grid x:Name="_grdBigMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="RosyBrown">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -44,7 +48,7 @@
                     </DataGrid>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
-                    <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" 
+                    <Grid Grid.Row="0" Panel.ZIndex="2" Name="_grdEditSection" HorizontalAlignment="Stretch" 
                             Background="DarkGray">
                         <Grid DataContext="{Binding Path=CurrentCustomer}">
                             <Grid.RowDefinitions>
@@ -80,15 +84,30 @@
                                     </Grid>
                                 </StackPanel>
                             </ScrollViewer>
-                            <Border Grid.Row="1" Margin="0,10" BorderBrush="Black" BorderThickness="2">
+                            <Border Grid.Row="1" Margin="0,10" BorderBrush="Black" BorderThickness="2"
+                                    Visibility="{Binding Path=DataContext.CurrentCustomerAnimalsListVisible, Converter={StaticResource BoolVisibilityConverter},
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                                <!--
+                                In Xaml, we may encounter a situation where a child
+                                structure/block i.e. grids etc has its datacontext 
+                                initialised with a different value compared to its 
+                                parent compoenets datacontext.
+                                In that child structure, there is another child
+                                component: label, who wants to bind to a property
+                                from the parent dataconext, and for that situations, 
+                                you would use a relativesource.
+                                
+                                A relativesource tells xaml to up component heiranchy 
+                                to find the parent and its dataconetxt and the binding.
+                                -->
                                 <DataGrid  SelectionMode="Single" ItemsSource="{Binding Path=AnimalSolds}"
                                            SelectedItem="{Binding SelectedAnimalSold, Mode=TwoWay}"
-                                           AutoGenerateColumns="True" IsReadOnly="True" 
+                                           AutoGenerateColumns="True" IsReadOnly="True"
                                            IsEnabled="{Binding Path=AnimalSoldListAccessEnabled}">
                                 </DataGrid>
                             </Border>
                         </Grid>
-                    </StackPanel>
+                    </Grid>
                 </Border>
             </Grid>
         </Grid>

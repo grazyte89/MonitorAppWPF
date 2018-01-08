@@ -74,6 +74,7 @@
       <DependentUpon>StockDbControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UiConstants\Constants.cs" />
+    <Compile Include="UiHelpResource\BoolVisibilityConverter.cs" />
     <Compile Include="WcfControls\CustomerWcfControl.xaml.cs">
       <DependentUpon>CustomerWcfControl.xaml</DependentUpon>
     </Compile>
