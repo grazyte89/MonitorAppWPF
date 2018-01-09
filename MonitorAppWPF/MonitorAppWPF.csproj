@@ -70,6 +70,9 @@
     <Compile Include="DbControls\AnimalsSoldDbControl.xaml.cs">
       <DependentUpon>AnimalsSoldDbControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DbControls\DbContainerControl.xaml.cs">
+      <DependentUpon>DbContainerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DbControls\StockDbControl.xaml.cs">
       <DependentUpon>StockDbControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DbControls\CustomerDBControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DbControls\DbContainerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

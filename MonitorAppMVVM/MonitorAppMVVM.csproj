@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,8 @@
     <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
     <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseCommand.cs" />
     <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseViewModel.cs" />
+    <Compile Include="MainWindowVm\MainWindowViewModel.cs" />
+    <Compile Include="MenuControlsVm\DbSubMenuVm\AnimalDbCommand.cs" />
     <Compile Include="MenuControlsVm\DbSubMenuVm\DBSubMenuControlViewModel.cs" />
     <Compile Include="MonitorVM\MonitorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
