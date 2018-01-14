@@ -63,6 +63,7 @@
     <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
     <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseCommand.cs" />
     <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseViewModel.cs" />
+    <Compile Include="MainWindowVm\DbSubMenuCommand.cs" />
     <Compile Include="MainWindowVm\MainWindowViewModel.cs" />
     <Compile Include="MenuControlsVm\DbSubMenuVm\AnimalDbCommand.cs" />
     <Compile Include="MenuControlsVm\DbSubMenuVm\DBSubMenuControlViewModel.cs" />

@@ -30,8 +30,7 @@ namespace MonitorAppWPF
         {
             InitializeComponent();
             _cpuMonitroing = new CpuMonitoring(_lbCurrentCpuUsage);
-            this.DataContext = _cpuMonitroing;
-            
+            //this.DataContext = _cpuMonitroing;
         }
 
         private void MonitorButton_Click(object sender, RoutedEventArgs e)

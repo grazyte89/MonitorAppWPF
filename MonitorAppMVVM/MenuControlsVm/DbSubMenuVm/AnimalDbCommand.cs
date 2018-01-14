@@ -10,10 +10,11 @@ namespace MonitorAppMVVM.MenuControlsVm.DbSubMenuVm
     public class AnimalDbCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
+        private DBSubMenuControlViewModel _dbSubMenuViewModel;
 
-        public AnimalDbCommand()
+        public AnimalDbCommand(DBSubMenuControlViewModel dbSubMenuViewModel)
         {
-
+            _dbSubMenuViewModel = dbSubMenuViewModel;
         }
 
         public bool CanExecute(object parameter)

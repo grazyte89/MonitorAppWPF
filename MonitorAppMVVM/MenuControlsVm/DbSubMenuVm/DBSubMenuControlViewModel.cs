@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonitorAppMVVM.DbControlsVM.VmSharedGeneric;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Windows.Input;
 
 namespace MonitorAppMVVM.MenuControlsVm.DbSubMenuVm
 {
-    public class DBSubMenuControlViewModel : INotifyPropertyChanged
+    public class DBSubMenuControlViewModel : GenericBaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string CurrentViewModelName { get { return "DBSubMenuControlViewModel"; } }
 
         private AnimalDbCommand _animalDbCommand;
         public ICommand AnimalDbCommand
@@ -19,6 +20,11 @@ namespace MonitorAppMVVM.MenuControlsVm.DbSubMenuVm
             {
                 return _animalDbCommand;
             }
+        }
+
+        public DBSubMenuControlViewModel()
+        {
+            _animalDbCommand = new AnimalDbCommand(this);
         }
     }
 }

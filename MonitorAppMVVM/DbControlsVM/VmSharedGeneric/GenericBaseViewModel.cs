@@ -9,6 +9,8 @@ namespace MonitorAppMVVM.DbControlsVM.VmSharedGeneric
 {
     public abstract class GenericBaseViewModel : INotifyPropertyChanged
     {
+        string CurrentViewModelName { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void InvokePropertyChange(GenericBaseViewModel sender, string propertyName)

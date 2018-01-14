@@ -12,9 +12,13 @@ namespace MonitorAppWPF.MenuControls
     {
         private ContentControl _mainUserControl;
 
-        public DBSubMenuControl(ContentControl mainContent)
+        public DBSubMenuControl()
         {
             InitializeComponent();
+        }
+
+        public DBSubMenuControl(ContentControl mainContent) : this()
+        {
             _mainUserControl = mainContent;
         }
 
