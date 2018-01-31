@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerVM\DbContainerViewModel.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\AnimalSoldViewModel.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\EditAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\NewAnimalSoldCommand.cs" />
@@ -61,15 +62,17 @@
     <Compile Include="DbControlsVM\StockVm\RetrieveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\SaveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
-    <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseCommand.cs" />
-    <Compile Include="DbControlsVM\VmSharedGeneric\GenericBaseViewModel.cs" />
-    <Compile Include="MainWindowVm\DbSubMenuCommand.cs" />
-    <Compile Include="MainWindowVm\MainWindowViewModel.cs" />
-    <Compile Include="MenuControlsVm\DbSubMenuVm\AnimalDbCommand.cs" />
-    <Compile Include="MenuControlsVm\DbSubMenuVm\DBSubMenuControlViewModel.cs" />
+    <Compile Include="VmSharedGeneric\GenericBaseCommand.cs" />
+    <Compile Include="VmSharedGeneric\IContainerViewModel.cs" />
+    <Compile Include="VmSharedGeneric\IGenericBaseViewModel.cs" />
+    <Compile Include="MainWindowVM\DbSubMenuCommand.cs" />
+    <Compile Include="MainWindowVM\MainWindowViewModel.cs" />
+    <Compile Include="MenuControlsVM\DbSubMenuVM\AnimalDbCommand.cs" />
+    <Compile Include="MenuControlsVM\DbSubMenuVM\DBSubMenuControlViewModel.cs" />
     <Compile Include="MonitorVM\MonitorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UiConstantsMvvm\Constants.cs" />
+    <Compile Include="VmSharedGeneric\IPrincipleViewModel.cs" />
     <Compile Include="WcfControlsVM\CustomerWcfVM\CustomerWcfViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

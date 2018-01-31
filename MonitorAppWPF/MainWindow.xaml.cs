@@ -37,11 +37,6 @@ namespace MonitorAppWPF
         {
             _cpuMonitroing.StartMonitoring();
         }
-
-        private void DatabaseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this._ccSubMenuControl.Content = new MenuControls.DBSubMenuControl(_ccMainControls);
-        }
     }
 }
 

@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dbsmVm="clr-namespace:MonitorAppMVVM.MenuControlsVm.DbSubMenuVm;assembly=MonitorAppMVVM"
+        xmlns:dbsmVm="clr-namespace:MonitorAppMVVM.MenuControlsVM.DbSubMenuVM;assembly=MonitorAppMVVM"
+        xmlns:conVm="clr-namespace:MonitorAppMVVM.ContainerVM;assembly=MonitorAppMVVM"
         xmlns:dbm="clr-namespace:MonitorAppWPF.MenuControls"
-        xmlns:vm="clr-namespace:MonitorAppMVVM.MainWindowVm;assembly=MonitorAppMVVM"
+        xmlns:conc="clr-namespace:MonitorAppWPF.ContainerControls"
+        xmlns:vm="clr-namespace:MonitorAppMVVM.MainWindowVM;assembly=MonitorAppMVVM"
         xmlns:local="clr-namespace:MonitorAppWPF"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized"
@@ -14,13 +16,15 @@
         <DataTemplate DataType="{x:Type dbsmVm:DBSubMenuControlViewModel}">
             <dbm:DBSubMenuControl />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type conVm:DbContainerViewModel}">
+            <conc:DbContainerControl/>
+        </DataTemplate>
     </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -38,6 +42,5 @@
             <Label x:Name="_lbCurrentCpuUsage" Content="{Binding CpuUsage, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,10,20,0" />
         </Grid>
         <ContentControl x:Name="_ccSubMenuControl" Grid.RowSpan="2" Grid.Row="1" Grid.Column="1" Margin="2,2,2,2" Content="{Binding DbSubMenuViewModel}" />
-        <ContentControl x:Name="_ccMainControls" Grid.RowSpan="2" Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" />
     </Grid>
 </Window>

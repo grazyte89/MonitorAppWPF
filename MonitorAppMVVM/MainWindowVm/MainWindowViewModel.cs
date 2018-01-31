@@ -1,4 +1,5 @@
-﻿using MonitorAppMVVM.DbControlsVM.VmSharedGeneric;
+﻿using MonitorAppMVVM.ContainerVM;
+using MonitorAppMVVM.VmSharedGeneric;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,16 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.MainWindowVm
+namespace MonitorAppMVVM.MainWindowVM
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : INotifyPropertyChanged //IPrincipleViewModel,
     {
+        public string CurrentViewModelName { get { return "MainWindowViewModel"; } }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public GenericBaseViewModel ViewModelContainer { get; set; }
-
-        private GenericBaseViewModel _dbSubMenuControl;
-        public GenericBaseViewModel DbSubMenuViewModel
+        private IGenericBaseViewModel _dbSubMenuControl;
+        public IGenericBaseViewModel DbSubMenuViewModel
         {
             get
             {

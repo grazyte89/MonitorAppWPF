@@ -24,8 +24,8 @@ namespace MonitorAppWPF.MenuControls
 
         private void BtnAnimal_Click(object sender, RoutedEventArgs e)
         {
-            this.ClearContent();
-            this._mainUserControl.Content = new DbControls.AnimalsDbControl();
+            //this.ClearContent();
+            //this._mainUserControl.Content = new DbControls.AnimalsDbControl();
         }
 
         private void BtnCustomers_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace MonitorAppWPF.MenuControls
 
         private void ClearContent()
         {
-            if (_mainUserControl.Content != null)
+            if (_mainUserControl != null && _mainUserControl.Content != null)
                 _mainUserControl.Content = null;
         }
 

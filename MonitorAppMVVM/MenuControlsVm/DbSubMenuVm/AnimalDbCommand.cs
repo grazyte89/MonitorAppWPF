@@ -1,16 +1,19 @@
-﻿using System;
+﻿using MonitorAppMVVM.DbControlsVM.AnimalVm;
+using MonitorAppMVVM.VmSharedGeneric;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.MenuControlsVm.DbSubMenuVm
+namespace MonitorAppMVVM.MenuControlsVM.DbSubMenuVM
 {
     public class AnimalDbCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
         private DBSubMenuControlViewModel _dbSubMenuViewModel;
+
+        public event EventHandler CanExecuteChanged;
 
         public AnimalDbCommand(DBSubMenuControlViewModel dbSubMenuViewModel)
         {
@@ -24,7 +27,7 @@ namespace MonitorAppMVVM.MenuControlsVm.DbSubMenuVm
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _dbSubMenuViewModel.DbControlViewModel = new AnimalViewModel();
         }
     }
 }

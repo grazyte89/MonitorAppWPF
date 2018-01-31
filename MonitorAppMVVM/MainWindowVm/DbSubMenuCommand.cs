@@ -1,4 +1,5 @@
-﻿using MonitorAppMVVM.MenuControlsVm.DbSubMenuVm;
+﻿using MonitorAppMVVM.MenuControlsVM.DbSubMenuVM;
+using MonitorAppMVVM.VmSharedGeneric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.MainWindowVm
+namespace MonitorAppMVVM.MainWindowVM
 {
     public class DbSubMenuCommand : ICommand
     {
@@ -26,7 +27,8 @@ namespace MonitorAppMVVM.MainWindowVm
 
         public void Execute(object parameter)
         {
-            _mainViewModel.DbSubMenuViewModel = new DBSubMenuControlViewModel(); 
+            var dbSubMenu = new DBSubMenuControlViewModel();
+            _mainViewModel.DbSubMenuViewModel = dbSubMenu;
         }
     }
 }

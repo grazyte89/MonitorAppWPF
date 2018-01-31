@@ -1,4 +1,4 @@
-﻿using MonitorAppMVVM.DbControlsVM.VmSharedGeneric;
+﻿using MonitorAppMVVM.VmSharedGeneric;
 using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.Entities;
 using System;

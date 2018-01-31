@@ -4,25 +4,64 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonitorAppWPF.MenuControls"
+             xmlns:dbc="clr-namespace:MonitorAppWPF.DbControls"
+             xmlns:animalVm="clr-namespace:MonitorAppMVVM.DbControlsVM.AnimalVm;assembly=MonitorAppMVVM"
+             xmlns:vm="clr-namespace:MonitorAppMVVM.MenuControlsVM.DbSubMenuVM;assembly=MonitorAppMVVM"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="100" Background="DarkKhaki">
+             d:DesignHeight="500" d:DesignWidth="500">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type animalVm:AnimalViewModel}">
+            <dbc:AnimalsDbControl/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:DBSubMenuControlViewModel/>
+    </UserControl.DataContext>
     <Grid x:Name="_grdMainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <Button x:Name="_btnAnimals" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Animals" Click="BtnAnimal_Click" />
-                <Button x:Name="_btnAnimalSold" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Animal Sold" Click="BtnAnimalSold_Click" />
-                <Button x:Name="_btnCustomers" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Customers" Click="BtnCustomers_Click"/>
-                <Button x:Name="_btnStocks" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Stocks" Click="BtnStocks_Click"/>
-                <Button x:Name="_btnTest" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,0"
-                    Content="Test" Click="BtnTest_Click"/>
-            </StackPanel>
-        </ScrollViewer>
+        <Grid x:Name="_grdSubMub" Grid.Row="0" Grid.Column="0"
+              Background="DarkKhaki">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Button x:Name="_btnAnimals" Height="30" 
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" Margin="5,5,5,0"
+                            Content="Animals" 
+                            Command="{Binding AnimalDbCommand}" />
+                    <Button x:Name="_btnAnimalSold" Height="30"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="5,5,5,0" Content="Animal Sold" 
+                            Click="BtnAnimalSold_Click" />
+                    <Button x:Name="_btnCustomers" Height="30"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="5,5,5,0" Content="Customers"
+                            Click="BtnCustomers_Click"/>
+                    <Button x:Name="_btnStocks" Height="30"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch" Margin="5,5,5,0"
+                            Content="Stocks" Click="BtnStocks_Click"/>
+                    <Button x:Name="_btnTest" Height="30"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch" Margin="5,5,5,0"
+                            Content="Test" Click="BtnTest_Click"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="_grdDbContent" Grid.Row="0" Grid.Column="1">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <ContentControl x:Name="_ccMainControls" Grid.RowSpan="2" 
+                            Grid.Row="1" Grid.Column="2" Margin="2,2,2,2" 
+                            Content="{Binding DbControlViewModel}" />
+                <!--ViewModelContainer-->
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

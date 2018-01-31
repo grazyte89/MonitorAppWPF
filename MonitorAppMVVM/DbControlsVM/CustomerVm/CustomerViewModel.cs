@@ -1,4 +1,5 @@
-﻿using PetsEntityLib.DataBaseExtractions;
+﻿using MonitorAppMVVM.VmSharedGeneric;
+using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,20 @@ using System.Windows.Input;
 
 namespace MonitorAppMVVM.DbControlsVM.CustomerVm
 {
-    public class CustomerViewModel : INotifyPropertyChanged
+    public class CustomerViewModel : IGenericBaseViewModel, INotifyPropertyChanged
     {
         private IList<Customer> _customerList;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public string ExistingOrNewCustomer { get; set; }
+
+        public string CurrentViewModelName
+        {
+            get
+            {
+                return "CustomerViewModel";
+            }
+        }
 
         private bool _customerListAccessEnabled;
         public bool CustomerListAccessEnabled

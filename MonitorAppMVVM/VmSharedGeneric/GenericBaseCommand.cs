@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MonitorAppMVVM.DbControlsVM.VmSharedGeneric
+namespace MonitorAppMVVM.VmSharedGeneric
 {
     public abstract class GenericBaseCommand : ICommand
     {

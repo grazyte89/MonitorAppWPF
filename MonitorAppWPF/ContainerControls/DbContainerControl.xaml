@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="MonitorAppWPF.ContainerControls.DbContainerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MonitorAppMVVM.ContainerVM;assembly=MonitorAppMVVM"
+             xmlns:acVm="clr-namespace:MonitorAppMVVM.DbControlsVM.AnimalVm;assembly=MonitorAppMVVM"
+             xmlns:dbc="clr-namespace:MonitorAppWPF.DbControls"
+             xmlns:local="clr-namespace:MonitorAppWPF.ContainerControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type acVm:AnimalViewModel}">
+            <dbc:AnimalsDbControl/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:DbContainerViewModel />
+    </UserControl.DataContext>
+    <Border BorderBrush="Black" BorderThickness="1" Visibility="Visible">
+        <Grid Width="300" Height="300">
+            <ContentControl x:Name="_ccContentControl" Content="{Binding ViewModelContent}" />
+        </Grid>
+    </Border>
+</UserControl>

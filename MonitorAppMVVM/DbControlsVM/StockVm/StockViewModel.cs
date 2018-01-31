@@ -1,4 +1,4 @@
-﻿using MonitorAppMVVM.DbControlsVM.VmSharedGeneric;
+﻿using MonitorAppMVVM.VmSharedGeneric;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,11 +11,18 @@ using System.Windows.Input;
 
 namespace MonitorAppMVVM.DbControlsVM.StockVm
 {
-    public class StockViewModel : GenericBaseViewModel
+    public class StockViewModel : IGenericBaseViewModel, INotifyPropertyChanged
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
-
+        public event PropertyChangedEventHandler PropertyChanged;
         public string ExistingOrNewStock { get; set; }
+
+        public string CurrentViewModelName
+        {
+            get
+            {
+                return "StockViewModel";
+            }
+        }
 
         private ObservableCollection<Stock> _stockList;
         public ObservableCollection<Stock> StockList
@@ -27,8 +34,8 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
             set
             {
                 _stockList = value;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StockList"));
-                InvokePropertyChange(this, "StockList");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StockList"));
+                //InvokePropertyChange(this, "StockList");
             }
         }
 
@@ -43,8 +50,8 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
             {
                 _selectedStock = value;
                 CurrentStock = _selectedStock;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedStock"));
-                InvokePropertyChange(this, "SelectedStock");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedStock"));
+                //InvokePropertyChange(this, "SelectedStock");
             }
         }
 
@@ -58,8 +65,8 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
             set
             {
                 _currentStock = value;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentStock"));
-                InvokePropertyChange(this, "CurrentStock");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentStock"));
+                //InvokePropertyChange(this, "CurrentStock");
             }
         }
 
@@ -73,8 +80,8 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
             set
             {
                 _stockListAccessEnabled = value;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StockListAccessEnabled"));
-                InvokePropertyChange(this, "StockListAccessEnabled");
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StockListAccessEnabled"));
+                //InvokePropertyChange(this, "StockListAccessEnabled");
             }
         }
 

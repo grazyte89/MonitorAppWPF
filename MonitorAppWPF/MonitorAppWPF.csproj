@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContainerControls\DbContainerControl.xaml.cs">
+      <DependentUpon>DbContainerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DbControls\AnimalsSoldDbControl.xaml.cs">
       <DependentUpon>AnimalsSoldDbControl.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
     <Compile Include="WcfControls\CustomerWcfControl.xaml.cs">
       <DependentUpon>CustomerWcfControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="ContainerControls\DbContainerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateEntityControls\CreateCustomerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
