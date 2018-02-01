@@ -62,6 +62,9 @@
     <Compile Include="DbControlsVM\StockVm\RetrieveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\SaveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
+    <Compile Include="MenuControlsVM\DbSubMenuVM\AnimalSoldDbCommand.cs" />
+    <Compile Include="MenuControlsVM\DbSubMenuVM\CustomerDbCommand.cs" />
+    <Compile Include="MenuControlsVM\DbSubMenuVM\StockDbCommand.cs" />
     <Compile Include="VmSharedGeneric\GenericBaseCommand.cs" />
     <Compile Include="VmSharedGeneric\IContainerViewModel.cs" />
     <Compile Include="VmSharedGeneric\IGenericBaseViewModel.cs" />

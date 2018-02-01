@@ -6,12 +6,24 @@
              xmlns:local="clr-namespace:MonitorAppWPF.MenuControls"
              xmlns:dbc="clr-namespace:MonitorAppWPF.DbControls"
              xmlns:animalVm="clr-namespace:MonitorAppMVVM.DbControlsVM.AnimalVm;assembly=MonitorAppMVVM"
+             xmlns:animalSoldVm="clr-namespace:MonitorAppMVVM.DbControlsVM.AnimalSoldVm;assembly=MonitorAppMVVM"
+             xmlns:customerVm="clr-namespace:MonitorAppMVVM.DbControlsVM.CustomerVm;assembly=MonitorAppMVVM"
+             xmlns:stockVm="clr-namespace:MonitorAppMVVM.DbControlsVM.StockVm;assembly=MonitorAppMVVM"
              xmlns:vm="clr-namespace:MonitorAppMVVM.MenuControlsVM.DbSubMenuVM;assembly=MonitorAppMVVM"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type animalVm:AnimalViewModel}">
             <dbc:AnimalsDbControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type animalSoldVm:AnimalSoldViewModel}">
+            <dbc:AnimalsSoldDbControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type customerVm:CustomerViewModel}">
+            <dbc:CustomerDBControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type stockVm:StockViewModel}">
+            <dbc:StockDbControl/>
         </DataTemplate>
     </UserControl.Resources>
     <UserControl.DataContext>
@@ -37,17 +49,18 @@
                     <Button x:Name="_btnAnimalSold" Height="30"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            Margin="5,5,5,0" Content="Animal Sold" 
-                            Click="BtnAnimalSold_Click" />
+                            Margin="5,5,5,0" Content="Animal Sold"
+                            Command="{Binding AnimalSoldDbCommand}"/>
                     <Button x:Name="_btnCustomers" Height="30"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Margin="5,5,5,0" Content="Customers"
-                            Click="BtnCustomers_Click"/>
+                            Command="{Binding CustomerDbCommand}"/>
                     <Button x:Name="_btnStocks" Height="30"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch" Margin="5,5,5,0"
-                            Content="Stocks" Click="BtnStocks_Click"/>
+                            Content="Stocks"
+                            Command="{Binding StockDbCommand}"/>
                     <Button x:Name="_btnTest" Height="30"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch" Margin="5,5,5,0"

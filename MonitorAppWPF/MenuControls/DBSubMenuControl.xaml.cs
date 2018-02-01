@@ -22,28 +22,10 @@ namespace MonitorAppWPF.MenuControls
             _mainUserControl = mainContent;
         }
 
-        private void BtnAnimal_Click(object sender, RoutedEventArgs e)
-        {
-            //this.ClearContent();
-            //this._mainUserControl.Content = new DbControls.AnimalsDbControl();
-        }
-
-        private void BtnCustomers_Click(object sender, RoutedEventArgs e)
-        {
-            this.ClearContent();
-            this._mainUserControl.Content = new DbControls.CustomerDBControl();
-        }
-
         private void ClearContent()
         {
             if (_mainUserControl != null && _mainUserControl.Content != null)
                 _mainUserControl.Content = null;
-        }
-
-        private void BtnStocks_Click(object sender, RoutedEventArgs e)
-        {
-            this.ClearContent();
-            this._mainUserControl.Content = new DbControls.StockDbControl();
         }
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)
@@ -52,12 +34,6 @@ namespace MonitorAppWPF.MenuControls
             //TestingUpdateCustomer.TestManyToMay();
             //TestingUpdateCustomer.TestAccountClass();
             TestingUpdateCustomer.TestTransactionClass();
-        }
-
-        private void BtnAnimalSold_Click(object sender, RoutedEventArgs e)
-        {
-            this.ClearContent();
-            this._mainUserControl.Content = new DbControls.AnimalsSoldDbControl();
         }
     }
 }

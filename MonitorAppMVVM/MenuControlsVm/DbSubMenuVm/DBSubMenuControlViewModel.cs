@@ -40,9 +40,39 @@ namespace MonitorAppMVVM.MenuControlsVM.DbSubMenuVM
             }
         }
 
+        private AnimalSoldDbCommand _animalSoldDbCommand;
+        public ICommand AnimalSoldDbCommand
+        {
+            get
+            {
+                return _animalSoldDbCommand;
+            }
+        }
+
+        private CustomerDbCommand _customerDbCommand;
+        public ICommand CustomerDbCommand
+        {
+            get
+            {
+                return _customerDbCommand;
+            }
+        }
+
+        private StockDbCommand _stockDbCommand;
+        public ICommand StockDbCommand
+        {
+            get
+            {
+                return _stockDbCommand;
+            }
+        }
+
         public DBSubMenuControlViewModel()
         {
             _animalDbCommand = new AnimalDbCommand(this);
+            _animalSoldDbCommand = new AnimalSoldDbCommand(this);
+            _customerDbCommand = new CustomerDbCommand(this);
+            _stockDbCommand = new StockDbCommand(this);
         }
     }
 }

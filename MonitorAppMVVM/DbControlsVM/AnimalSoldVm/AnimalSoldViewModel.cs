@@ -1,4 +1,5 @@
-﻿using PetsEntityLib.Entities;
+﻿using MonitorAppMVVM.VmSharedGeneric;
+using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,10 +10,14 @@ using System.Windows.Input;
 
 namespace MonitorAppMVVM.DbControlsVM.AnimalSoldVm
 {
-    public class AnimalSoldViewModel : INotifyPropertyChanged
+    public class AnimalSoldViewModel : IGenericBaseViewModel, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string CurrentViewModelName
+        {
+            get { return "AnimalSoldViewModel"; }
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         public string ExistingOrNewModel { get; set; }
 
         private IList<AnimalSold> _animalSoldList;

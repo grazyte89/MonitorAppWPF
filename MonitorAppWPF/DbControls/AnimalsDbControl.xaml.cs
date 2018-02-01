@@ -34,15 +34,6 @@ namespace MonitorAppWPF.DbControls
             this.CollapseEditPanel();
         }
 
-        private void CreateNewAnimal(Animal animal)
-        {
-            CreateAnimalClass createAnimal = new CreateAnimalClass(null);
-            createAnimal.AddItem(animal);
-            createAnimal.SaveCreatedItems();
-            /*PersistEntityAsyncro asyncrosave = new PersistEntityAsyncro();
-            asyncrosave.Save(TestOne.GenerateMultipleEntites);*/
-        }
-
         private void UpdateAnimal(Animal animal)
         {
             UpdateAnimalClass updateAnimal = new UpdateAnimalClass(animal);
