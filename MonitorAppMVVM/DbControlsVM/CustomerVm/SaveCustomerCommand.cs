@@ -30,8 +30,11 @@ namespace MonitorAppMVVM.DbControlsVM.CustomerVm
         public void Execute(object parameter)
         {
             if (_customerViewModel.ExistingOrNewCustomer.Equals(Constants.New))
+            {
                 this.CreateNewCustomer(_customerViewModel.CurrentCustomer);
-            else if (_customerViewModel.ExistingOrNewCustomer.Equals(Constants.Edit) 
+                _customerViewModel.CustomersList.Add(_customerViewModel.CurrentCustomer);
+            }
+            else if (_customerViewModel.ExistingOrNewCustomer.Equals(Constants.Edit)
                 && _customerViewModel.CurrentCustomer != null)
                 this.UpdateCustomer(_customerViewModel.CurrentCustomer);
         }

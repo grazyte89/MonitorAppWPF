@@ -16,6 +16,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
         public string CurrentViewModelName { get { return "AnimalViewModel"; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event ViewModelMessageEventHandler AnimalVmErrorMessage;
 
         public string ExistingOrNewAnimal { get; set; }
 
@@ -48,6 +49,20 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
         }
 
+        private Animal _selectedBufferAnimal;
+        public Animal SelectedBufferAnimal
+        {
+            get
+            {
+                return _selectedBufferAnimal;
+            }
+            set
+            {
+                _selectedBufferAnimal = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedBufferAnimal"));
+            }
+        }
+
         private ObservableCollection<Animal> _animalsList;
         public ObservableCollection<Animal> AnimalsList
         {
@@ -59,6 +74,20 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             {
                 _animalsList = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AnimalsList"));
+            }
+        }
+
+        private ObservableCollection<Animal> _animalBufferList;
+        public ObservableCollection<Animal> AnimalBufferList
+        {
+            get
+            {
+                return _animalBufferList;
+            }
+            set
+            {
+                _animalBufferList = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AnimalBufferList"));
             }
         }
 
@@ -112,12 +141,37 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
         }
 
+        private DragAnimalCommand _dragAnimalCommand;
+        public ICommand DragAnimalCommand
+        {
+            get
+            {
+                return _dragAnimalCommand;
+            }
+        }
+
         public AnimalViewModel()
         {
+            _animalsList = new ObservableCollection<Animal>();
+            _animalBufferList = new ObservableCollection<Animal>();
             _retrieveAnimalCommand = new RetrieveAnimalsCommand(this);
             _editAnimalCommand = new EditAnimalCommand(this);
             _newAnimalCommand = new NewAnimalCommand(this);
             _saveAnimalCommand = new SaveAnimalCommand(this);
+            _dragAnimalCommand = new DragAnimalCommand(this);
+        }
+
+        public void AnimalObjectDropped()
+        {
+            //AnimalBufferList.Add(SelectedAnimal);
+        }
+
+        public void RaiseAnimalVmErrorMessage(string errorMessage)
+        {
+            if (AnimalVmErrorMessage != null)
+            {
+                AnimalVmErrorMessage.Invoke(this, new ViewModelMessageEventArgs(errorMessage));
+            }
         }
     }
 }

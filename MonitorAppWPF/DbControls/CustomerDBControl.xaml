@@ -48,18 +48,32 @@
                     <RowDefinition Height="*" />
                     <!--<RowDefinition Height="auto" />-->
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="_gdCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
+                <ListView x:Name="_lvCustomers" VerticalAlignment="Stretch" 
+                          Margin="0,5,0,0" SelectionMode="Single"
+                          ItemsSource="{Binding CustomersList}" 
+                          SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}" 
+                          IsEnabled="{Binding Path=CustomerListAccessEnabled}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Firstname" DisplayMemberBinding="{Binding Path=FIRSTNAME}" />
+                            <GridViewColumn Header="LastName" DisplayMemberBinding="{Binding LASTNAME}" />
+                            <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Path=AGE}" />
+                            <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Path=ADDRESS}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <!--<DataGrid x:Name="_gdCustomers" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
                           ItemsSource="{Binding CustomersList}" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}"
                           AutoGenerateColumns="false" IsReadOnly="True" 
                           IsEnabled="{Binding Path=CustomerListAccessEnabled}">
-                    <!--ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged"-->
+                    //ItemsSource="{Binding}" SelectionChanged="TbCustomers_SelectionChanged"
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Firstname" Binding="{Binding Path=FIRSTNAME}" />
                         <DataGridTextColumn Header="LastName" Binding="{Binding LASTNAME}" />
                         <DataGridTextColumn Header="Age" Binding="{Binding Path=AGE}" />
                         <DataGridTextColumn Header="Gender" Binding="{Binding Path=ADDRESS}" />
                     </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid>-->
                 <StackPanel Grid.Row="0" Panel.ZIndex="2" Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
                             Background="DarkGray" Visibility="Collapsed">
                     <Grid DataContext="{Binding Path=CurrentCustomer}">

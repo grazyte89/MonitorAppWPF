@@ -123,6 +123,7 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
 
         public StockViewModel()
         {
+            _stockList = new ObservableCollection<Stock>();
             _editStockCommand = new EditStockCommand(this);
             _newStockCommand = new NewStockCommand(this);
             _retrieveStockCommand = new RetrieveStockCommand(this);

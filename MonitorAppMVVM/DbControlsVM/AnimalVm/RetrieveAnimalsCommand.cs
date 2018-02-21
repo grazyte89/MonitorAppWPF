@@ -28,8 +28,17 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
 
         public void Execute(object parameter)
         {
-            _animalViewModel.AnimalsList = new ObservableCollection<Animal>(RetrieveAnimals.GetAllAnimals());
-            _animalViewModel.AnimalListAccessEnabled = true;
+            try
+            {
+                _animalViewModel.AnimalsList = 
+                    new ObservableCollection<Animal>(RetrieveAnimals.GetAllAnimals());
+                _animalViewModel.AnimalListAccessEnabled = true;
+            }
+            catch (Exception exception)
+            {
+                _animalViewModel.RaiseAnimalVmErrorMessage("Error encountered when retrieving animals " +
+                    "from the database.");
+            }
         }
     }
 }

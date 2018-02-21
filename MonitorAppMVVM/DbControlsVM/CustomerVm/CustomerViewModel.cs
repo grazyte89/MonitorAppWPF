@@ -3,6 +3,7 @@ using PetsEntityLib.DataBaseExtractions;
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,6 @@ namespace MonitorAppMVVM.DbControlsVM.CustomerVm
 {
     public class CustomerViewModel : IGenericBaseViewModel, INotifyPropertyChanged
     {
-        private IList<Customer> _customerList;
-
         public event PropertyChangedEventHandler PropertyChanged;
         public string ExistingOrNewCustomer { get; set; }
 
@@ -69,7 +68,8 @@ namespace MonitorAppMVVM.DbControlsVM.CustomerVm
             }
         }
 
-        public IList<Customer> CustomersList
+        private ObservableCollection<Customer> _customerList;
+        public ObservableCollection<Customer> CustomersList
         {
             get
             {
@@ -120,13 +120,11 @@ namespace MonitorAppMVVM.DbControlsVM.CustomerVm
 
         public CustomerViewModel()
         {
+            _customerList = new ObservableCollection<Customer>();
             _retrieveCustomersCommand = new RetrieveCustomerCommand(this);
             _editCustomerCommand = new EditCustomerCommad(this);
             _newCustomerCommand = new NewCustomerCommand(this);
             _saveCustomerCommand = new SaveCustomerCommand(this);
-            //_customerList = RetrieveCustomers.GetAllCustomers();
-
-            CustomerListAccessEnabled = true;
         }
     }
 }

@@ -29,11 +29,15 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
 
         public void Execute(object parameter)
         {
-            if (_animalViewModel.ExistingOrNewAnimal.Equals(Constants.New))
-                this.CreateNewAnimal(_animalViewModel.CurrentAnimal);
-            else if (_animalViewModel.ExistingOrNewAnimal.Equals(Constants.Edit)
-                && _animalViewModel.CurrentAnimal != null)
-                this.UpdateAnimal(_animalViewModel.CurrentAnimal);
+            try
+            {
+                this.ExecuteBusinessLogic();
+            }
+            catch (Exception exception)
+            {
+                _animalViewModel.RaiseAnimalVmErrorMessage("Error encountered when saving animal to the " +
+                    "database.");
+            }
         }
 
         private void CreateNewAnimal(Animal animal)
@@ -47,6 +51,20 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
         {
             UpdateAnimalClass updateAnimal = new UpdateAnimalClass(animal);
             updateAnimal.SaveUpdate();
+        }
+
+        public void ExecuteBusinessLogic()
+        {
+            if (_animalViewModel.ExistingOrNewAnimal.Equals(Constants.New))
+            {
+                this.CreateNewAnimal(_animalViewModel.CurrentAnimal);
+                _animalViewModel.AnimalsList.Add(_animalViewModel.CurrentAnimal);
+            }
+            else if (_animalViewModel.ExistingOrNewAnimal.Equals(Constants.Edit)
+                && _animalViewModel.CurrentAnimal != null)
+            {
+                this.UpdateAnimal(_animalViewModel.CurrentAnimal);
+            }
         }
     }
 }

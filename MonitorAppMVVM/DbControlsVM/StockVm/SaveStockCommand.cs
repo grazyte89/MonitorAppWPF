@@ -30,11 +30,16 @@ namespace MonitorAppMVVM.DbControlsVM.StockVm
         public void Execute(object parameter)
         {
             if (_stockViewModel.ExistingOrNewStock.Equals(Constants.New)
-                    && _stockViewModel.CurrentStock != null)
+                && _stockViewModel.CurrentStock != null)
+            {
                 this.CreateNewStock(_stockViewModel.CurrentStock);
+                _stockViewModel.StockList.Add(_stockViewModel.CurrentStock);
+            }
             else if (_stockViewModel.ExistingOrNewStock.Equals(Constants.Edit)
                     && _stockViewModel.CurrentStock != null)
+            {
                 this.UpdateStock(_stockViewModel.CurrentStock);
+            }
         }
 
         private void CreateNewStock(Stock stock)

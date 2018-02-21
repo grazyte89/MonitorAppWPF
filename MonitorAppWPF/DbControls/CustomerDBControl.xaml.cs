@@ -55,8 +55,8 @@ namespace MonitorAppWPF.DbControls
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
                 Duration = new Duration(TimeSpan.FromSeconds(2)),
-                From = new Thickness(0f, _gdCustomers.ActualHeight, 0f, 0f),
-                To = new Thickness(0f, _gdCustomers.ActualHeight / 2f, 0f, 0f),
+                From = new Thickness(0f, _lvCustomers.ActualHeight, 0f, 0f),
+                To = new Thickness(0f, _lvCustomers.ActualHeight / 2f, 0f, 0f),
                 DecelerationRatio = 0.9f
             };
 
@@ -71,8 +71,8 @@ namespace MonitorAppWPF.DbControls
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
                 Duration = new Duration(TimeSpan.FromSeconds(2)),
-                From = new Thickness(0f, _gdCustomers.ActualHeight / 2f, 0f, 0f),
-                To = new Thickness(0f, _gdCustomers.ActualHeight / 1f, 0f, 0f),
+                From = new Thickness(0f, _lvCustomers.ActualHeight / 2f, 0f, 0f),
+                To = new Thickness(0f, _lvCustomers.ActualHeight / 1f, 0f, 0f),
                 DecelerationRatio = 0.9f
             };
 
