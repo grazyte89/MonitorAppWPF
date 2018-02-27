@@ -150,6 +150,15 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
         }
 
+        private DeleteAnimalCommand _deleteAnimalCommand;
+        public ICommand DeleteAnimalCommand
+        {
+            get
+            {
+                return _deleteAnimalCommand;
+            }
+        }
+
         public AnimalViewModel()
         {
             _animalsList = new ObservableCollection<Animal>();
@@ -159,6 +168,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             _newAnimalCommand = new NewAnimalCommand(this);
             _saveAnimalCommand = new SaveAnimalCommand(this);
             _dragAnimalCommand = new DragAnimalCommand(this);
+            _deleteAnimalCommand = new DeleteAnimalCommand(this);
         }
 
         public void AnimalObjectDropped()

@@ -51,6 +51,7 @@
     <Compile Include="DbControlsVM\AnimalSoldVm\RetrieveAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\SaveAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\AnimalViewModel.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\DeleteAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\DragAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\EditAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\NewAnimalCommand.cs" />

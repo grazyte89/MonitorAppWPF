@@ -69,30 +69,41 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView x:Name="_lvAnimalBufferList" VerticalAlignment="Stretch"
-                          Margin="0,5,0,0" SelectionMode="Multiple" Grid.Column="1"
-                          ItemsSource="{Binding AnimalBufferList}"
-                          SelectedItem="{Binding SelectedBufferAnimal, Mode=TwoWay}"
-                          IsEnabled="{Binding AnimalListAccessEnabled}"
-                          AllowDrop="True"
-                          Drop="LvAnimalBufferList_Drop">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Firstname" DisplayMemberBinding="{Binding NAME}" />
-                            <GridViewColumn Header="Age" DisplayMemberBinding="{Binding AGE}" />
-                            <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding GENDER}" />
-                            <GridViewColumn Header="Type" DisplayMemberBinding="{Binding TYPE}" />
-                            <GridViewColumn Header="Vacination" DisplayMemberBinding="{Binding VACINATION}" />
-                            <GridViewColumn Header="Checkup" DisplayMemberBinding="{Binding CHECKUP}" />
-                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding STATUS}" />
-                        </GridView>
-                    </ListView.View>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Drop">
-                            <i:InvokeCommandAction Command="{Binding DragAnimalCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ListView>
+                <Grid Grid.Column="1"
+                      Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button x:Name="_btnDelete" Content="Delete"
+                            Margin="0,0,4,6" HorizontalAlignment="Left"
+                            Command="{Binding DeleteAnimalCommand}"/>
+                    <ListView x:Name="_lvAnimalBufferList" VerticalAlignment="Stretch"
+                              Margin="0,5,0,0" SelectionMode="Multiple"
+                              Grid.Row="1"
+                              ItemsSource="{Binding AnimalBufferList}"
+                              SelectedItem="{Binding SelectedBufferAnimal, Mode=TwoWay}"
+                              IsEnabled="{Binding AnimalListAccessEnabled}"
+                              AllowDrop="True"
+                              Drop="LvAnimalBufferList_Drop">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Firstname" DisplayMemberBinding="{Binding NAME}" />
+                                <GridViewColumn Header="Age" DisplayMemberBinding="{Binding AGE}" />
+                                <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding GENDER}" />
+                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding TYPE}" />
+                                <GridViewColumn Header="Vacination" DisplayMemberBinding="{Binding VACINATION}" />
+                                <GridViewColumn Header="Checkup" DisplayMemberBinding="{Binding CHECKUP}" />
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding STATUS}" />
+                            </GridView>
+                        </ListView.View>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Drop">
+                                <i:InvokeCommandAction Command="{Binding DragAnimalCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListView>
+                </Grid>
                 <!--<DataGrid x:Name="_gdAnimals" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
                           ItemsSource="{Binding AnimalsList}" SelectedItem="{Binding Path=SelectedAnimal, Mode=TwoWay}"
                           AutoGenerateColumns="false" IsReadOnly="True" IsEnabled="{Binding Path=AnimalListAccessEnabled}">

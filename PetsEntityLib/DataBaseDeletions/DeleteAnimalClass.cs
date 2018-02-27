@@ -42,8 +42,9 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public void DeleteItems()
+        public bool DeleteItems(out string message)
         {
+            message = string.Empty;
             try
             {
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
@@ -53,14 +54,22 @@ namespace PetsEntityLib.DataBaseDeletions
                         _dbContext.Animals.RemoveRange(_animalsToDelete);
                         _dbContext.SaveChanges();
                         _animalsToDelete.Clear();
+
+                        message = "Animals deleted";
+                        return true;
                     }
+                    message = "Condition were not met, thus deletion function" +
+                        " was not executed.";
                 }
+                
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Problem encountered during deleting animals." +
-                    "Message" + exception.Message);
+                message = "Problem encountered during deleting animals." +
+                    "Message" + exception.Message;
             }
+
+            return false;
         }
     }
 }

@@ -41,8 +41,9 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public void DeleteItems()
+        public bool DeleteItems(out string message)
         {
+            message = string.Empty;
             try
             {
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
@@ -54,11 +55,14 @@ namespace PetsEntityLib.DataBaseDeletions
                         _messagesToDelete.Clear();
                     }
                 }
+                message = "Deletion Successful";
+                return true;
             }
             catch (Exception exception)
             {
-                System.Windows.Forms.MessageBox.Show("Problem encountered during deleting customers." +
-                    "Message" + exception.Message);
+                message = "Problem encountered during deleting customers." +
+                    "Message" + exception.Message;
+                return false;
             }
         }
     }

@@ -53,7 +53,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             updateAnimal.SaveUpdate();
         }
 
-        public void ExecuteBusinessLogic()
+        private void ExecuteBusinessLogic()
         {
             if (_animalViewModel.ExistingOrNewAnimal.Equals(Constants.New))
             {

@@ -32,13 +32,15 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public void DeleteItems()
+        public bool DeleteItems(out string message)
         {
+            message = string.Empty;
             try
             {
                 if (_accountsToDelete == null && _accountsToDelete.Count <= 0)
                 {
-                    return;
+                    message = "Account is null or zero.";
+                    return false;
                 }
 
                 using (PetShopDBContext _dbcontext = new PetShopDBContext())
@@ -47,10 +49,13 @@ namespace PetsEntityLib.DataBaseDeletions
                     _dbcontext.SaveChanges();
                     _accountsToDelete.Clear();
                 }
+                message = "Deletion successful";
+                return true;
             }
             catch (Exception exception)
             {
                 // add logging here
+                return false;
             }
         }
     }
