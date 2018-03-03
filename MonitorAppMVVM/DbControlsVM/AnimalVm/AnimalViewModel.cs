@@ -141,12 +141,21 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
         }
 
-        private DragAnimalCommand _dragAnimalCommand;
-        public ICommand DragAnimalCommand
+        private BufferListDropCommand _bufferListDropCommand;
+        public ICommand BufferListDropCommand
         {
             get
             {
-                return _dragAnimalCommand;
+                return _bufferListDropCommand;
+            }
+        }
+
+        private AnimalListDropCommand _animalListDropCommand;
+        public ICommand AnimalListDropCommand
+        {
+            get
+            {
+                return _animalListDropCommand;
             }
         }
 
@@ -167,13 +176,9 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             _editAnimalCommand = new EditAnimalCommand(this);
             _newAnimalCommand = new NewAnimalCommand(this);
             _saveAnimalCommand = new SaveAnimalCommand(this);
-            _dragAnimalCommand = new DragAnimalCommand(this);
+            _bufferListDropCommand = new BufferListDropCommand(this);
+            _animalListDropCommand = new AnimalListDropCommand(this);
             _deleteAnimalCommand = new DeleteAnimalCommand(this);
-        }
-
-        public void AnimalObjectDropped()
-        {
-            //AnimalBufferList.Add(SelectedAnimal);
         }
 
         public void RaiseAnimalVmErrorMessage(string errorMessage)

@@ -92,7 +92,7 @@ namespace PetsEntityLib.DataBaseUpdates
         private void UpdateCourses(PetShopDBContext dbContext)
         {
             var detatchedCollection = this.GetDetatchedCollection<JoinCustomerCourse>(dbContext, 
-                        _currentCustomer.Courses, c => c.Courses, true);
+                    _currentCustomer.Courses, c => c.Courses, true);
 
             foreach (var item in detatchedCollection)
             {
@@ -108,8 +108,8 @@ namespace PetsEntityLib.DataBaseUpdates
 
         private void UpdateMessages(PetShopDBContext dbContext)
         {
-            var detatchedCollection = this.GetDetatchedCollection<Message>(dbContext,
-                        _currentCustomer.Messages, c => c.Messages, false);
+            var detatchedCollection = this.GetDetatchedCollection<Message>(dbContext, 
+                    _currentCustomer.Messages, c => c.Messages, false);
 
             // dbcontext.Entry(_currentCustomer).State = EntityState.Modified;
             /* When tagging child entities in a collection as Entitystate.Modified,
@@ -117,7 +117,7 @@ namespace PetsEntityLib.DataBaseUpdates
              * am error.
              * */
             var existingMessages = detatchedCollection.Where(m => m.ID > 0)
-                        .ToList();
+                    .ToList();
             foreach (var item in existingMessages)
             {
                 dbContext.Entry(item).State = EntityState.Modified;
@@ -135,7 +135,9 @@ namespace PetsEntityLib.DataBaseUpdates
             }
 
             var detatchedCollection = collection.ToList();
-            dbcontext.Entry(_currentCustomer).Collection(loadFunction).Load();
+            dbcontext.Entry(_currentCustomer)
+                .Collection(loadFunction)
+                .Load();
             collection.Clear();
             return detatchedCollection;
         }

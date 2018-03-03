@@ -50,9 +50,10 @@
     <Compile Include="DbControlsVM\AnimalSoldVm\NewAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\RetrieveAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalSoldVm\SaveAnimalSoldCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\AnimalListDropCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\AnimalViewModel.cs" />
     <Compile Include="DbControlsVM\AnimalVm\DeleteAnimalCommand.cs" />
-    <Compile Include="DbControlsVM\AnimalVm\DragAnimalCommand.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\BufferListDropCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\EditAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\NewAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\RetrieveAnimalsCommand.cs" />

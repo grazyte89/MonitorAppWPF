@@ -2,6 +2,7 @@
 using PetsEntityLib.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,8 @@ namespace PetsEntityLib.DataBaseDeletions
                 {
                     if (_animalsToDelete != null && _animalsToDelete.Count > 0)
                     {
-                        _dbContext.Animals.RemoveRange(_animalsToDelete);
+                        //_dbContext.Animals.RemoveRange(_animalsToDelete);
+                        this.TagEntitiesAsDeleted(_dbContext);
                         _dbContext.SaveChanges();
                         _animalsToDelete.Clear();
 
@@ -70,6 +72,26 @@ namespace PetsEntityLib.DataBaseDeletions
             }
 
             return false;
+        }
+
+        private void TagEntitiesAsDeleted(PetShopDBContext dbContext)
+        {
+            foreach (var item in _animalsToDelete)
+            {
+                dbContext.Entry(item).State = EntityState.Deleted;
+                /* Our design pattern for this application was to
+                 * have a sepration were all transactions create 
+                 * a temporary db-context to communicate with the 
+                 * database.
+                 * Because of the sepertaion, we work in a disconneted
+                 * way, which means that we have to manually set 
+                 * the entity-state of the entity before we save 
+                 * the object to the database.
+                 * 
+                 * If we do not specify an enity-state, then the 
+                 * entity framework will throw an error.
+                 * */
+            }
         }
     }
 }

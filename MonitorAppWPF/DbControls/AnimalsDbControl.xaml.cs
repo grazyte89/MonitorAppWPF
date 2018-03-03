@@ -132,10 +132,22 @@ namespace MonitorAppWPF.DbControls
                 Animal animal = e.Data.GetData("myFormat") as Animal;
                 ListView listView = sender as ListView;
                 listView.Items.Add(animal);
-            }*/
+            }
             if (this.DataContext is AnimalViewModel viewModel)
             {
                 viewModel.AnimalObjectDropped();
+            }*/
+        }
+
+        private void _lvAnimalBufferList_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (sender != null && e.LeftButton == MouseButtonState.Pressed)
+            {
+                var listView = sender as ListView;
+                ListViewItem listViewItem = FindAncestorClass.FindAnchestor<ListViewItem>(e.OriginalSource as DependencyObject);
+                Animal animal = listView.ItemContainerGenerator.ItemFromContainer(listViewItem) as Animal;
+                DataObject dragData = new DataObject("myFormat", animal);
+                DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
             }
         }
     }

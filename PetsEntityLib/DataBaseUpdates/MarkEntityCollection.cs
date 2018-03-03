@@ -22,7 +22,7 @@ namespace PetsEntityLib.DataBaseUpdates
             Expression<Func<TEntity, bool>> lamdaQuery) where TEntity : class
         {
             var newItems = collection.AsQueryable().Where(lamdaQuery)
-                            .ToList();
+                    .ToList();
 
             if (newItems != null)
             {

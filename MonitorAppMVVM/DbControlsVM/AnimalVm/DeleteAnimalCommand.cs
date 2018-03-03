@@ -32,13 +32,12 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
 
         private void ExecuteBusinessLogic()
         {
-            /*if (_animalViewModel.AnimalBufferList == null
+            if (_animalViewModel.AnimalBufferList == null
                 || _animalViewModel.AnimalBufferList.Count < 1)
             {
                 return;
-            }*/
-            DeleteAnimalClass deleteAnimals = new DeleteAnimalClass(animalsToDelete: null);
-            deleteAnimals.AddItemForDeletion(null);
+            }
+            DeleteAnimalClass deleteAnimals = new DeleteAnimalClass(_animalViewModel.AnimalBufferList);
             if (!deleteAnimals.DeleteItems(out string message))
             {
                 _animalViewModel.RaiseAnimalVmErrorMessage(message);

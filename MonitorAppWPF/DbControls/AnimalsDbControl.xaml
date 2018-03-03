@@ -56,6 +56,7 @@
                           ItemsSource="{Binding AnimalsList}" 
                           SelectedItem="{Binding SelectedAnimal, Mode=TwoWay}"
                           IsEnabled="{Binding AnimalListAccessEnabled}"
+                          AllowDrop="True"
                           MouseMove="LvAnimals_MouseMove">
                     <ListView.View>
                         <GridView>
@@ -68,6 +69,11 @@
                             <GridViewColumn Header="Status" DisplayMemberBinding="{Binding STATUS}" />
                         </GridView>
                     </ListView.View>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Drop">
+                            <i:InvokeCommandAction Command="{Binding AnimalListDropCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ListView>
                 <Grid Grid.Column="1"
                       Margin="0,5,0,0">
@@ -85,6 +91,7 @@
                               SelectedItem="{Binding SelectedBufferAnimal, Mode=TwoWay}"
                               IsEnabled="{Binding AnimalListAccessEnabled}"
                               AllowDrop="True"
+                              MouseMove="_lvAnimalBufferList_MouseMove"
                               Drop="LvAnimalBufferList_Drop">
                         <ListView.View>
                             <GridView>
@@ -99,24 +106,11 @@
                         </ListView.View>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Drop">
-                                <i:InvokeCommandAction Command="{Binding DragAnimalCommand}"/>
+                                <i:InvokeCommandAction Command="{Binding BufferListDropCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ListView>
                 </Grid>
-                <!--<DataGrid x:Name="_gdAnimals" VerticalAlignment="Stretch" Margin="0,5,0,0" SelectionMode="Single"
-                          ItemsSource="{Binding AnimalsList}" SelectedItem="{Binding Path=SelectedAnimal, Mode=TwoWay}"
-                          AutoGenerateColumns="false" IsReadOnly="True" IsEnabled="{Binding Path=AnimalListAccessEnabled}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Firstname" Binding="{Binding Path=NAME}" />
-                        <DataGridTextColumn Header="Age" Binding="{Binding Path=AGE}" />
-                        <DataGridTextColumn Header="Gender" Binding="{Binding Path=GENDER}" />
-                        <DataGridTextColumn Header="Type" Binding="{Binding Path=TYPE}" />
-                        <DataGridTextColumn Header="Vacination" Binding="{Binding VACINATION}" />
-                        <DataGridTextColumn Header="Checkup" Binding="{Binding Path=CHECKUP}" />
-                        <DataGridTextColumn Header="Status" Binding="{Binding Path=STATUS}" />
-                    </DataGrid.Columns>
-                </DataGrid>-->
                 <StackPanel Grid.Row="1" Panel.ZIndex="2" x:Name="_pnEditSection" HorizontalAlignment="Stretch" Margin="0,5,0,0" 
                             Background="DarkGray" Visibility="Collapsed" >
                     <Grid DataContext="{Binding CurrentAnimal}">
