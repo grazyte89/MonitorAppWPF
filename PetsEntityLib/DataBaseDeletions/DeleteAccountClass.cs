@@ -1,7 +1,10 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.Entities;
+using PetsEntityLib.EntityExtensions;
+using PetsEntityLib.PetsExceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,31 +35,40 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public bool DeleteItems(out string message)
+        public void DeleteItems()
         {
-            message = string.Empty;
+            if (_accountsToDelete == null || _accountsToDelete.Count <= 0)
+            {
+                var reason = _accountsToDelete == null
+                        ? "null" : "equal or less than zero";
+                var message = string.Format("Deletion could not be executed " +
+                        "because to the internal list being {0}", reason);
+                throw new PetsEntityException(message);
+            }
+
             try
             {
-                if (_accountsToDelete == null && _accountsToDelete.Count <= 0)
-                {
-                    message = "Account is null or zero.";
-                    return false;
-                }
-
                 using (PetShopDBContext _dbcontext = new PetShopDBContext())
                 {
-                    _dbcontext.Accounts.AddRange(_accountsToDelete);
+                    //_dbcontext.Accounts.AddRange(_accountsToDelete);
+                    _dbcontext.TagEntitiesAsDeleted<Account>(_accountsToDelete);
                     _dbcontext.SaveChanges();
                     _accountsToDelete.Clear();
                 }
-                message = "Deletion successful";
-                return true;
             }
             catch (Exception exception)
             {
                 // add logging here
-                return false;
+                throw;
             }
         }
+
+        /*private void TagEntitiesAsDeleted(PetShopDBContext dbContext)
+        {
+            foreach (var item in _accountsToDelete)
+            {
+                dbContext.Entry(item).State = EntityState.Deleted;
+            }
+        }*/
     }
 }

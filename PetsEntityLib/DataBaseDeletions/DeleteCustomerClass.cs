@@ -1,5 +1,7 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.Entities;
+using PetsEntityLib.PetsExceptions;
+using PetsEntityLib.EntityExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,28 +44,31 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public bool DeleteItems(out string message)
+        public void DeleteItems()
         {
-            message = string.Empty;
+            if (_customersToDelete == null || _customersToDelete.Count <= 0)
+            {
+                var reason = _customersToDelete == null
+                        ? "null" : "equal or less than zero";
+                var message = string.Format("Deletion could not be executed " +
+                        "because to the internal list being {0}", reason);
+                throw new PetsEntityException(message);
+            }
+
             try
             {
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
-                    if (_customersToDelete != null && _customersToDelete.Count > 0)
-                    {
-                        _dbContext.Customers.RemoveRange(_customersToDelete);
-                        _dbContext.SaveChanges();
-                        _customersToDelete.Clear();
-                    }
+                    //_dbContext.Customers.RemoveRange(_customersToDelete);
+                    _dbContext.TagEntitiesAsDeleted<Customer>(_customersToDelete);
+                    _dbContext.SaveChanges();
+                    _customersToDelete.Clear();
                 }
-                message = "Deletion Successful";
-                return true;
             }
             catch (Exception exception)
             {
-                message = "Problem encountered during deleting customers." +
-                    "Message" + exception.Message;
-                return false;
+                // logging here
+                throw;
             }
         }
     }

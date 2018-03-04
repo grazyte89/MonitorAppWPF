@@ -62,6 +62,7 @@
     <Compile Include="DataBaseDeletions\DeleteJoinCustomerCourseClass.cs" />
     <Compile Include="DataBaseDeletions\DeleteMessageClass.cs" />
     <Compile Include="DataBaseDeletions\DeleteStockClass.cs" />
+    <Compile Include="EntityExtensions\MarkEntityDelete.cs" />
     <Compile Include="DataBaseDeletions\DeleteTransactionClass.cs" />
     <Compile Include="DataBaseDeletions\IDBDeletion.cs" />
     <Compile Include="DataBaseExtractions\RetrieveAnimals.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\sysdiagram.cs" />
     <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="PetsExceptions\PetsEntityException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

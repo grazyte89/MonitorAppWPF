@@ -37,10 +37,15 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             {
                 return;
             }
-            DeleteAnimalClass deleteAnimals = new DeleteAnimalClass(_animalViewModel.AnimalBufferList);
-            if (!deleteAnimals.DeleteItems(out string message))
+
+            try
             {
-                _animalViewModel.RaiseAnimalVmErrorMessage(message);
+                DeleteAnimalClass deleteAnimals = new DeleteAnimalClass(_animalViewModel.AnimalBufferList);
+                deleteAnimals.DeleteItems();
+            }
+            catch (Exception exception)
+            {
+                _animalViewModel.RaiseAnimalVmErrorMessage(exception.Message);
             }
         }
     }

@@ -10,6 +10,6 @@ namespace PetsEntityLib.DataBaseDeletions
     public interface IDBDeletion<T> where T : IEntityDaBase
     {
         void AddItemForDeletion(T value);
-        bool DeleteItems(out string message);
+        void DeleteItems();
     }
 }

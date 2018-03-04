@@ -1,5 +1,7 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.Entities;
+using PetsEntityLib.EntityExtensions;
+using PetsEntityLib.PetsExceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -43,35 +45,33 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public bool DeleteItems(out string message)
+        public void DeleteItems()
         {
-            message = string.Empty;
+            if (_animalsToDelete == null || _animalsToDelete.Count <= 0)
+            {
+                var reason = _animalsToDelete == null
+                        ? "null" : "equal or less than zero";
+                var message = string.Format("Deletion could not be executed " +
+                        "because to the internal list being {0}", reason);
+                throw new PetsEntityException(message);
+            }
+
             try
             {
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
-                    if (_animalsToDelete != null && _animalsToDelete.Count > 0)
-                    {
-                        //_dbContext.Animals.RemoveRange(_animalsToDelete);
-                        this.TagEntitiesAsDeleted(_dbContext);
-                        _dbContext.SaveChanges();
-                        _animalsToDelete.Clear();
-
-                        message = "Animals deleted";
-                        return true;
-                    }
-                    message = "Condition were not met, thus deletion function" +
-                        " was not executed.";
+                    //_dbContext.Animals.RemoveRange(_animalsToDelete);
+                    //this.TagEntitiesAsDeleted(_dbContext);
+                    _dbContext.TagEntitiesAsDeleted(_animalsToDelete);
+                    _dbContext.SaveChanges();
+                    _animalsToDelete.Clear();
                 }
-                
             }
             catch (Exception exception)
             {
-                message = "Problem encountered during deleting animals." +
-                    "Message" + exception.Message;
+                // logging
+                throw;
             }
-
-            return false;
         }
 
         private void TagEntitiesAsDeleted(PetShopDBContext dbContext)

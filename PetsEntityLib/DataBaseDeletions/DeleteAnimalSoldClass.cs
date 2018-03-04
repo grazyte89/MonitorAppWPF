@@ -1,7 +1,10 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.Entities;
+using PetsEntityLib.EntityExtensions;
+using PetsEntityLib.PetsExceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,29 +45,40 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        public bool DeleteItems(out string message)
+        public void DeleteItems()
         {
-            message = string.Empty;
+            if (_animalSoldsToDelete == null || _animalSoldsToDelete.Count <= 0)
+            {
+                var reason = _animalSoldsToDelete == null
+                        ? "null" : "equal or less than zero";
+                var message = string.Format("Deletion could not be executed " +
+                        "because to the internal list being {0}", reason);
+                throw new PetsEntityException(message);
+            }
+
             try
             {
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
-                    if (_animalSoldsToDelete != null && _animalSoldsToDelete.Count > 0)
-                    {
-                        _dbContext.AnimalSolds.RemoveRange(_animalSoldsToDelete);
-                        _dbContext.SaveChanges();
-                        _animalSoldsToDelete.Clear();
-                    }
+                    //_dbContext.AnimalSolds.RemoveRange(_animalSoldsToDelete);
+                    _dbContext.TagEntitiesAsDeleted<AnimalSold>(_animalSoldsToDelete);
+                    _dbContext.SaveChanges();
+                    _animalSoldsToDelete.Clear();
                 }
-                message = "Deletion Successful";
-                return true;
             }
             catch (Exception exception)
             {
-                message = "Problem encountered during deleting animalsold." +
-                    "Message" + exception.Message;
-                return false;
+                // logging here
+                throw;
             }
         }
+
+        /*private void TagEntitiesAsDeleted(PetShopDBContext dbContext)
+        {
+            foreach (var item in _animalSoldsToDelete)
+            {
+                dbContext.Entry(item).State = EntityState.Deleted;
+            }
+        }*/
     }
 }
