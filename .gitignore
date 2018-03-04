@@ -48,3 +48,11 @@ Temporary Items
 
 /MonitorAppWPF/obj
 /MonitorAppWPF/bin
+*.ide
+.vs/MonitorAppWPF/v15/.suo
+*.ide
+*.dll
+*.pdb
+*.pdb
+*.cache
+*.pdb

@@ -32,6 +32,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             try
             {
                 this.ExecuteBusinessLogic();
+                _animalViewModel.AnimalListAccessEnabled = true;
             }
             catch (Exception exception)
             {
