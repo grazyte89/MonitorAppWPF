@@ -1,6 +1,7 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.DataBaseValues;
 using PetsEntityLib.Entities;
+using PetsEntityLib.PetsExceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -85,14 +86,23 @@ namespace PetsEntityLib.DataBaseUpdates
 
         public void SaveUpdate()
         {
-            using (PetShopDBContext _context = new PetShopDBContext())
+            if (_currentAnimal == null)
             {
-                if (_currentAnimal == null)
+                var message = "Animal could not be updated because it is null";
+                throw new PetsEntityException(message);
+            }
+
+            try
+            {
+                using (PetShopDBContext _context = new PetShopDBContext())
                 {
-                    return;
+                    _context.Entry(_currentAnimal).State = EntityState.Modified;
+                    _context.SaveChanges();
                 }
-                _context.Entry(_currentAnimal).State = EntityState.Modified;
-                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw;
             }
         }
     }

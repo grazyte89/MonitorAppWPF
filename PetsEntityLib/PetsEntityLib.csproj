@@ -62,6 +62,7 @@
     <Compile Include="DataBaseDeletions\DeleteJoinCustomerCourseClass.cs" />
     <Compile Include="DataBaseDeletions\DeleteMessageClass.cs" />
     <Compile Include="DataBaseDeletions\DeleteStockClass.cs" />
+    <Compile Include="EntityExtensions\EntityDeepClone.cs" />
     <Compile Include="EntityExtensions\MarkEntityDelete.cs" />
     <Compile Include="DataBaseDeletions\DeleteTransactionClass.cs" />
     <Compile Include="DataBaseDeletions\IDBDeletion.cs" />

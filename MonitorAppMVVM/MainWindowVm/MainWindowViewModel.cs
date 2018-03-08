@@ -16,6 +16,34 @@ namespace MonitorAppMVVM.MainWindowVM
         public string CurrentViewModelName { get { return "MainWindowViewModel"; } }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private bool _monitorButtonEnabled = true;
+        public bool MonitorButtonEnabled
+        {
+            get
+            {
+                return _monitorButtonEnabled;
+            }
+            set
+            {
+                _monitorButtonEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MonitorButtonEnabled"));
+            }
+        }
+
+        private string _cpuUsage;
+        public string CpuUsage
+        {
+            get
+            {
+                return _cpuUsage;
+            }
+            set
+            {
+                _cpuUsage = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CpuUsage"));
+            }
+        }
+
         private IGenericBaseViewModel _dbSubMenuControl;
         public IGenericBaseViewModel DbSubMenuViewModel
         {
@@ -39,9 +67,19 @@ namespace MonitorAppMVVM.MainWindowVM
             }
         }
 
+        private CpuMonitorCommand _cpuMonitorCommand;
+        public ICommand CpuMonitorCommand
+        {
+            get
+            {
+                return _cpuMonitorCommand;
+            }
+        }
+
         public MainWindowViewModel()
         {
             _dbSubMenuCommand = new DbSubMenuCommand(this);
+            _cpuMonitorCommand = new CpuMonitorCommand(this);
         }
     }
 }

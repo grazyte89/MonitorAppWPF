@@ -1,5 +1,6 @@
 ﻿using PetsEntityLib.DataBaseContext;
 using PetsEntityLib.Entities;
+using PetsEntityLib.PetsExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,23 +59,27 @@ namespace PetsEntityLib.DataBasePersistances
 
         public void SaveCreatedItems()
         {
+            if (_animals == null || _animals.Count <= 0)
+            {
+                var reason = _animals == null
+                        ? "null" : "equal or less than zero";
+                var message = string.Format("Saving business logic was not executed, " +
+                        "this was due to the internal list being {0}", reason);
+                throw new PetsEntityException(message);
+            }
+
             try
             {
                 using (PetShopDBContext _dataContext = new PetShopDBContext())
                 {
-                    if (_animals != null && _animals.Count > 0)
-                    {
-                        //_dataContext.Set<Animal>().AddRange(_animals);
-                        _dataContext.Animals.AddRange(_animals);
-                        _dataContext.SaveChanges();
-                        _animals.Clear();
-                    }
+                    _dataContext.Animals.AddRange(_animals);
+                    _dataContext.SaveChanges();
+                    _animals.Clear();
                 }
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Problem encountered during persisting animal." +
-                    "Message" + exception.Message);
+                throw;
             }
         }
     }

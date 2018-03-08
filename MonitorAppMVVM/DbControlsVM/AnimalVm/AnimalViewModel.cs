@@ -141,6 +141,15 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
         }
 
+        private CancelEditCommand _cancelEditCommand;
+        public ICommand CancelEditCommand
+        {
+            get
+            {
+                return _cancelEditCommand;
+            }
+        }
+
         private BufferListDropCommand _bufferListDropCommand;
         public ICommand BufferListDropCommand
         {
@@ -176,6 +185,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             _editAnimalCommand = new EditAnimalCommand(this);
             _newAnimalCommand = new NewAnimalCommand(this);
             _saveAnimalCommand = new SaveAnimalCommand(this);
+            _cancelEditCommand = new CancelEditCommand(this);
             _bufferListDropCommand = new BufferListDropCommand(this);
             _animalListDropCommand = new AnimalListDropCommand(this);
             _deleteAnimalCommand = new DeleteAnimalCommand(this);
