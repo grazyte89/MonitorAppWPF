@@ -9,3 +9,4 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\MonitorAppMVVM\obj\Debug\Mon
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\MonitorAppMVVM\obj\Debug\MonitorAppMVVM.csproj.CoreCompileInputs.cache
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\MonitorAppMVVM\obj\Debug\MonitorAppMVVM.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\MonitorAppMVVM\obj\Debug\MonitorAppMVVM.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\MonitorAppMVVM\obj\Debug\MonitorAppMVVM.csproj.CopyComplete

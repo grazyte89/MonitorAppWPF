@@ -9,3 +9,4 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\Pets
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.pdb
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.csprojResolveAssemblyReference.cache
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\PetsEntityLib\obj\Debug\PetsEntityLib.csproj.CopyComplete

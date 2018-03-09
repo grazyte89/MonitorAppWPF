@@ -61,7 +61,6 @@ namespace PetsEntityLib.DataBaseDeletions
                 using (PetShopDBContext _dbContext = new PetShopDBContext())
                 {
                     //_dbContext.Animals.RemoveRange(_animalsToDelete);
-                    //this.TagEntitiesAsDeleted(_dbContext);
                     _dbContext.TagEntitiesAsDeleted(_animalsToDelete);
                     _dbContext.SaveChanges();
                     _animalsToDelete.Clear();
@@ -74,12 +73,12 @@ namespace PetsEntityLib.DataBaseDeletions
             }
         }
 
-        private void TagEntitiesAsDeleted(PetShopDBContext dbContext)
+        /*private void TagEntitiesAsDeleted(PetShopDBContext dbContext)
         {
             foreach (var item in _animalsToDelete)
             {
                 dbContext.Entry(item).State = EntityState.Deleted;
-                /* Our design pattern for this application was to
+                 * Our design pattern for this application was to
                  * have a sepration were all transactions create 
                  * a temporary db-context to communicate with the 
                  * database.
@@ -90,9 +89,9 @@ namespace PetsEntityLib.DataBaseDeletions
                  * 
                  * If we do not specify an enity-state, then the 
                  * entity framework will throw an error.
-                 * */
-                 // correcting error merge
+                 * 
             }
-        }
+        }*/
+        // error fixing
     }
 }

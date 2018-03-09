@@ -52,6 +52,7 @@
     <Compile Include="DbControlsVM\AnimalSoldVm\SaveAnimalSoldCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\AnimalListDropCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\AnimalViewModel.cs" />
+    <Compile Include="DbControlsVM\AnimalVm\CancelEditCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\DeleteAnimalCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\BufferListDropCommand.cs" />
     <Compile Include="DbControlsVM\AnimalVm\EditAnimalCommand.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="DbControlsVM\StockVm\RetrieveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\SaveStockCommand.cs" />
     <Compile Include="DbControlsVM\StockVm\StockViewModel.cs" />
+    <Compile Include="MainWindowVM\CpuMonitorCommand.cs" />
     <Compile Include="MenuControlsVM\DbSubMenuVM\AnimalSoldDbCommand.cs" />
     <Compile Include="MenuControlsVM\DbSubMenuVM\CustomerDbCommand.cs" />
     <Compile Include="MenuControlsVM\DbSubMenuVM\StockDbCommand.cs" />

@@ -14,3 +14,4 @@ C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.csproj.CoreCompileInputs.cache
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.dll
 C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.pdb
+C:\Users\Abu\Documents\Programming\C#\MonitorAppWPF\TestCollectionLib\obj\Debug\TestCollectionLib.csproj.CopyComplete

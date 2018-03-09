@@ -36,8 +36,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             }
             catch (Exception exception)
             {
-                _animalViewModel.RaiseAnimalVmErrorMessage("Error encountered when saving animal to the " +
-                    "database.");
+                _animalViewModel.RaiseAnimalVmErrorMessage(exception.Message);
             }
         }
 
@@ -65,6 +64,8 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
                 && _animalViewModel.CurrentAnimal != null)
             {
                 this.UpdateAnimal(_animalViewModel.CurrentAnimal);
+                _animalViewModel.AnimalsList.Remove(_animalViewModel.SelectedAnimal);
+                _animalViewModel.AnimalsList.Add(_animalViewModel.CurrentAnimal);
             }
         }
     }

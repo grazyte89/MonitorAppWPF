@@ -40,13 +40,14 @@ namespace MonitorAppWPF.DbControls
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             this.ExpandEditPanel();
-            _lvAnimals.IsEnabled = false;
+            //_lvAnimals.IsEnabled = false;
             //_newEditwMode = Constants.Edit;
         }
 
         private void BtnSaveEdit_Click(object sender, RoutedEventArgs e)
         {
             this.CollapseEditPanel();
+            //_lvAnimals.IsEnabled = true;
         }
 
         private void UpdateAnimal(Animal animal)
@@ -109,7 +110,7 @@ namespace MonitorAppWPF.DbControls
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            _lvAnimals.IsEnabled = true;
+            //_lvAnimals.IsEnabled = true;
             this.CollapseEditPanel();
         }
 

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PetsEntityLib.Entities;
+using PetsEntityLib.EntityExtensions;
 
 namespace MonitorAppMVVM.DbControlsVM.AnimalVm
 {
@@ -26,6 +28,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
 
         public void Execute(object parameter)
         {
+            _animalViewModel.CurrentAnimal = _animalViewModel.SelectedAnimal.DeepClone<Animal>();
             _animalViewModel.AnimalListAccessEnabled = false;
             _animalViewModel.ExistingOrNewAnimal = Constants.Edit;
         }

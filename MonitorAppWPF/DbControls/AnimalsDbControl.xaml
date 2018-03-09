@@ -167,7 +167,7 @@
                         <Button x:Name="_btnSaveEdit"  Margin="5,5,5,5"
                             Height="50" Width="100" Content="Save Edit" Click="BtnSaveEdit_Click" Command="{Binding SaveAnimalCommand}"/>
                         <Button x:Name="_btnCancel"  Margin="5,5,5,5" 
-                                Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click"/>
+                                Height="50" Width="100" Content="Cancel" Click="BtnCancel_Click" Command="{Binding CancelEditCommand}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
