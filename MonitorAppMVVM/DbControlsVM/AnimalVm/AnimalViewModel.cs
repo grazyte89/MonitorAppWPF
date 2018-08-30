@@ -44,7 +44,7 @@ namespace MonitorAppMVVM.DbControlsVM.AnimalVm
             set
             {
                 _selectedAnimal = value;
-                CurrentAnimal = _selectedAnimal;
+                //CurrentAnimal = _selectedAnimal;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedAnimal"));
             }
         }
